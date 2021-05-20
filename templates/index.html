@@ -1,13 +1,28 @@
 <html>
     <head>
         <title>Drone Rent</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
     </head>
+    <script>
+        // XMLHttpRequest 객체의 생성
+        const xhr = new XMLHttpRequest();
+        // 비동기 방식으로 Request를 오픈한다
+        var url = '/drone/gps/';
+        json = {id:"1"};
+        url = url + json.stringify();
+        xhr.open('GET', '/users');  // form태그안에 어트리뷰트 써준거와 같다.
+        // Request를 전송한다
+        xhr.send();
+
+        if(xhr.status === 200) {       // 성공
+            console.log(xhr.responseText);   // responseText -> response body안에 들어있는 값이 text로 들어있다.
+            }
+        else {                      // response 실패
+            console.log('Error!');
+            }
+    </script>
     <body>
         <h1>Drone Page</h1>
-        <div id="loading">
-            <h2>Loading</h2>
-        </div>
         <div id="page_login">
             <h2>login</h2>
             ID:<input type="text"><br>
