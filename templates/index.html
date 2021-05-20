@@ -10,6 +10,7 @@
         var url = '/drone/gps/';
         var json = {id:"1"};
         url = url + JSON.stringify(json);
+        console.log(url)
         xhr.open('GET', url);  // form태그안에 어트리뷰트 써준거와 같다.
         // Request를 전송한다
         xhr.send();
