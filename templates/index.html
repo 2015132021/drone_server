@@ -8,7 +8,7 @@
         const xhr = new XMLHttpRequest();
         // 비동기 방식으로 Request를 오픈한다
         var url = '/drone/gps/';
-        json = {id:"1"};
+        var json = {id:"1"};
         url = url + json.stringify();
         xhr.open('GET', '/users');  // form태그안에 어트리뷰트 써준거와 같다.
         // Request를 전송한다
