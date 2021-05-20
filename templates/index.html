@@ -11,8 +11,13 @@
         var json = {id:"1"};
         url = url + JSON.stringify(json);
         console.log(url)
-        xhr.open('GET', url);  // form태그안에 어트리뷰트 써준거와 같다.
-        // Request를 전송한다
+        xhr.open('GET', encodeURI(url), true);  // form태그안에 어트리뷰트 써준거와 같다.
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && xhr.status == 200){
+                alert(xhr.responseText);
+            }
+        }
+
         xhr.send();
 
         if(xhr.status === 200) {       // 성공
