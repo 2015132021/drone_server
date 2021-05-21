@@ -22,7 +22,8 @@
             ID:<input type="text"><br>
             PW:<input type="password"><br>
             email:<input type="email"><br>
-            <input type="button" value="join">
+            <input type="button" value="join"><br>
+            <input type="button" value="return to login" onclick='refresh("page_login")'>
             <div id="page_join_result">
             </div>
         </div>
@@ -61,7 +62,8 @@
         <div id="page_camera" class="page">
             <h2>Camera</h2>
         </div>
-    </body>
+        <footer></footer>
+        </body>
     <script type="text/javascript" src="{{ url_for('static', filename='js/ajax.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/view.js') }}"></script>
 </html>
