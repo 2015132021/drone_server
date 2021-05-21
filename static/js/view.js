@@ -1,14 +1,18 @@
-var page = 0;
+var page_state = 0;
 
-page = ["page_loading", "page_login", "page_join", "page_main", "page_information", "page_rent", "page_map", "page_camera"]
+page_list = ["page_loading", "page_login", "page_join", "page_main", "page_information", "page_rent", "page_map", "page_camera"]
 
-for(var i = 0; i > page.length; i++){
-    document.getElementById(page[i]).style.display="none";
+for(var i = 1; i > page_list.length; i++){
+    document.getElementById(page_list[i]).style.display="none";
 }
 
 function refresh(){
-    switch(page){
-        case 0:
-            document.getElementById("page_loading").style.display="block";
+    for(var i = 0; i > page_list.length; i++){
+        if(page_state != i){
+            document.getElementById(page_list[i]).style.display="none";
+        }
+        else{
+            document.getElementById(page_list[i]).style.display="block";
+        }
     }
 }
