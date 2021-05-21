@@ -8,4 +8,8 @@ function refresh(str){
     page_state = str
 }
 
+function join(){
+    
+}
+
 refresh(page_list[0])
