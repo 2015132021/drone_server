@@ -2,6 +2,7 @@
     <head>
         <title>Drone Rent</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <script>
     </script>
@@ -23,6 +24,8 @@
             PW:<input type="password"><br>
             email:<input type="email"><br>
             <input type="button" value="join">
+            <div id="page_join_result">
+            </div>
         </div>
         <div id="page_main" class="page">
             <h2>Main</h2>

@@ -4,10 +4,14 @@
     padding: 0;
 }
 
+html
+{
+    background-color: #160A47;
+}
+
 div
 {
     color:white;
-    background: #000;
 }
 
 .page
