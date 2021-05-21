@@ -8,4 +8,4 @@ function refresh(str){
     page_state = str
 }
 
-refresh(page_list(0))
+refresh(page_list[0])
