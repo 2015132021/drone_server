@@ -1,7 +1,6 @@
-const xhr = new XMLHttpRequest();
 
 var uris = {
-    dron_gps : "/drone/gps/",
+    drone_gps : "/drone/gps/",
     client_gps : "/client/gps/",
     client_log : "/client/log/",
     client : "/client/",
@@ -9,6 +8,7 @@ var uris = {
 }
 
 function restful(uri, json, REST){
+    const xhr = new XMLHttpRequest();
     //var url = '/drone/gps/';
     var url = uri + JSON.stringify(json);
     console.log(url)
