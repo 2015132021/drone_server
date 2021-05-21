@@ -1,22 +1,28 @@
-// XMLHttpRequest 객체의 생성
 const xhr = new XMLHttpRequest();
-// 비동기 방식으로 Request를 오픈한다
-var url = '/drone/gps/';
-var json = {id:"1"};
-url = url + JSON.stringify(json);
-console.log(url)
-xhr.open('GET', encodeURI(url), true);  // form태그안에 어트리뷰트 써준거와 같다.
-xhr.onreadystatechange = function() {
-    if(xhr.readyState == 4 && xhr.status == 200){
-        console.log(xhr.responseText);
-    }
+
+var uris = {
+    dron_gps : "/drone/gps/",
+    client_gps : "/client/gps/",
+    client_log : "/client/log/",
+    client : "/client/",
+
 }
 
-xhr.send();
-
-if(xhr.status === 200) {       // 성공
-    console.log(xhr.responseText);   // responseText -> response body안에 들어있는 값이 text로 들어있다.
+function restful(uri, json, GET_POST){
+    //var url = '/drone/gps/';
+    var url = uri + JSON.stringify(json);
+    console.log(url)
+    xhr.open(GET_POST, encodeURI(url), true);  // form태그안에 어트리뷰트 써준거와 같다.
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200){
+            console.log(xhr.responseText);
+        }
     }
-else {                      // response 실패
-    console.log('Error!');
-    }
+    xhr.send();
+    if(xhr.status === 200) {       // 성공
+        console.log(xhr.responseText);   // responseText -> response body안에 들어있는 값이 text로 들어있다.
+        }
+    else {                      // response 실패
+        console.log('Error!');
+        }
+}
