@@ -7,3 +7,5 @@ function refresh(num){
     document.getElementById(page_list[num]).style.display="block";
     page_state = num
 }
+
+refresh(0)
