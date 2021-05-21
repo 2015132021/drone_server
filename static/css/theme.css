@@ -12,9 +12,15 @@ html
 div
 {
     color:white;
+}
+
+#page_join
+{
+    width: 300px;
+    height: 200px;
     position:absolute;
-    top: 50%;
-    left: 50%;
+    top: calc(50% - 150px);
+    left: calc(50% - 100px);
     border:solid 1px white;
 }
 
