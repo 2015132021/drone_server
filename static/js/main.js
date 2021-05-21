@@ -8,11 +8,11 @@ var uris = {
 
 }
 
-function restful(uri, json, GET_POST){
+function restful(uri, json, REST){
     //var url = '/drone/gps/';
     var url = uri + JSON.stringify(json);
     console.log(url)
-    xhr.open(GET_POST, encodeURI(url), true);  // form태그안에 어트리뷰트 써준거와 같다.
+    xhr.open(REST, encodeURI(url), true);  // form태그안에 어트리뷰트 써준거와 같다.
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200){
             console.log(xhr.responseText);
@@ -21,6 +21,7 @@ function restful(uri, json, GET_POST){
     xhr.send();
     if(xhr.status === 200) {       // 성공
         console.log(xhr.responseText);   // responseText -> response body안에 들어있는 값이 text로 들어있다.
+        return xhr.response
         }
     else {                      // response 실패
         console.log('Error!');
