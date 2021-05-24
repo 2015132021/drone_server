@@ -29,7 +29,7 @@ class DroneGPS(Resource):
         lat = result['lat']
         lng = result['lng']
         print("ID : %s, lat : %s, lng : %s" % (id, lat, lng))
-        maria.insertGPS(id, lat, lng, 'drone')
+        result = maria.insertGPS(id, lat, lng, 'drone')
         return result
 
 @api.route('/client/gps/<string:data>')
@@ -46,7 +46,7 @@ class ClientGPS(Resource):
         lat = result['lat']
         lng = result['lng']
         print("ID : %s, lat : %s, lng : %s" % (id, lat, lng))
-        maria.insertGPS(id, lat, lng, 'client')
+        result = maria.insertGPS(id, lat, lng, 'client')
         return result
 
 @api.route('/client/<string:data>')
@@ -64,7 +64,7 @@ class Client(Resource):
         email = result['email']
         phone = result['phone']
         print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
-        maria.joinClient(id, password, email, phone)
+        result = maria.joinClient(id, password, email, phone)
         return result
 
 @api.route('/client/log/<string:data>')
