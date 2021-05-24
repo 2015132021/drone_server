@@ -57,14 +57,17 @@ class Client(Resource):
         print(res)
         return res
     def post(self, data):
-        result = json.loads(data)
-        id = result['id']
-        password = result['pw']
-        email = result['email']
-        phone = result['phone']
-        print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
-        maria.joinClient(id, password, email, phone)
-        return result
+        try:
+            result = json.loads(data)
+            id = result['id']
+            password = result['pw']
+            email = result['email']
+            phone = result['phone']
+            print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
+            maria.joinClient(id, password, email, phone)
+            return result
+        except IntegrityError as e:
+            print(e)
 
 @api.route('/client/log/<string:data>')
 class ClientLog(Resource):
