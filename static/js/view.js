@@ -9,7 +9,8 @@ function refresh(str){
 }
 
 function join(){
-    
+    id = document.getElementById("join_id").value
+    alert(id)
 }
 
 refresh(page_list[0])

@@ -27,8 +27,3 @@ function restful(uri, json, REST){
         console.log('Error!');
         }
 }
-
-function join(){
-    id = document.getElementById("join_id").value
-    alert(id)
-}
