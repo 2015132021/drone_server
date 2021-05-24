@@ -19,9 +19,9 @@ function join(){
         "email" : email,
         "phone" : phone
     }
-    alert(json)
 
-    restful(uris['client'], json, "POST");
+    var result = restful(uris['client'], json, "POST");
+    console.log(result);
 }
 
 function login(){
