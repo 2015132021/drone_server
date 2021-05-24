@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from flask_restx import Api, Resource
 import json
 import mariadb_master
+import sys
+import hashlib
 
 
 maria = mariadb_master.Mariadb(None)
@@ -57,17 +59,14 @@ class Client(Resource):
         print(res)
         return res
     def post(self, data):
-        try:
-            result = json.loads(data)
-            id = result['id']
-            password = result['pw']
-            email = result['email']
-            phone = result['phone']
-            print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
-            maria.joinClient(id, password, email, phone)
-            return result
-        except IntegrityError as e:
-            print(e)
+        result = json.loads(data)
+        id = result['id']
+        password = result['pw']
+        email = result['email']
+        phone = result['phone']
+        print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
+        maria.joinClient(id, password, email, phone)
+        return result
 
 @api.route('/client/log/<string:data>')
 class ClientLog(Resource):
