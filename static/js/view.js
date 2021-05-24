@@ -24,4 +24,12 @@ function join(){
     restful(uris['client'], json, "POST");
 }
 
+function login(){
+
+}
+
+function loading(){
+    refresh(page_list[1])
+}
+
 refresh(page_list[0])
