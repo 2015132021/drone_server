@@ -27,8 +27,8 @@ class DroneGPS(Resource):
         except:
             pass
     def post(self, data):
+        result = json.loads(data)
         try:
-            result = json.loads(data)
             id = result['id']
             lat = result['lat']
             lng = result['lng']
@@ -36,7 +36,7 @@ class DroneGPS(Resource):
             result = maria.insertGPS(id, lat, lng, 'drone')
             return result
         except:
-            pass
+            return result
 
 @api.route('/client/gps/<string:data>')
 class ClientGPS(Resource):
@@ -50,8 +50,8 @@ class ClientGPS(Resource):
         except:
             pass
     def post(self, data):
+        result = json.loads(data)
         try:
-            result = json.loads(data)
             id = result['id']
             lat = result['lat']
             lng = result['lng']
@@ -59,13 +59,13 @@ class ClientGPS(Resource):
             result = maria.insertGPS(id, lat, lng, 'client')
             return result
         except:
-            pass
+            return result
 
 @api.route('/client/<string:data>')
 class Client(Resource):
     def get(self, data):
+        result = json.loads(data)
         try:
-            result = json.loads(data)
             id = result['id']
             res = maria.getClient(id)
             print(res)
@@ -73,8 +73,8 @@ class Client(Resource):
         except:
             pass
     def post(self, data):
+        result = json.loads(data)
         try:
-            result = json.loads(data)
             id = result['id']
             password = result['pw']
             email = result['email']
@@ -83,7 +83,7 @@ class Client(Resource):
             result = maria.joinClient(id, password, email, phone)
             return result
         except:
-            pass
+            return result
 
 @api.route('/client/log/<string:data>')
 class ClientLog(Resource):
