@@ -25,5 +25,6 @@ function restful(uri, json, REST){
         }
     else {                      // response 실패
         console.log('Error!');
+        console.log(xhr.responseText);
         }
 }
