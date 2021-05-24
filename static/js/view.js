@@ -19,7 +19,7 @@ function join(){
         "email" : email,
         "phone" : phone
     }
-    alert(id)
+    alert(json)
 
     restful(uris['client'], json, "POST");
 }
