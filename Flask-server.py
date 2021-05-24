@@ -80,6 +80,7 @@ class Client(Resource):
             email = result['email']
             phone = result['phone']
             print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
+            result = '''{'error' : 'True'}'''
             result = maria.joinClient(id, password, email, phone)
             return result
         except:
