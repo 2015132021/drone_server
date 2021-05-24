@@ -10,7 +10,18 @@ function refresh(str){
 
 function join(){
     id = document.getElementById("join_id").value
+    pw = document.getElementById("join_pw").value
+    email = document.getElementById("join_email").value
+    phone = document.getElementById("join_phone").value
+    json = {
+        "id" : id,
+        "pw" : pw,
+        "email" : email,
+        "phone" : phone
+    }
     alert(id)
+
+    restful(uris['client'], json, "POST");
 }
 
 refresh(page_list[0])
