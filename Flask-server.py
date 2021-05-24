@@ -3,7 +3,6 @@ from flask_restx import Api, Resource
 import json
 import mariadb_master
 import sys
-import hashlib
 
 
 maria = mariadb_master.Mariadb(None)
