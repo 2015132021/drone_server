@@ -35,7 +35,7 @@ function login(){
     var result = restful(uris['client'], json, "GET");
     console.log(result);
 
-    result_json = JSON.parse(result);
+    const result_json = JSON.parse(result);
     if(result_json.error == 'False'){
         refresh(page_list[3])
     }
