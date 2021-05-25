@@ -67,7 +67,11 @@ class Client(Resource):
         result = json.loads(data)
         try:
             id = result['id']
-            res = maria.getClient(id)
+            if "pw" in result:
+                pw = result['pw']
+                res = maria.loginClient(id, pw)
+            else:
+                res = maria.getClient(id)
             print(res)
             return res
         except:
