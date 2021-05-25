@@ -20,10 +20,13 @@ GET : 서버가 살아있는지 확인하기 위한 호출
 GET : json string {id} 을 전달받고, 해당 id를 가진 드론의  GPS(lat, lng)를 반환  
 POST : json string {id, lat, lng} 을 전달받고, 현재 시간과 함께 DB에 저장
 
+### /client/<string:data>
+GET : json string {id, pw} 을 전달받고, 해당 id의 Client의 pw hash가 전달받은 pw의 hash와 일치하는지 비교하여 결과를 반환  
+POST : json string {id, pw, email, phone}을 전달받고, DB에 저장하며, 동일한 Unique key 입력 시 error:Ture 반환 
+
 ### /client/gps/<string:data>
 GET : json string {id}을 전달받고, 해당 id를 가진 Client의  GPS(lat, lng)를 반환
 POST : json string {id, lat, lng} 을 전달받고, 현재 시간과 함께 DB에 저장
 
-### /client/<string:data>
-GET : json string {id, pw} 을 전달받고, 해당 id의 Client의 pw hash가 전달받은 pw의 hash와 일치하는지 비교하여 결과를 반환  
-POST : json string {id, pw, email, phone}을 전달받고, DB에 저장하며, 동일한 Unique key 입력 시 error:Ture 반환 
+### /client/log/<string:data>
+GET : json string {id} 을 전달받고, 해당 id를 가진 Client의 Logs를 반환
