@@ -9,23 +9,31 @@ function refresh(str){
 }
 
 function join(){
-    id = document.getElementById("join_id").value
-    pw = document.getElementById("join_pw").value
-    email = document.getElementById("join_email").value
-    phone = document.getElementById("join_phone").value
+    id = document.getElementById("join_id").value;
+    pw = document.getElementById("join_pw").value;
+    email = document.getElementById("join_email").value;
+    phone = document.getElementById("join_phone").value;
     json = {
         "id" : id,
         "pw" : pw,
         "email" : email,
         "phone" : phone
-    }
+    };
 
     var result = restful(uris['client'], json, "POST");
     console.log(result);
 }
 
 function login(){
+    id = document.getElementById("login_id").value;
+    pw = document.getElementById("login_pw").value;
+    json = {
+        "id" : id,
+        "pw" : pw
+    };
 
+    var result = restful(uris['client'], josn, "GET");
+    console.log(result);
 }
 
 function loading(){
