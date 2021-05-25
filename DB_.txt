@@ -6,8 +6,6 @@ CREATE TABLE Drone_location
 	lng DOUBLE NOT NULL,
 	time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
-<<<<<<< HEAD
 CREATE TABLE Drone_information
 (
 	_id INT UNIQUE KEY AUTO_INCREMENT,
@@ -16,18 +14,13 @@ CREATE TABLE Drone_information
 	firmware VARCHAR(20),
 );
 
-=======
-<<<<<<< HEAD
 CREATE TABLE Drone_information
-{
+(
 	_id INT UNIQUE KEY AUTO_INCREMENT,
 	num_drone INT PRIMARY KEY,
 	
-}
+);
 
-=======
->>>>>>> dbe62e6d847ef7b5acd5217574d64e5ad77c95a5
->>>>>>> 1df40cc384ecafef551a63ae0d4ad527ab77d80b
 CREATE TABLE Client_location
 (
 	_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -45,29 +38,18 @@ CREATE TABLE Client_information
 	email VARCHAR(255) UNIQUE KEY,
 	phone VARCHAR(20),
 	time DATETIME DEFAULT CURRENT_TIMESTAMP
-<<<<<<< HEAD
 );
 
 CREATE TABLE Client_logs
 (
-=======
-<<<<<<< HEAD
+
 );
 
 CREATE TABLE Client_logs
-{
->>>>>>> 1df40cc384ecafef551a63ae0d4ad527ab77d80b
+(
 	_id INT PRIMARY KEY NOT NULL,
 	client_id VARCHAR(20) NOT NULL,
 	num_drone INT NOT NULL,
 	time_start DATETIME DEFAULT CURRENT_TIMESTAMP,
-<<<<<<< HEAD
 	time_end DATETIME
 );
-=======
-	time_end DATETIME,
-}
-=======
-);
->>>>>>> dbe62e6d847ef7b5acd5217574d64e5ad77c95a5
->>>>>>> 1df40cc384ecafef551a63ae0d4ad527ab77d80b
