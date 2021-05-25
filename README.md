@@ -3,6 +3,8 @@
 이 서버는 파이썬3의 Flask기반 서버입니다.
 2021-05-25, 2015132021
 
+해당 서버는 project-geek.cc로 서비스되고 있습니다.
+
 # Server - Flask (Python3)
 
 ## Flask의 REST 호출
@@ -41,3 +43,7 @@ Mariadb 클래스는 import된 mariadb_master.py 파일 내 있습니다.
 /index URI에서 index.html 파일을 제공함. 해당 파일은 templates/ 에 존재
 HTML파일에서 호출하는 css와 js파일은 static/ 에 존재
 
+### ajax.js
+서버 내 특정 URI로 json데이터를 get, post 방식으로 전송한다.
+
+###
