@@ -35,12 +35,12 @@ function login(){
     var result = restful(uris['client'], json, "GET");
     console.log(result);
 
-    json = JSON.parse(result);
-    if(json.error == 'False'){
+    result_json = JSON.parse(result);
+    if(result_json.error == 'False'){
         refresh(page_list[3])
     }
-    else if(json.error == 'True'){
-        alert(json.message)
+    else if(result_json.error == 'True'){
+        alert(result_json.message)
     }
     else {
         alert('알려지지 않은 오류!')
