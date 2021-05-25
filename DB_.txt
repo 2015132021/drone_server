@@ -42,11 +42,6 @@ CREATE TABLE Client_information
 
 CREATE TABLE Client_logs
 (
-
-);
-
-CREATE TABLE Client_logs
-(
 	_id INT PRIMARY KEY NOT NULL,
 	client_id VARCHAR(20) NOT NULL,
 	num_drone INT NOT NULL,
