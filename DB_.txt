@@ -7,6 +7,7 @@ CREATE TABLE Drone_location
 	time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+<<<<<<< HEAD
 CREATE TABLE Drone_information
 {
 	_id INT UNIQUE KEY AUTO_INCREMENT,
@@ -14,6 +15,8 @@ CREATE TABLE Drone_information
 	
 }
 
+=======
+>>>>>>> dbe62e6d847ef7b5acd5217574d64e5ad77c95a5
 CREATE TABLE Client_location
 (
 	_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -31,6 +34,7 @@ CREATE TABLE Client_information
 	email VARCHAR(255) UNIQUE KEY,
 	phone VARCHAR(20),
 	time DATETIME DEFAULT CURRENT_TIMESTAMP
+<<<<<<< HEAD
 );
 
 CREATE TABLE Client_logs
@@ -41,3 +45,6 @@ CREATE TABLE Client_logs
 	time_start DATETIME DEFAULT CURRENT_TIMESTAMP,
 	time_end DATETIME,
 }
+=======
+);
+>>>>>>> dbe62e6d847ef7b5acd5217574d64e5ad77c95a5
