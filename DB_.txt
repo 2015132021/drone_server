@@ -51,9 +51,18 @@ CREATE TABLE Client_logs
 	time_end DATETIME
 );
 
+CREATE TABLE Client_login_logs
+(
+	_id INT PRIMARY KEY AUTO_INCREMENT,
+	client_id INT NOT NULL,
+	login_hash CHAR(255),
+	now_login BOOLEAN
+);
+
 CREATE TABLE logs_picture
 (
 	_id INT PRIMARY KEY AUTO_INCREMENT,
-	
-	url VARCHAR(50)
+	client_id INT,
+	url VARCHAR(50),
+	time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
