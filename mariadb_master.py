@@ -36,9 +36,9 @@ class Mariadb:
             try:
                 self.DroneDB.commit()
                 print(c_db.fetchall())
-                return '''{'error' : 'False'}'''
+                return {'error' : 'False'}
             except:
-                return '''{'error' : 'True'}'''
+                return {'error' : 'True'}
 
     def joinClient(self, id, pw, email, phone):
         # c_db = self.DroneDB.cursor(prepared=True)
@@ -52,9 +52,9 @@ class Mariadb:
             try:
                 self.DroneDB.commit()
                 print(c_db.fetchall())
-                return '''{'error' : 'False'}'''
+                return {'error' : 'False'}
             except:
-                return '''{'error' : 'True'}'''
+                return {'error' : 'True'}
     def getClient(self, id):
         c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
         sql = None
@@ -66,12 +66,12 @@ class Mariadb:
             try:
                 rows = c_db.fetchall()
                 print(rows)
-                dt = '''{'id' : %s,'password' : %s,'email' : %s, 'phone' : %s, 'error':'False'}''' % (rows[0]['client_id'], rows[0]['password'], rows[0]['email'], rows[0]['phone'])
+                dt = {'id' : rows[0]['client_id'],'password' : rows[0]['password'],'email' : rows[0]['email'], 'phone' : rows[0]['phone'], 'error':'False'}
                 # print(dt)
                 print(c_db.fetchall())
                 return dt
             except:
-                return '''{'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}'''
+                return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
     def loginClient(self, id, pw):
         c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
         sql = None
@@ -87,11 +87,11 @@ class Mariadb:
                 sha.update(pw.encode('utf-8'))
                 print("pw : %s, hash : %s" % (sha.hexdigest, rows[0]['password']))
                 if sha.hexdigest() == rows[0]['password']:
-                    return '''{'error' : 'False', 'message' : '정보가 일치합니다.'}'''
+                    return {'error' : 'False', 'message' : '정보가 일치합니다.'}
                 else:
-                    return '''{'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}'''
+                    return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
             except:
-                return '''{'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}'''
+                return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
 
 
     #select SEQUENCE from TABLE_NAME order by SEQUENCE desc limit 1;  // 마지막 행
@@ -110,9 +110,9 @@ class Mariadb:
             try:
                 rows = c_db.fetchall()
                 print(rows)
-                dt = '''{'id' : %d,'lat' : %f,'lng' : %f, 'error':'False'}''' % (rows[0]['_id'], rows[0]['lat'], rows[0]['lng'])
+                dt = {'id' : rows[0]['_id'],'lat' : rows[0]['lat'],'lng' : rows[0]['lng'], 'error':'False'}
                 print(c_db.fetchall())
                 # print(dt)
                 return dt
             except:
-                return '''{'error' : 'True', 'message' : '조회에 실패했습니다.'}'''
+                return {'error' : 'True', 'message' : '조회에 실패했습니다.'}

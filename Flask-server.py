@@ -27,7 +27,7 @@ class DroneGPS(Resource):
             id = result['id']
             ql = maria.getGPS(id, 'drone')
             print(ql)
-            return ql
+            return json.dumps(ql)
         except:
             pass
     def post(self, data):
@@ -37,10 +37,11 @@ class DroneGPS(Resource):
             lat = result['lat']
             lng = result['lng']
             print("ID : %s, lat : %s, lng : %s" % (id, lat, lng))
-            result = maria.insertGPS(id, lat, lng, 'drone')
-            return result
+            resultDB = {'error' : 'True'}
+            resultDB = maria.insertGPS(id, lat, lng, 'drone')
+            return json.dumps(resultDB)
         except:
-            return result
+            return json.dumps(resultDB)
 
 @api.route('/client/gps/<string:data>')
 class ClientGPS(Resource):
@@ -50,7 +51,7 @@ class ClientGPS(Resource):
             id = result['id']
             ql = maria.getGPS(id, 'client')
             print(ql)
-            return ql
+            return json.dumps(ql)
         except:
             pass
     def post(self, data):
@@ -60,10 +61,10 @@ class ClientGPS(Resource):
             lat = result['lat']
             lng = result['lng']
             print("ID : %s, lat : %s, lng : %s" % (id, lat, lng))
-            result = maria.insertGPS(id, lat, lng, 'client')
-            return result
+            resultDB = maria.insertGPS(id, lat, lng, 'client')
+            return json.dumps(resultDB)
         except:
-            return result
+            return json.dumps(result)
 
 @api.route('/client/<string:data>')
 class Client(Resource):
@@ -77,9 +78,10 @@ class Client(Resource):
             else:
                 res = maria.getClient(id)
             print(res)
-            return res
+            return json.dumps(res)
         except:
             pass
+
     def post(self, data):
         result = json.loads(data)
         try:
@@ -88,11 +90,11 @@ class Client(Resource):
             email = result['email']
             phone = result['phone']
             print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
-            result = '''{'error' : 'True'}'''
-            result = maria.joinClient(id, password, email, phone)
-            return result
+            resultDB = {'error' : 'True'}
+            resultDB = maria.joinClient(id, password, email, phone)
+            return json.dumps(result)
         except:
-            return result
+            return json.dumps(result)
 
 @api.route('/client/log/<string:data>')
 class ClientLog(Resource):
