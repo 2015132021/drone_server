@@ -92,9 +92,9 @@ class Client(Resource):
             print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
             resultDB = {'error' : 'True'}
             resultDB = maria.joinClient(id, password, email, phone)
-            return json.dumps(result)
+            return json.dumps(resultDB)
         except:
-            return json.dumps(result)
+            return json.dumps(resultDB)
 
 @api.route('/client/log/<string:data>')
 class ClientLog(Resource):
