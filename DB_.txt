@@ -4,6 +4,7 @@ CREATE TABLE Drone_location
 	num_drone INT NOT NULL,
 	lat DOUBLE NOT NULL,
 	lng DOUBLE NOT NULL,
+	battery INT,
 	time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
