@@ -1,11 +1,10 @@
-드론 서버
+README
 ===
-이 서버는 파이썬3의 Flask기반 서버입니다.
-2021-05-25, 2015132021
-
-해당 서버는 project-geek.cc로 서비스되고 있습니다.
 
 # Server - Flask (Python3)
+이 서버는 파이썬3의 Flask기반 서버입니다.
+2021-05-25, 201513202
+해당 서버는 project-geek.cc로 서비스되고 있습니다.
 
 ## Flask의 REST 호출
 
