@@ -116,3 +116,61 @@ class Mariadb:
                 return dt
             except:
                 return {'error' : 'True', 'message' : '조회에 실패했습니다.'}
+
+### 2021-05-29 추가
+## Table : Client_logs (GET) 
+    def getClientLogs(self, clientId):
+        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
+        sql = None
+        sql = ("select * from Client_logs where client_id='%s' order by _id desc limit 1" % clientId)
+
+        if sql != None:
+            print(sql)
+            c_db.execute(sql)
+            try:
+                rows = c_db.fetchall()
+                print(rows)
+                # dt = {'id' : rows[0]['_id'],'client_id' : rows[0]['client_id'],'num_drone' : rows[0]['num_drone'], 'time_start' : rows[0]['time_start'], 'time_end' : rows[0]['time_end'], 'error':'False'}
+                # cursor 가 dict를 return하기 때문에 rows 자체를 돌려줘도 무방할듯
+                # error 전해주려면 수정해야함
+                return rows
+            except:
+                return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
+
+## Table : Client_login_logs (GET)
+    def getClientLoginLogs(self, clientId):
+        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
+        sql = None
+        sql = ("select * from Client_login_logs where client_id='%s' order by _id desc limit 1" % clientId)
+
+        if sql != None:
+            print(sql)
+            c_db.execute(sql)
+            try:
+                rows = c_db.fetchall()
+                print(rows)
+                # dt = {'id' : rows[0]['_id'],'client_id' : rows[0]['client_id'],'login_hash' : rows[0]['login_hash'], 'now_login' : rows[0]['now_login'], 'error':'False'}
+                # cursor 가 dict를 return하기 때문에 rows 자체를 돌려줘도 무방할듯
+                # error 전해주려면 수정해야함
+                return rows
+            except:
+                return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
+
+## Table : logs_picture (GET)
+    def getLogsPicture(self, clientId):
+        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
+        sql = None
+        sql = ("select * from logs_picture where client_id='%s' order by _id desc limit 1" % clientId)
+
+        if sql != None:
+            print(sql)
+            c_db.execute(sql)
+            try:
+                rows = c_db.fetchall()
+                print(rows)
+                # dt = {'id' : rows[0]['_id'],'client_id' : rows[0]['client_id'],'url' : rows[0]['url'], 'time' : rows[0]['time'], 'error':'False'}
+                # cursor 가 dict를 return하기 때문에 rows 자체를 돌려줘도 무방할듯
+                # error 전해주려면 수정해야함
+                return rows
+            except:
+                return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
