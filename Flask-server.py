@@ -92,7 +92,7 @@ class Client(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return str(json.dumps(resultDB))
+            return json.dumps(resultDB).encode('UTF-8')
         except:
             return json.dumps(resultDB)
 
