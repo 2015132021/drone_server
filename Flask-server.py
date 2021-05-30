@@ -8,7 +8,6 @@ import sys
 
 with open('/json/mariaDB.json', 'r') as f:
     json_data = json.load(f)
-print(json.dumps(json_data))
 
 maria = mariadb_master.Mariadb(json_data)
 
@@ -31,7 +30,6 @@ class DroneGPS(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            print(type(resultDB))
             return str(resultDB)
         except:
             return str(resultDB)
@@ -61,7 +59,6 @@ class ClientGPS(Resource):
             "id" : result['id']
         }
         try:
-            print("request : " + str(dict))
             resultDB = maria.select(dict)
             return json.dumps(resultDB)
         except:
@@ -86,6 +83,11 @@ class ClientGPS(Resource):
 class Client(Resource):
     def get(self, data):
         result = json.loads(data)
+        dict = {
+            "kind" : "selectClient",
+            "arr" : ["id"],
+            "id" : result['id']
+        }
         try:
             id = result['id']
             if "pw" in result:

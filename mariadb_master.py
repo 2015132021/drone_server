@@ -53,6 +53,10 @@ class Mariadb:
             "selectClientGPS" : {
                 "table" : "Client_location",
                 "id" : "client_id"
+            },
+            "selectClient" : {
+                "table" : "Client_information",
+                "id" : "client_id"
             }
         }
 
@@ -85,7 +89,6 @@ class Mariadb:
                 key += ", "
                 value += ", "
         sql += key + ") VALUES (" + value + ");"
-        print(sql)
         try:
             self.connecter(sql)
             rsp = {
@@ -116,7 +119,6 @@ class Mariadb:
         key += str(dict_key[arr[0]])
         value += str(dict[arr[0]])
         sql += key + "='" + value + "' order by _id desc limit 1;"
-        print(sql)
         rows = self.connecter(sql)
         rsp = rows[0]
         rsp['error'] = False
