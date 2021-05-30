@@ -25,7 +25,7 @@ class Mariadb:
         self.insertDict = {
             "insertDroneGPS" : {
                 "table" : "Drone_location",
-                "id" : "Client_id",
+                "id" : "num_drone",
                 "lat" : "lat",
                 "lng" : "lng",
                 "bat" : "battery"
