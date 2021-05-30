@@ -47,9 +47,9 @@ class DroneGPS(Resource):
         }
         try:
             resultDB = maria.insert(dict)
-            return json.dumps(resultDB)
+            return jsonify(resultDB)
         except:
-            return json.dumps(resultDB)
+            return jsonify(resultDB)
 
 @api.route('/client/gps/<string:data>')
 class ClientGPS(Resource):
@@ -62,9 +62,9 @@ class ClientGPS(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return json.dumps(resultDB)
+            return jsonify(resultDB)
         except:
-            return json.dumps(resultDB)
+            return jsonify(resultDB)
     def post(self, data):
         result = json.loads(data)
         dict = {
@@ -77,9 +77,9 @@ class ClientGPS(Resource):
         try:
             print("request : " + str(dict))
             resultDB = maria.insert(dict)
-            return json.dumps(resultDB)
+            return jsonify(resultDB)
         except:
-            return json.dumps(resultDB)
+            return jsonify(resultDB)
 
 @api.route('/client/<string:data>')
 class Client(Resource):
@@ -94,7 +94,7 @@ class Client(Resource):
             resultDB = maria.select(dict)
             return jsonify(resultDB)
         except:
-            return "Errorrrorror"
+            return jsonify({"error":True})
 
     def post(self, data):
         result = json.loads(data)
@@ -110,9 +110,9 @@ class Client(Resource):
         }
         try:
             resultDB = maria.insert(dict)
-            return json.dumps(resultDB)
+            return jsonify(resultDB)
         except:
-            return json.dumps(resultDB)
+            return jsonify(resultDB)
 
 @api.route('/client/login/<string:data>')
 class ClientLogin(Resource):
@@ -130,12 +130,12 @@ class ClientLogin(Resource):
             resultDB = maria.select(dict)
             if resultDB['password'] == pw:
                 print("Password correct!!")
-                return json.dumps({"error" : False})
+                return jsonify({"error" : False})
             else:
                 print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
-                return json.dumps({"error" : True})
+                return jsonify({"error" : True})
         except:
-            return json.dumps({"error" : True})
+            return jsonify({"error" : True})
 
 
 @api.route('/client/log/<string:data>')
