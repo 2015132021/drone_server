@@ -6,6 +6,9 @@ import hashlib
 import sys
 
 
+sha = hashlib.new('sha256')
+
+
 with open('/json/mariaDB.json', 'r') as f:
     json_data = json.load(f)
 
@@ -96,7 +99,6 @@ class Client(Resource):
 
     def post(self, data):
         result = json.loads(data)
-        sha = hashlib.new('sha256')
         sha.update(result['pw'].encode('utf-8'))
         dict = {
             "kind" : "joinClient",
@@ -111,6 +113,25 @@ class Client(Resource):
             return str(resultDB)
         except:
             return str(resultDB)
+
+@api.route('/client/login/<string:data>')
+class ClientLogin(Resource):
+    def get(self, data):
+        result = json.loads(data)
+        sha.update(result['pw'].encode('utf-8'))
+        dict = {
+            "kind" : "selectClient",
+            "arr" : ["id"],
+            "id" : result['id']
+        }
+        try:
+            resultDB = maria.select(dict)
+            if resultDB['password'] == sha.hexdigest():
+                print("Password correct!!")
+                return str({"error" : False})
+        except:
+            return str({"error" : True})
+
 
 @api.route('/client/log/<string:data>')
 class ClientLog(Resource):
