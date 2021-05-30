@@ -6,7 +6,6 @@ import hashlib
 import sys
 
 
-sha = hashlib.new('sha256')
 
 
 with open('/json/mariaDB.json', 'r') as f:
@@ -99,6 +98,7 @@ class Client(Resource):
 
     def post(self, data):
         result = json.loads(data)
+        sha = hashlib.new('sha256')
         sha.update(result['pw'].encode('utf-8'))
         dict = {
             "kind" : "joinClient",
@@ -118,6 +118,7 @@ class Client(Resource):
 class ClientLogin(Resource):
     def get(self, data):
         result = json.loads(data)
+        sha = hashlib.new('sha256')
         sha.update(result['pw'].encode('utf-8'))
         dict = {
             "kind" : "selectClient",
