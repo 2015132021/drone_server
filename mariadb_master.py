@@ -48,13 +48,11 @@ class Mariadb:
         self.selectDict = {
             "selectDroneGPS" : {
                 "table" : "Drone_location",
-                "key" : "num_drone",
-                "value" : "id"
+                "id" : "num_drone"
             },
             "selectClientGPS" : {
                 "table" : "Client_location",
-                "key" : "client_id",
-                "value" : "id"
+                "id" : "client_id"
             }
         }
 
@@ -109,11 +107,13 @@ class Mariadb:
         # 이외 모든 값은 arr 리스트에 있는 키값에 담겨있습니다.
         # for문으로 arr를 받아올것입니다.
         kind = dict['kind']     # select의 kind를 설정. 이는 대상 table을 변화시킴
-        print(kind)
+        arr = dict['arr']
         dict_key = self.selectDict[kind]
         sql = "select * from " + dict_key['table'] + " where "
-        key = dict_key['key']
-        value = dict[dict_key['key']]
+        key = ""
+        value = ""
+        key += str(dict_key[arr[0]])
+        value += "'" + str(dict[arr[0]]) + "'"
         sql += key + "='" + value + "' order by _id desc limit 1"
         print(sql)
         return self.connecter(sql)

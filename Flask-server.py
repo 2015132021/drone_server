@@ -26,6 +26,7 @@ class DroneGPS(Resource):
         result = json.loads(data)
         dict = {
             "kind" : "selectDroneGPS",
+            "arr" : ["id"],
             "id" : result['id']
         }
         try:
@@ -57,6 +58,7 @@ class ClientGPS(Resource):
         result = json.loads(data)
         dict = {
             "kind" : "selectClientGPS",
+            "arr" : ["id"],
             "id" : result['id']
         }
         try:
