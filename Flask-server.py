@@ -32,10 +32,10 @@ class DroneGPS(Resource):
         try:
             print("request : " + str(dict))
             resultDB = maria.select(dict)
-            type(resultDB)
-            return json.dumps(resultDB)
+            print(type(resultDB))
+            return resultDB
         except:
-            return json.dumps(resultDB)
+            return resultDB
     def post(self, data):
         result = json.loads(data)
         dict = {
