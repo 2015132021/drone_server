@@ -20,7 +20,7 @@ function restful(uri, json, REST){
     }
     xhr.send();
     if(xhr.status === 200) {       // 성공
-        console.log(xhr.responseText);   // responseText -> response body안에 들어있는 값이 text로 들어있다.
+        console.log(xhr.responseText.toString());   // responseText -> response body안에 들어있는 값이 text로 들어있다.
         return xhr.response
         }
     else {                      // response 실패
