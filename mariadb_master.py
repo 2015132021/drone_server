@@ -63,11 +63,17 @@ class Mariadb:
             c_db.execute(sql)
             try:
                 self.DroneDB.commit()
+                print(c_db.fetchall())
                 rows = c_db.fetchall()
-                return rows
+                rsp = {
+                    "error" : False
+                }
+                return rsp
             except:
-                rows = c_db.fetchall()
-                return rows
+                rsp = {
+                    "error" : True
+                }
+                return rsp
         return sql
 
     def insert(self, dict):
