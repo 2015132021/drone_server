@@ -20,6 +20,7 @@ function parsing(str){
 
 function restful(uri, json, REST, json){
     var url = uri + JSON.stringify(json);
+    console.log("url : " + url)
     // XMLHttpRequest 객체의 인스턴스를 생성합니다.
     var xhr = new XMLHttpRequest();
 
@@ -34,5 +35,5 @@ function restful(uri, json, REST, json){
     xhr.open(REST, url, true);
 
     // send() 메서드는 준비된 요청을 서버로 전송하는 메서드입니다. (서버에 전달될 정보)
-    xhr.send();
+    xhr.send("");
 }
