@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_restx import Api, Resource
 import json
 import mariadb_master
@@ -92,11 +92,7 @@ class Client(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            response = "{"
-            for key, value in resultDB.items():
-                response += "'%s' : '%s'," % (key, value)
-            response += "}"
-            return response
+            return jsonify(resultDB)
         except:
             return "Errorrrorror"
 
