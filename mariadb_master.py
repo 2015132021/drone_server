@@ -61,15 +61,13 @@ class Mariadb:
         c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
         if sql != None:
             c_db.execute(sql)
-            try:
-                self.DroneDB.commit()
-                rows = c_db.fetchall()
-                print(rows[0])
-                rsp = {
-                    "error" : False
-                }
-                return rsp
-
+            self.DroneDB.commit()
+            rows = c_db.fetchall()
+            print(rows[0])
+            rsp = {
+                "error" : False
+            }
+            return rsp
     def insert(self, dict):
         ### dict의 내용에 관한 설명입니다.
         # dict 는 kind, arr, 값으로 나뉩니다.
