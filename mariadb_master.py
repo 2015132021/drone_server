@@ -124,7 +124,7 @@ class Mariadb:
         rsp = rows[0]
         rsp['error'] = False
         for i in range(0, len(rsp.keys())):
-            print(i)
+            print(rsp.values[i])
         return rsp
 
     def getClient(self, id):
