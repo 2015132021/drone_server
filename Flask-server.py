@@ -90,12 +90,15 @@ class Client(Resource):
             "arr" : ["id"],
             "id" : result['id']
         }
-        resultDB = maria.select(dict)
-        response = "{"
-        for key, value in resultDB.items():
-            response += "%s : %s" % (key, value)
-        response += "}"
-        return response
+        try:
+            resultDB = maria.select(dict)
+            response = "{"
+            for key, value in resultDB.items():
+                response += '"%s" : "%s"' % (key, value)
+            response += "}"
+            return response
+        except:
+            return "Errorrrorror"
 
     def post(self, data):
         result = json.loads(data)
