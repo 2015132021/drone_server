@@ -87,6 +87,7 @@ class Mariadb:
         sql += key + ") VALUES (" + value + ");"
         print(sql)
         rows = self.connecter(sql)
+        return rows[0]
         
 
     def select(self, dict):

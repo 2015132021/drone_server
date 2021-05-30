@@ -30,7 +30,6 @@ class DroneGPS(Resource):
             "id" : result['id']
         }
         try:
-            print("request : " + str(dict))
             resultDB = maria.select(dict)
             print(type(resultDB))
             return str(resultDB)
@@ -47,11 +46,10 @@ class DroneGPS(Resource):
             "bat" : result['bat'],
         }
         try:
-            print("request : " + str(dict))
             resultDB = maria.insert(dict)
-            return json.dumps(resultDB)
+            return str(resultDB)
         except:
-            return json.dumps(resultDB)
+            return str(resultDB)
 
 @api.route('/client/gps/<string:data>')
 class ClientGPS(Resource):
