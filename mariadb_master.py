@@ -64,6 +64,7 @@ class Mariadb:
         # DB에 접속하는 부분입니다.
         c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
         if sql != None:
+            print("sql : %s" % sql)
             c_db.execute(sql)
             self.DroneDB.commit()
             rows = c_db.fetchall()
@@ -98,7 +99,7 @@ class Mariadb:
         except:
             rsp = {
                 'error' : True,
-                'message' : '값이 올바르지 않습니다.'
+                'message' : 'Error'
             }
             return rsp
         
