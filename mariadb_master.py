@@ -65,11 +65,13 @@ class Mariadb:
                 self.DroneDB.commit()
                 rows = c_db.fetchall()
                 rsp = rows[0]
+                print(type(rsp))
                 rsp['error'] = False
                 return rsp
             except:
                 rows = c_db.fetchall()
                 rsp = rows[0]
+                print(type(rsp))
                 rsp['error'] = False
                 return rsp
         return sql
