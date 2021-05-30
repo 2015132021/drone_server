@@ -133,9 +133,9 @@ class ClientLogin(Resource):
                 return jsonify({"error" : False})
             else:
                 print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
-                return jsonify({"error" : True})
+                return jsonify({"error" : True, "message":"올바르지 않는 계정 정보"})
         except:
-            return jsonify({"error" : True, "message":"올바르지 않는 계정 정보"})
+            return jsonify({"error" : True})
 
 
 @api.route('/client/log/<string:data>')
