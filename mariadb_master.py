@@ -63,7 +63,7 @@ class Mariadb:
             c_db.execute(sql)
             self.DroneDB.commit()
             rows = c_db.fetchall()
-            rsp = rows[0]
+            rsp = rows
             rsp['error'] = False
             return rsp
 
