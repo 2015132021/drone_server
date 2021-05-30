@@ -81,7 +81,7 @@ function login(){
         "id" : id,
         "pw" : pw
     };
-    restful(uris['client'], json, "GET");
+    restful(uris['client_login'], json, "GET");
 }
 
 function loading(){
