@@ -92,7 +92,7 @@ class Client(Resource):
             resultDB = maria.select(dict)
             return json.dumps(resultDB)
         except:
-            pass
+            return json.dumps(resultDB)
 
     def post(self, data):
         result = json.loads(data)
