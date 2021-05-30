@@ -31,7 +31,17 @@ class Mariadb:
                 "bat" : "battery"
             },
             "insertClientGPS" : {
-                "table" : "Drone_location"
+                "table" : "Client_location",
+                "id" : "client_id",
+                "lat" : "lat",
+                "lng" : "lng",
+            },
+            "joinClient" : {
+                "table" : "Client_information",
+                "id" : "client_id",
+                "pw" : "password",
+                "email" : "email",
+                "phone" : "phone"
             }
         }
 
@@ -68,41 +78,6 @@ class Mariadb:
             except:
                 return {'error' : 'True'}
         return sql
-        #sql = ("INSERT INTO Drone_location(num_drone, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
-
-            
-    # def insertGPS(self, dict):
-    #     ###     dict 내용 형식      ###
-    #     # dict = {
-    #     #     "kind",
-    #     #     "num_drone" / "client_id",
-    #     #     "lat",
-    #     #     "lng",
-    #     #     "battery" / None
-    #     #     arr = ["kind", "num_drone" / "Client_id", "lat", "lng", "battery" / None]
-    #     # }
-    #     ###     dict 내용 형식      ###
-    #     c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-    #     sql = None
-    #     sql = "INSERT INTO "
-    #     if dict['kind'] == 'drone':
-    #         #sql = ("INSERT INTO Drone_location(num_drone, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
-    #         sql += "Drone_location"
-    #     elif dict['kind'] == 'client':
-    #         #sql = ("INSERT INTO Client_location(client_id, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
-    #         sql += "Client_location"
-    #     arr = dict['arr']
-    #     for i in range(0, arr.length()):
-
-
-    #     if sql != None:
-    #         c_db.execute(sql)
-    #         try:
-    #             self.DroneDB.commit()
-    #             print(c_db.fetchall())
-    #             return {'error' : 'False'}
-    #         except:
-    #             return {'error' : 'True'}
 
     def joinClient(self, id, pw, email, phone):
         # c_db = self.DroneDB.cursor(prepared=True)

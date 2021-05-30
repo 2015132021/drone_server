@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_restx import Api, Resource
 import json
 import mariadb_master
+import hashlib
 import sys
 
 
@@ -60,15 +61,19 @@ class ClientGPS(Resource):
             pass
     def post(self, data):
         result = json.loads(data)
+        dict = {
+            "kind" : "insertClientGPS",
+            "arr" : ["id", "lat", "lng"],
+            "id" : result['id'],
+            "lat" : result['lat'],
+            "lng" : result['lng']
+        }
         try:
-            id = result['id']
-            lat = result['lat']
-            lng = result['lng']
-            print("ID : %s, lat : %s, lng : %s" % (id, lat, lng))
-            resultDB = maria.insertGPS(id, lat, lng, 'client')
+            print("request : " + str(dict))
+            resultDB = maria.insert(dict)
             return json.dumps(resultDB)
         except:
-            return json.dumps(result)
+            return json.dumps(resultDB)
 
 @api.route('/client/<string:data>')
 class Client(Resource):
@@ -88,14 +93,18 @@ class Client(Resource):
 
     def post(self, data):
         result = json.loads(data)
+        sha = hashlib.new('sha256')
+        sha.update(result['pw'].encode('utf-8'))
+        dict = {
+            "kind" : "joinClient",
+            "arr" : ["id", "pw", "email", "phone"],
+            "id" : result['id'],
+            "pw" : sha.hexdigest(),
+            "email" : result['email'],
+            "phone" : result['phone']
+        }
         try:
-            id = result['id']
-            password = result['pw']
-            email = result['email']
-            phone = result['phone']
-            print("ID : %s, password : %s, email : %s, phone : %s" % (id, password, email, phone))
-            resultDB = {'error' : 'True'}
-            resultDB = maria.joinClient(id, password, email, phone)
+            resultDB = maria.insert(dict)
             return json.dumps(resultDB)
         except:
             return json.dumps(resultDB)
