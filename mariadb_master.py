@@ -122,7 +122,7 @@ class Mariadb:
         sql += key + "='" + value + "' order by _id desc limit 1;"
         rows = self.connecter(sql)
         rsp = rows[0]
-        rsp['error'] = "False"
+        rsp['error'] = False
         rsp['time'] = str(rsp['time'])
         return rsp
 

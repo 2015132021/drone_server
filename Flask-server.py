@@ -133,8 +133,9 @@ class ClientLogin(Resource):
                 return json.dumps({"error" : False})
             else:
                 print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
+                return json.dumps({"error" : True})
         except:
-            return str({"error" : True})
+            return json.dumps({"error" : True})
 
 
 @api.route('/client/log/<string:data>')
