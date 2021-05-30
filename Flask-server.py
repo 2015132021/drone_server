@@ -32,9 +32,9 @@ class DroneGPS(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return str(resultDB)
+            return json.dumps(resultDB)
         except:
-            return str(resultDB)
+            return json.dumps(resultDB)
     def post(self, data):
         result = json.loads(data)
         dict = {
@@ -47,9 +47,9 @@ class DroneGPS(Resource):
         }
         try:
             resultDB = maria.insert(dict)
-            return str(resultDB)
+            return json.dumps(resultDB)
         except:
-            return str(resultDB)
+            return json.dumps(resultDB)
 
 @api.route('/client/gps/<string:data>')
 class ClientGPS(Resource):
@@ -62,9 +62,9 @@ class ClientGPS(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return str(resultDB)
+            return json.dumps(resultDB)
         except:
-            return str(resultDB)
+            return json.dumps(resultDB)
     def post(self, data):
         result = json.loads(data)
         dict = {
@@ -77,9 +77,9 @@ class ClientGPS(Resource):
         try:
             print("request : " + str(dict))
             resultDB = maria.insert(dict)
-            return str(resultDB)
+            return json.dumps(resultDB)
         except:
-            return str(resultDB)
+            return json.dumps(resultDB)
 
 @api.route('/client/<string:data>')
 class Client(Resource):
@@ -92,9 +92,9 @@ class Client(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return str(resultDB)
+            return json.dumps(resultDB)
         except:
-            return str(resultDB)
+            return json.dumps(resultDB)
 
     def post(self, data):
         result = json.loads(data)
@@ -110,9 +110,9 @@ class Client(Resource):
         }
         try:
             resultDB = maria.insert(dict)
-            return str(resultDB)
+            return json.dumps(resultDB)
         except:
-            return str(resultDB)
+            return json.dumps(resultDB)
 
 @api.route('/client/login/<string:data>')
 class ClientLogin(Resource):
