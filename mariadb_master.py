@@ -123,10 +123,8 @@ class Mariadb:
         rows = self.connecter(sql)
         rsp = rows[0]
         rsp['error'] = False
-        response = {}
-        for key, value in rsp.items():
-            response[key] = value
-        return response
+        print(rsp['time'])
+        return rsp
 
     def getClient(self, id):
         c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
