@@ -60,9 +60,9 @@ class ClientGPS(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return json.dumps(resultDB)
+            return str(resultDB)
         except:
-            return '{"error":True}'
+            return str(resultDB)
     def post(self, data):
         result = json.loads(data)
         dict = {
@@ -75,9 +75,9 @@ class ClientGPS(Resource):
         try:
             print("request : " + str(dict))
             resultDB = maria.insert(dict)
-            return json.dumps(resultDB)
+            return str(resultDB)
         except:
-            return json.dumps(resultDB)
+            return str(resultDB)
 
 @api.route('/client/<string:data>')
 class Client(Resource):
@@ -90,9 +90,9 @@ class Client(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return json.dumps(resultDB)
+            return str(resultDB)
         except:
-            return json.dumps(resultDB)
+            return str(resultDB)
 
     def post(self, data):
         result = json.loads(data)
@@ -108,9 +108,9 @@ class Client(Resource):
         }
         try:
             resultDB = maria.insert(dict)
-            return json.dumps(resultDB)
+            return str(resultDB)
         except:
-            return json.dumps(resultDB)
+            return str(resultDB)
 
 @api.route('/client/log/<string:data>')
 class ClientLog(Resource):
