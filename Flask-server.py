@@ -124,11 +124,14 @@ class ClientLogin(Resource):
             "arr" : ["id"],
             "id" : result['id']
         }
+        pw = sha.hexdigest()
         try:
             resultDB = maria.select(dict)
-            if resultDB['password'] == sha.hexdigest():
+            if resultDB['password'] == pw:
                 print("Password correct!!")
                 return str({"error" : False})
+            else:
+                print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
         except:
             return str({"error" : True})
 
