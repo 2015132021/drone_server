@@ -41,8 +41,8 @@ class DroneGPS(Resource):
             "bat" : result['bat'],
         }
         try:
-            print("request : " + dict)
-            resultDB = maria.insertGPS(dict)
+            print("request : " + str(dict))
+            resultDB = maria.insert(dict)
             return json.dumps(resultDB)
         except:
             return json.dumps(resultDB)
