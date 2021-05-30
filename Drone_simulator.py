@@ -1,10 +1,12 @@
+import time
+import threading
+import requests
+import json
+
 ####
 # 드론의 데이터를 서버에 전송하기 위한 시뮬레이터입니다.
 # 존재하는 모듈은 실제 데이터를 받고, 존재하지 않는 모듈은 가상화를 하여 전송하게 됩니다.
 ####
-
-import time
-import threading
 
 batteryInfo = {     # 배터리 종류, 버전 등에 대한 데몬정보
     "name" : "Demon_1.0",
@@ -13,13 +15,11 @@ batteryInfo = {     # 배터리 종류, 버전 등에 대한 데몬정보
     "offcharging" : 0.05,
     "oncharging" : 0.5
 }
-
 gpsInfo = {         # GPS에 대한 데몬 정보
     # 신구대학교 위치 37.44904171317658, 127.16785865546673, 0.0002
     "lat" : 37.44904171317658,
     "lng" : 127.16785865546673
 }
-
 droneInfo = {       # 드론에 대한 데몬정보
     "OS" : "Demon",
     "firmware" : "0.0.1",
@@ -125,6 +125,59 @@ class DroneDemon:
     def getDescript(self):
         return self.descript
 
+
+class request:
+    ### 참고 https://velog.io/@dmstj907/Python-REST-API-%EC%8B%A4%EC%8A%B5
+    ### REST GET
+    # import requests
+    # import json
+
+    # url_items = "http://localhost:3000/todos/1"
+    # response = requests.get(url_items)
+
+    # print(response.text)
+    # print(response.json()["content"])
+
+    ### REST POST
+    # import requests
+    # import json
+
+    # url_items = "http://localhost:3000/todos"
+    # #response = requests.get(url_items)
+
+    # newItem = {
+    #     "id": 4,
+    #     "content": "Python",
+    #     "completed": True
+    #     }
+    # response = requests.post(url_items, data=newItem)
+
+    # print(response.text)
+
+    def __init__(self) -> None:
+        self.url = "http://project-geek.cc/"
+
+    def get(self, arr):
+        self.uri = arr['uri']
+        self.json = json.dump(arr['dict'])
+
+        req = self.url + self.uri + self.json
+        rsp = requests.get(req)
+        print(rsp.text)
+
+    def post(self, arr):
+        self.uri = arr['uri']
+        
+        req = self.url + self.uri
+        rsp = requests.post(req, data=arr[1])
+        print(rsp.text)
+
+    def put(self, arr):
+        self.uri = arr['uri']
+        
+        req = self.url + self.uri
+        rsp = requests.put(req, data=arr[1])
+        print(rsp.text)
 
 if __name__ == "__main__":
     bt = BatteryDemon(batteryInfo)
