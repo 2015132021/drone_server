@@ -130,7 +130,7 @@ class ClientLogin(Resource):
             resultDB = maria.select(dict)
             if resultDB['password'] == pw:
                 print("Password correct!!")
-                return json.dumps({"error" : False})
+                return json.dumps({"error" : False}).encode('UTF-8')
             else:
                 print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
                 return json.dumps({"error" : True})
