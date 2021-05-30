@@ -74,9 +74,15 @@ class Mariadb:
             try:
                 self.DroneDB.commit()
                 print(c_db.fetchall())
-                return {'error' : 'False'}
+                rsp = {
+                    "error" : False
+                }
+                return rsp
             except:
-                return {'error' : 'True'}
+                rsp = {
+                    "error" : True
+                }
+                return rsp
         return sql
 
     def joinClient(self, id, pw, email, phone):
