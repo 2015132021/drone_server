@@ -49,8 +49,8 @@ class Mariadb:
         key = ""
         value = ""
         for i in range(0, len(arr)):
-            key += dict_key[arr[i]]
-            value += dict[arr[i]]
+            key += str(dict_key[arr[i]])
+            value += str(dict[arr[i]])
             if i < len(arr) - 1:
                 key += ", "
                 value += ", "
