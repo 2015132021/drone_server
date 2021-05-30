@@ -27,7 +27,7 @@ function parsing(str){
     return string
 }
 
-function restful(uri, json, REST, page){
+function restful(uri, json, REST, a){
     var url = uri + JSON.stringify(json);
     console.log("url : " + url)
     // XMLHttpRequest 객체의 인스턴스를 생성합니다.
@@ -40,7 +40,7 @@ function restful(uri, json, REST, page){
             return_json = JSON.parse(xhr.responseText)
             console.log(return_json)
             if(return_json.error == false){
-                refresh(page_list[page])
+                a()
             }
             else if(return_json.error == true){
                 alert(return_json.message)
@@ -81,7 +81,7 @@ function login(){
         "id" : id,
         "pw" : pw
     };
-    restful(uris['client_login'], json, "GET");
+    restful(uris['client_login'], json, "GET", refresh(page_list[3]));
 }
 
 function loading(){
