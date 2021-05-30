@@ -43,7 +43,7 @@ function restful(uri, json, REST, page){
                 refresh(page_list[page])
             }
             else if(return_json.error == true){
-                alert(result.message)
+                alert(result_json.message)
             }
             else {
                 alert('알려지지 않은 오류!')
