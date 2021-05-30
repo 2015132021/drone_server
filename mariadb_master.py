@@ -64,7 +64,6 @@ class Mariadb:
             self.DroneDB.commit()
             rows = c_db.fetchall()
             rsp = rows
-            rsp['error'] = False
             return rsp
 
     def insert(self, dict):
