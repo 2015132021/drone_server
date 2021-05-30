@@ -113,7 +113,7 @@ class Mariadb:
         key = ""
         value = ""
         key += str(dict_key[arr[0]])
-        value += "'" + str(dict[arr[0]]) + "'"
+        value += str(dict[arr[0]])
         sql += key + "='" + value + "' order by _id desc limit 1"
         print(sql)
         return self.connecter(sql)
