@@ -110,7 +110,7 @@ class Client(Resource):
         }
         try:
             resultDB = maria.insert(dict)
-            return json.dumps(resultDB)
+            return str(json.dumps(resultDB))
         except:
             return json.dumps(resultDB)
 
@@ -130,10 +130,7 @@ class ClientLogin(Resource):
             resultDB = maria.select(dict)
             if resultDB['password'] == pw:
                 print("Password correct!!")
-                app.response_class(
-
-                )
-                return str({"error" : False})
+                return json.dumps({"error" : False})
             else:
                 print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
                 return json.dumps({"error" : True})
