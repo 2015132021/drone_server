@@ -38,6 +38,7 @@ function restful(uri, json, REST, page){
         if (xhr.status === 200) {
             console.log(xhr.responseText)
             return_json = JSON.parse(xhr.responseText)
+            console.log(return_json)
             if(return_json.error == 'False'){
                 refresh(page_list[3])
             }
@@ -49,6 +50,7 @@ function restful(uri, json, REST, page){
             }
         }
     }
+
     // open() 메서드는 요청을 준비하는 메서드입니다. (http 메서드, 데이터를 받아올 URL 경로, 비동기 여부)
     xhr.open(REST, url, true);
 
