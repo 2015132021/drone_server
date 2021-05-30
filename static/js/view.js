@@ -32,14 +32,15 @@ function login(){
         "pw" : pw
     };
 
-    var result = restful(uris['client'], json, "GET");
+    var result = new JSON();
+    restful(uris['client'], json, "GET", result);
 
-    var result_json = JSON.parse(result);
-    if(result_json.error == 'False'){
+    
+    if(result.error == 'False'){
         refresh(page_list[3])
     }
-    else if(result_json.error == 'True'){
-        alert(result_json.message)
+    else if(result.error == 'True'){
+        alert(result.message)
     }
     else {
         alert('알려지지 않은 오류!')
