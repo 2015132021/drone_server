@@ -92,9 +92,13 @@ class Client(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return json.dumps(resultDB)
+            response = "{"
+            for key, value in resultDB:
+                response += "%s : %s" % (key, value)
+            response += "}"
+            return response
         except:
-            return json.dumps(resultDB)
+            return None
 
     def post(self, data):
         result = json.loads(data)
