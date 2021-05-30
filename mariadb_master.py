@@ -44,6 +44,32 @@ class Mariadb:
                 "phone" : "phone"
             }
         }
+        self.selectDict = {
+            "selectDroneGPS" : {
+                "table" : "Drone_location",
+                "key" : "num_drone",
+                "value" : "id"
+            }
+        }
+
+    def connecter(self, sql):
+        # DB에 접속하는 부분입니다.
+        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
+        if sql != None:
+            c_db.execute(sql)
+            try:
+                self.DroneDB.commit()
+                print(c_db.fetchall())
+                rsp = {
+                    "error" : False
+                }
+                return rsp
+            except:
+                rsp = {
+                    "error" : True
+                }
+                return rsp
+        return sql
 
     def insert(self, dict):
         ### dict의 내용에 관한 설명입니다.
@@ -66,40 +92,25 @@ class Mariadb:
                 value += ", "
         sql += key + ") VALUES (" + value + ")"
         print(sql)
+        return self.connecter(sql)
+        
 
-        # DB에 접속하는 부분입니다.
-        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-        if sql != None:
-            c_db.execute(sql)
-            try:
-                self.DroneDB.commit()
-                print(c_db.fetchall())
-                rsp = {
-                    "error" : False
-                }
-                return rsp
-            except:
-                rsp = {
-                    "error" : True
-                }
-                return rsp
-        return sql
+    def select(self, dict):
+        ### dict의 내용에 관한 설명입니다.
+        # dict 는 kind, arr, 값으로 나뉩니다.
+        # kind는 해당 딕셔너리가 어떤 값에 대한것인지 종류를 나타냅니다.
+        # arr는 해당 키 속성을 담고 있는 리스트 입니다.
+        # 이외 모든 값은 arr 리스트에 있는 키값에 담겨있습니다.
+        # for문으로 arr를 받아올것입니다.
+        kind = dict['kind']     # select의 kind를 설정. 이는 대상 table을 변화시킴
+        dict_key = self.selectDict[kind]
+        sql = "select * from " + dict_key['table'] + " where "
+        key = dict_key['key']
+        value = dict[dict_key['key']]
+        sql += key + "='" + value + "' order by _id desc limit 1"
+        print(sql)
+        return self.connecter(sql)
 
-    def joinClient(self, id, pw, email, phone):
-        # c_db = self.DroneDB.cursor(prepared=True)
-        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-        sql = None
-        sha = hashlib.new('sha256')
-        sha.update(pw.encode('utf-8'))
-        sql = ("INSERT INTO Client_information(client_id, password, email, phone) VALUES('%s', '%s', '%s', '%s')" % (id, sha.hexdigest(), email, phone))
-        if sql != None:
-            c_db.execute(sql)
-            try:
-                self.DroneDB.commit()
-                print(c_db.fetchall())
-                return {'error' : 'False'}
-            except:
-                return {'error' : 'True'}
     def getClient(self, id):
         c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
         sql = None
@@ -117,6 +128,8 @@ class Mariadb:
                 return dt
             except:
                 return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
+
+
     def loginClient(self, id, pw):
         c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
         sql = None

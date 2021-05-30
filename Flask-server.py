@@ -23,13 +23,17 @@ class HelloWorld(Resource):
 @api.route('/drone/gps/<string:data>')
 class DroneGPS(Resource):
     def get(self, data):
+        result = json.loads(data)
+        dict = {
+            "kind" : "selectDroneGPS",
+            "id" : result['id']
+        }
         try:
-            result = json.loads(data)
-            id = result['id']
-            ql = maria.getGPS(id, 'drone')
-            print(ql)
-            return json.dumps(ql)
+            print("request : " + str(dict))
+            resultDB = maria.select(dict)
+            return json.dumps(resultDB)
         except:
+            return json.dumps(resultDB)
             pass
     def post(self, data):
         result = json.loads(data)
