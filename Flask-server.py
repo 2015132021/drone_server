@@ -34,7 +34,6 @@ class DroneGPS(Resource):
             return json.dumps(resultDB)
         except:
             return json.dumps(resultDB)
-            pass
     def post(self, data):
         result = json.loads(data)
         dict = {
