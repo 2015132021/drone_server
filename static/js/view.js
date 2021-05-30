@@ -36,7 +36,8 @@ function restful(uri, json, REST, page){
     xhr.onload = function () {
         // xhr 객체의 status 값을 검사한다.
         if (xhr.status === 200) {
-          return_json = JSON.parse(xhr.responseText)
+            console.log(xhr.responseText)
+            return_json = JSON.parse(xhr.responseText)
             if(return_json.error == 'False'){
                 refresh(page_list[3])
             }
