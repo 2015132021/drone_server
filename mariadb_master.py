@@ -86,8 +86,17 @@ class Mariadb:
                 value += ", "
         sql += key + ") VALUES (" + value + ");"
         print(sql)
-        rows = self.connecter(sql)
-        return rows[0]
+        try:
+            rsp = {
+                'error' : False
+            }
+            return rsp
+        except:
+            rsp = {
+                'error' : True,
+                'message' : '값이 올바르지 않습니다.'
+            }
+            return rsp
         
 
     def select(self, dict):
