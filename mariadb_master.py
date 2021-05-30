@@ -123,8 +123,8 @@ class Mariadb:
         rows = self.connecter(sql)
         rsp = rows[0]
         rsp['error'] = False
-        for i in range(0, len(rsp.keys())):
-            print(rsp.values[i])
+        for key, value in rsp.items():
+            print("key : %s, value : %s" % (key, value))
         return rsp
 
     def getClient(self, id):
