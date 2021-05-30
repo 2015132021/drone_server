@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 result = builder.toString();
                 //result = result.replace("'", "\"");
                 JSONObject json = new JSONObject(result);
-                logs = json.getString("error");
+                result.replace(" ", "");
+                logs = result;
                 mh.sendEmptyMessage(1);
             }
             catch (Exception e) {

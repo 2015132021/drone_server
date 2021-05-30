@@ -133,7 +133,7 @@ class ClientLogin(Resource):
                 app.response_class(
 
                 )
-                return {"error" : False}
+                return str({"error" : False})
             else:
                 print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
                 return json.dumps({"error" : True})
