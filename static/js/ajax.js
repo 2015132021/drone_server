@@ -27,13 +27,11 @@ function restful(uri, json, REST){
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200){
             console.log(xhr.responseText.replace("'", "\""));
+            return xhr.responseText
         }
     }
     xhr.send();
     if(xhr.status === 200) {       // 성공
-        console.log(xhr.responseText);   // responseText -> response body안에 들어있는 값이 text로 들어있다.
-        console.log(xhr.responseType)
-        parsing(xhr.responseText)
         return xhr.responseText
         }
     else {                      // response 실패
