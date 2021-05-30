@@ -21,24 +21,77 @@ class Mariadb:
                 charset= 'utf8'
             )
             print("use json file")
-            
-    def insertGPS(self, id, lat, lng, kind):
-        # c_db = self.DroneDB.cursor(prepared=True)
-        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-        sql = None
-        if kind == 'drone':
-            sql = ("INSERT INTO Drone_location(num_drone, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
-        elif kind == 'client':
-            sql = ("INSERT INTO Client_location(client_id, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
 
-        if sql != None:
-            c_db.execute(sql)
-            try:
-                self.DroneDB.commit()
-                print(c_db.fetchall())
-                return {'error' : 'False'}
-            except:
-                return {'error' : 'True'}
+        self.insertDict = {
+            "insertDroneGPS" : {
+                "table" : "Drone_location",
+                "id" : "Client_id",
+                "lat" : "lat",
+                "lng" : "lng",
+                "bat" : "battery"
+            },
+            "insertClientGPS" : {
+                "table" : "Drone_location"
+            }
+        }
+
+    def insert(self, dict):
+        ### dict의 내용에 관한 설명입니다.
+        # dict 는 kind, arr, 값으로 나뉩니다.
+        # kind는 해당 딕셔너리가 어떤 값에 대한것인지 종류를 나타냅니다.
+        # arr는 해당 키 속성을 담고 있는 리스트 입니다.
+        # 이외 모든 값은 arr 리스트에 있는 키값에 담겨있습니다.
+        # for문으로 arr를 받아올것입니다.
+        kind = dict['kind']     # insert의 kind를 설정. 이는 대상 table을 변화시킴
+        arr = dict['arr']
+        dict_key = self.insertDict[kind]
+        sql = "INSERT INTO " + dict_key['table'] + "("
+        key = ""
+        value = ""
+        for i in range(0, len(arr)):
+            key += dict_key[arr[i]]
+            value += dict[arr[i]]
+            if i < len(arr) - 1:
+                key += ", "
+                value += ", "
+        sql += key + ") VALUES (" + value + ")"
+        print(sql)
+        return sql
+        #sql = ("INSERT INTO Drone_location(num_drone, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
+
+            
+    # def insertGPS(self, dict):
+    #     ###     dict 내용 형식      ###
+    #     # dict = {
+    #     #     "kind",
+    #     #     "num_drone" / "client_id",
+    #     #     "lat",
+    #     #     "lng",
+    #     #     "battery" / None
+    #     #     arr = ["kind", "num_drone" / "Client_id", "lat", "lng", "battery" / None]
+    #     # }
+    #     ###     dict 내용 형식      ###
+    #     c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
+    #     sql = None
+    #     sql = "INSERT INTO "
+    #     if dict['kind'] == 'drone':
+    #         #sql = ("INSERT INTO Drone_location(num_drone, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
+    #         sql += "Drone_location"
+    #     elif dict['kind'] == 'client':
+    #         #sql = ("INSERT INTO Client_location(client_id, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
+    #         sql += "Client_location"
+    #     arr = dict['arr']
+    #     for i in range(0, arr.length()):
+
+
+    #     if sql != None:
+    #         c_db.execute(sql)
+    #         try:
+    #             self.DroneDB.commit()
+    #             print(c_db.fetchall())
+    #             return {'error' : 'False'}
+    #         except:
+    #             return {'error' : 'True'}
 
     def joinClient(self, id, pw, email, phone):
         # c_db = self.DroneDB.cursor(prepared=True)

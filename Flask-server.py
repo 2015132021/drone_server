@@ -32,13 +32,17 @@ class DroneGPS(Resource):
             pass
     def post(self, data):
         result = json.loads(data)
+        dict = {
+            "kind" : "insertDroneGPS",
+            "arr" : ["id", "lat", "lng", "bat"],
+            "id" : result['id'],
+            "lat" : result['lat'],
+            "lng" : result['lng'],
+            "bat" : result['bat'],
+        }
         try:
-            id = result['id']
-            lat = result['lat']
-            lng = result['lng']
-            print("ID : %s, lat : %s, lng : %s" % (id, lat, lng))
-            resultDB = {'error' : 'True'}
-            resultDB = maria.insertGPS(id, lat, lng, 'drone')
+            print("request : " + dict)
+            resultDB = maria.insertGPS(dict)
             return json.dumps(resultDB)
         except:
             return json.dumps(resultDB)

@@ -3,6 +3,8 @@ import threading
 import requests
 import json
 
+is_quit = False
+
 ####
 # 드론의 데이터를 서버에 전송하기 위한 시뮬레이터입니다.
 # 존재하는 모듈은 실제 데이터를 받고, 존재하지 않는 모듈은 가상화를 하여 전송하게 됩니다.
@@ -17,6 +19,7 @@ batteryInfo = {     # 배터리 종류, 버전 등에 대한 데몬정보
 }
 gpsInfo = {         # GPS에 대한 데몬 정보
     # 신구대학교 위치 37.44904171317658, 127.16785865546673, 0.0002
+    "id" : 1,
     "lat" : 37.44904171317658,
     "lng" : 127.16785865546673
 }
@@ -66,6 +69,8 @@ class BatteryDemon:         # 배터리 모듈이 존재하지 않을때 사용�
             # print("Level : %f, Name : %s, Version : %s, isCharging? : %r, offValue : %f, onValue : %f" % (self.charge, self.name, self.version, self.onoff, self.offcharging, self.oncharging))
 
             time.sleep(1)
+            if is_quit == True:
+                return None
 
     def charging(self, tf):
         if tf == None:
@@ -155,11 +160,11 @@ class request:
     # print(response.text)
 
     def __init__(self) -> None:
-        self.url = "http://project-geek.cc/"
+        pass
 
     def get(self, arr):
         self.uri = arr['uri']
-        self.json = json.dump(arr['dict'])
+        self.json = json.dumps(arr['dict'])
 
         req = self.url + self.uri + self.json
         rsp = requests.get(req)
@@ -167,19 +172,37 @@ class request:
 
     def post(self, arr):
         self.uri = arr['uri']
-        
-        req = self.url + self.uri
-        rsp = requests.post(req, data=arr[1])
+        dict = arr['dict']
+        dict['id'] = "1"
+        json_dict = json.dumps(dict)
+        req = self.uri + json_dict
+        print("req : %s" % req)
+        rsp = requests.post(req, data=None)
         print(rsp.text)
 
     def put(self, arr):
         self.uri = arr['uri']
         
         req = self.url + self.uri
-        rsp = requests.put(req, data=arr[1])
+        rsp = requests.put(req, data=arr['dict'])
         print(rsp.text)
 
 if __name__ == "__main__":
     bt = BatteryDemon(batteryInfo)
-    gps = GpsDemon(droneInfo)
+    gps = GpsDemon(gpsInfo)
     info = DroneDemon(droneInfo)
+    req = request()
+
+    try:
+        while True:
+            time.sleep(1)
+            dict = {
+                'uri' : 'http://project-geek.cc/drone/gps/'
+            }
+            dict['dict'] = gps.getLoction()
+            dict['dict']['bat'] = bt.getLevel()
+            print(dict)
+            req.post(dict)
+    except KeyboardInterrupt as e:
+        is_quit = True
+        quit()
