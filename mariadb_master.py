@@ -56,6 +56,17 @@ class Mariadb:
                 value += ", "
         sql += key + ") VALUES (" + value + ")"
         print(sql)
+
+        # DB에 접속하는 부분입니다.
+        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
+        if sql != None:
+            c_db.execute(sql)
+            try:
+                self.DroneDB.commit()
+                print(c_db.fetchall())
+                return {'error' : 'False'}
+            except:
+                return {'error' : 'True'}
         return sql
         #sql = ("INSERT INTO Drone_location(num_drone, lat, lng) VALUES(%d, %f, %f)" % (id, lat, lng))
 
