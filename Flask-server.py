@@ -92,7 +92,7 @@ class Client(Resource):
         }
         try:
             resultDB = maria.select(dict)
-            return json.dumps(resultDB)
+            return str(json.dumps(resultDB))
         except:
             return json.dumps(resultDB)
 
@@ -110,7 +110,7 @@ class Client(Resource):
         }
         try:
             resultDB = maria.insert(dict)
-            return str(json.dumps(resultDB))
+            return json.dumps(resultDB)
         except:
             return json.dumps(resultDB)
 
