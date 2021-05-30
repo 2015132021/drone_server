@@ -35,16 +35,18 @@ function login(){
     const result = {}
     restful(uris['client'], json, "GET", result);
 
+    setTimeout(function() {
+        if(result.error == 'False'){
+            refresh(page_list[3])
+        }
+        else if(result.error == 'True'){
+            alert(result.message)
+        }
+        else {
+            alert('알려지지 않은 오류!')
+        }
+    }, 1000);
     
-    if(result.error == 'False'){
-        refresh(page_list[3])
-    }
-    else if(result.error == 'True'){
-        alert(result.message)
-    }
-    else {
-        alert('알려지지 않은 오류!')
-    }
 }
 
 function loading(){
