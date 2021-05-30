@@ -48,7 +48,12 @@ class Mariadb:
             "selectDroneGPS" : {
                 "table" : "Drone_location",
                 "key" : "num_drone",
+                "value" : "id",
+            "selectClientGPS" : {
+                "table" : "Client_location",
+                "key" : "client_id",
                 "value" : "id"
+            }
             }
         }
 

@@ -54,14 +54,17 @@ class DroneGPS(Resource):
 @api.route('/client/gps/<string:data>')
 class ClientGPS(Resource):
     def get(self, data):
+        result = json.loads(data)
+        dict = {
+            "kind" : "selectClientGPS",
+            "id" : result['id']
+        }
         try:
-            result = json.loads(data)
-            id = result['id']
-            ql = maria.getGPS(id, 'client')
-            print(ql)
-            return json.dumps(ql)
+            print("request : " + str(dict))
+            resultDB = maria.select(dict)
+            return json.dumps(resultDB)
         except:
-            pass
+            return json.dumps(resultDB)
     def post(self, data):
         result = json.loads(data)
         dict = {
