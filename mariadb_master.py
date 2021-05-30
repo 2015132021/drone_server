@@ -95,7 +95,7 @@ class Mariadb:
             if i < len(arr) - 1:
                 key += ", "
                 value += ", "
-        sql += key + ") VALUES (" + value + ")"
+        sql += key + ") VALUES (" + value + ");"
         print(sql)
         return self.connecter(sql)
         
@@ -115,7 +115,7 @@ class Mariadb:
         value = ""
         key += str(dict_key[arr[0]])
         value += str(dict[arr[0]])
-        sql += key + "='" + value + "' order by _id desc limit 1"
+        sql += key + "='" + value + "' order by _id desc limit 1;"
         print(sql)
         return self.connecter(sql)
 
