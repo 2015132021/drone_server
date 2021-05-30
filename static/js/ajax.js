@@ -15,7 +15,7 @@ function restful(uri, json, REST){
     xhr.open(REST, encodeURI(url), true);  // form태그안에 어트리뷰트 써준거와 같다.
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200){
-            console.log(xhr.responseText.replace('\\', '').replace('\"', '"'));
+            console.log(xhr.responseText.replace('\\', '').replace('\\"', '"'));
         }
     }
     xhr.send();
