@@ -108,6 +108,7 @@ class Mariadb:
         # 이외 모든 값은 arr 리스트에 있는 키값에 담겨있습니다.
         # for문으로 arr를 받아올것입니다.
         kind = dict['kind']     # select의 kind를 설정. 이는 대상 table을 변화시킴
+        print(kind)
         dict_key = self.selectDict[kind]
         sql = "select * from " + dict_key['table'] + " where "
         key = dict_key['key']
