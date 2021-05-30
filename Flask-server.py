@@ -98,7 +98,7 @@ class Client(Resource):
             response += "}"
             return response
         except:
-            return None
+            return "Errorrrorror"
 
     def post(self, data):
         result = json.loads(data)
