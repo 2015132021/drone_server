@@ -89,14 +89,8 @@ class Client(Resource):
             "id" : result['id']
         }
         try:
-            id = result['id']
-            if "pw" in result:
-                pw = result['pw']
-                res = maria.loginClient(id, pw)
-            else:
-                res = maria.getClient(id)
-            print(res)
-            return json.dumps(res)
+            resultDB = maria.select(dict)
+            return json.dumps(resultDB)
         except:
             pass
 
