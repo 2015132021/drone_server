@@ -69,12 +69,6 @@ class Mariadb:
                     "error" : False
                 }
                 return rsp
-            except:
-                rsp = {
-                    "error" : True
-                }
-                return rsp
-        return sql
 
     def insert(self, dict):
         ### dict의 내용에 관한 설명입니다.
