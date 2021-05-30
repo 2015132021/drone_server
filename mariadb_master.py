@@ -123,7 +123,7 @@ class Mariadb:
         rows = self.connecter(sql)
         rsp = rows[0]
         rsp['error'] = False
-        print(rsp['time'])
+        rsp['time'] = str(rsp['time'])
         return rsp
 
     def getClient(self, id):
