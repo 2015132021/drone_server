@@ -32,7 +32,7 @@ function login(){
         "pw" : pw
     };
 
-    const result = new JSON({});
+    const result = {}
     restful(uris['client'], json, "GET", result);
 
     
