@@ -64,11 +64,11 @@ class Mariadb:
             try:
                 self.DroneDB.commit()
                 rows = c_db.fetchall()
-                rows["error"] = "False"
+                rows['error'] = False
                 return rows
             except:
                 rows = c_db.fetchall()
-                rows["error"] = "True"
+                rows['error'] = True
                 return rows
         return sql
 
