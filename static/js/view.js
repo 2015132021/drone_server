@@ -40,7 +40,7 @@ function restful(uri, json, REST, a){
             return_json = JSON.parse(xhr.responseText)
             console.log(return_json)
             if(return_json.error == false){
-                a()
+                a
             }
             else if(return_json.error == true){
                 alert(return_json.message)
