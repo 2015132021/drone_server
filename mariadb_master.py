@@ -87,6 +87,7 @@ class Mariadb:
         sql += key + ") VALUES (" + value + ");"
         print(sql)
         try:
+            self.connecter(sql)
             rsp = {
                 'error' : False
             }
@@ -117,7 +118,9 @@ class Mariadb:
         sql += key + "='" + value + "' order by _id desc limit 1;"
         print(sql)
         rows = self.connecter(sql)
-        return rows[0]
+        rsp = rows[0]
+        rsp['error'] = False
+        return rsp
 
     def getClient(self, id):
         c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
