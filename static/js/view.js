@@ -39,10 +39,10 @@ function restful(uri, json, REST, page){
             console.log(xhr.responseText)
             return_json = JSON.parse(xhr.responseText)
             console.log(return_json)
-            if(return_json.error == 'False'){
-                refresh(page_list[3])
+            if(return_json.error == false){
+                refresh(page_list[page])
             }
-            else if(return_json.error == 'True'){
+            else if(return_json.error == true){
                 alert(result.message)
             }
             else {
