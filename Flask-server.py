@@ -94,7 +94,7 @@ class Client(Resource):
             resultDB = maria.select(dict)
             response = "{"
             for key, value in resultDB.items():
-                response += '"%s" : "%s",' % (key, value)
+                response += "'%s' : '%s'," % (key, value)
             response += "}"
             return response
         except:
