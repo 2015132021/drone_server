@@ -1,3 +1,5 @@
+//document.cookie = "user=John"; // 이름이 'user'인 쿠키의 값만 갱신함
+alert(document.cookie);
 var page_state = "page_loading";
 
 page_list = ["page_loading", "page_login", "page_join", "page_main", "page_information", "page_rent", "page_map", "page_camera"]
@@ -27,7 +29,7 @@ function parsing(str){
     return string
 }
 
-function restful(uri, json, REST, a, b){
+function restful(uri, json, REST, a, b, c){
     var url = uri + JSON.stringify(json);
     console.log("url : " + url)
     // XMLHttpRequest 객체의 인스턴스를 생성합니다.
@@ -41,6 +43,7 @@ function restful(uri, json, REST, a, b){
             console.log(return_json)
             if(return_json.error == false){
                 a(b)
+                c(json.id, json.pw)
             }
             else if(return_json.error == true){
                 alert(return_json.message)
@@ -81,7 +84,11 @@ function login(){
         "id" : id,
         "pw" : pw
     };
-    restful(uris['client_login'], json, "GET", refresh, page_list[3]);
+    restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
+}
+function login_correct(id, pw){
+    document.cookie = "id=" + id; // 이름이 'user'인 쿠키의 값만 갱신함
+    document.cookie = "pw=" + pw; // 이름이 'user'인 쿠키의 값만 갱신함
 }
 
 function loading(){
