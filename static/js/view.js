@@ -86,6 +86,20 @@ function login(){
     };
     restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
 }
+
+function getCookie(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+  }
+  
+if(getCookie('id') != null & getCookie('pw') != null){
+    json = {
+        "id" : getCookie('id'),
+        "pw" : getCookie('pw')
+    }
+    restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
+}
+
 function login_correct(id, pw){
     document.cookie = "id=" + id; // 이름이 'user'인 쿠키의 값만 갱신함
     document.cookie = "pw=" + pw; // 이름이 'user'인 쿠키의 값만 갱신함
