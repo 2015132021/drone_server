@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     String req = "";
 
     MyHandler mh;
-
+    String handle = "";
 
     class MyHandler extends Handler {
         @Override
@@ -87,8 +87,18 @@ public class MainActivity extends AppCompatActivity {
                 result = builder.toString();
                 //result = result.replace("'", "\"");
                 JSONObject json = new JSONObject(result);
-                result.replace(" ", "");
-                logs = result;
+
+                if(handle == "login"){
+                    try{
+                        fos = openFileOutput("logon.txt", Context.MODE_PRIVATE);
+                        fos.write(json.toString().getBytes());
+                        fos.close();
+                        setContentView(R.layout.main);
+                    }catch (Exception e){
+                        logs = e.getMessage();
+                        mh.sendEmptyMessage(1);
+                    }
+                }
                 mh.sendEmptyMessage(1);
             }
             catch (Exception e) {
@@ -111,10 +121,13 @@ public class MainActivity extends AppCompatActivity {
         mh = new MyHandler();
 
         try{
-            fis = openFileInput("./logon.txt");
+            fis = openFileInput("logon.txt");
             btext = new byte[fis.available()];
             fis.read(btext);
             s = new String(btext);
+            JSONObject json = new JSONObject(s);
+            logs = json.toString();
+            mh.sendEmptyMessage(1);
         }catch (Exception e) {
             s = e.getMessage();
         }
@@ -141,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                                 js.put("pw", pw);
                                 req = host + uri + js.toString();
                                 gp = "GET";
+                                handle = "login";
                                 MyThread mt = new MyThread();
                                 mt.start();
                             }
