@@ -99,6 +99,7 @@ class Mariadb:
             if i < len(arr) - 1:
                 key += ", "
                 value += ", "
+                print("value : %s, typeof : %s" % (value, type(value)))
         sql += key + ") VALUES (" + value + ");"
         try:
             self.connecter(sql)
