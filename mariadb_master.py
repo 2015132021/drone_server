@@ -42,6 +42,12 @@ class Mariadb:
                 "pw" : "password",
                 "email" : "email",
                 "phone" : "phone"
+            },
+            "login_hash" : {
+                "table" : "Client_login_logs",
+                "id" : "client_id",
+                "hash" : "login_hash",
+                "tf" : "now_login"
             }
         }
 
@@ -56,6 +62,10 @@ class Mariadb:
             },
             "selectClient" : {
                 "table" : "Client_information",
+                "id" : "client_id"
+            },
+            "login_hash" : {
+                "table" : "Client_login_logs",
                 "id" : "client_id"
             }
         }
