@@ -118,24 +118,47 @@ class Client(Resource):
 class ClientLogin(Resource):
     def get(self, data):
         result = json.loads(data)
-        sha = hashlib.new('sha256')
-        sha.update(result['pw'].encode('utf-8'))
-        dict = {
-            "kind" : "selectClient",
-            "arr" : ["id"],
-            "id" : result['id']
-        }
-        pw = sha.hexdigest()
-        try:
-            resultDB = maria.select(dict)
-            if resultDB['password'] == pw:
-                print("Password correct!!")
-                return jsonify({"error" : False})
-            else:
-                print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
-                return jsonify({"error" : True, "message":"올바르지 않는 계정 정보"})
-        except:
-            return jsonify({"error" : True})
+        if("hash" in result):
+            dict = {
+                "kind" : "login_hash",
+                "id" : result['id'],
+            }
+            try:
+                resultDB = maria.select(dict)
+                if resultDB['hash'] == result.hash & resultDB['now_login'] == True:
+                    return jsonify({"error" : False})
+                else :
+                    return jsonify({"error" : True, "message" : "incorrect hash"})
+            except:
+                return jsonify({"error" : True, "message" : "incorrect information"})
+        else :
+            sha = hashlib.new('sha256')
+            sha.update(result['pw'].encode('utf-8'))
+            dict = {
+                "kind" : "selectClient",
+                "arr" : ["id"],
+                "id" : result['id']
+            }
+            pw = sha.hexdigest()
+            try:
+                resultDB = maria.select(dict)
+                if resultDB['password'] == pw:
+                    print("Password correct!!")
+                    dict = {
+                        "kind" : "login_hash",
+                        "arr" : ["id", "hash", "tf"],
+                        "id" : result['id'],
+                        "hash" : "fakehash",
+                        "tf" : True
+                    }
+                    resultDB = maria.insert(dict)
+                    print(resultDB.items())
+                    return jsonify({"error" : False, "hash" : dict['hash']})
+                else:
+                    print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
+                    return jsonify({"error" : True, "message":"올바르지 않는 계정 정보"})
+            except:
+                return jsonify({"error" : True})
 
 
 @api.route('/client/log/<string:data>')
