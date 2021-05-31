@@ -152,7 +152,7 @@ class ClientLogin(Resource):
                         "tf" : True
                     }
                     resultDB = maria.insert(dict)
-                    print(resultDB)
+                    print(jsonify(resultDB))
                     return jsonify({"error" : False, "hash" : dict['hash']})
                 else:
                     print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
