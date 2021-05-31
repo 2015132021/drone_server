@@ -1,5 +1,3 @@
-//document.cookie = "user=John"; // 이름이 'user'인 쿠키의 값만 갱신함
-alert(document.cookie);
 var page_state = "page_loading";
 
 page_list = ["page_loading", "page_login", "page_join", "page_main", "page_information", "page_rent", "page_map", "page_camera"]
@@ -9,6 +7,8 @@ function refresh(str){
     document.getElementById(str).style.display="block";
     page_state = str
 }
+
+refresh(page_list[0])
 
 var uris = {
     drone_gps : "/drone/gps/",
@@ -92,13 +92,6 @@ function getCookie(name) {
     return value? value[2] : null;
   }
   
-if(getCookie('id') != null & getCookie('pw') != null){
-    json = {
-        "id" : getCookie('id'),
-        "pw" : getCookie('pw')
-    }
-    restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
-}
 
 function login_correct(id, pw){
     document.cookie = "id=" + id; // 이름이 'user'인 쿠키의 값만 갱신함
@@ -106,7 +99,14 @@ function login_correct(id, pw){
 }
 
 function loading(){
-    refresh(page_list[1])
+    if(getCookie('id') != null & getCookie('pw') != null){
+        json = {
+            "id" : getCookie('id'),
+            "pw" : getCookie('pw')
+        }
+        restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
+    }
+    else{
+        refresh(page_list[1])
+    }
 }
-
-refresh(page_list[0])
