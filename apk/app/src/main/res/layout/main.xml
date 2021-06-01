@@ -10,4 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="MAIN PAGE" />
+
+    <Button
+        android:id="@+id/rent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rent" />
+
+    <Button
+        android:id="@+id/myinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="myinfo" />
+
+    <Button
+        android:id="@+id/rentlog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="rentlog" />
 </LinearLayout>
