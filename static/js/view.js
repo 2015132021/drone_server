@@ -117,6 +117,7 @@ function loading(){
             "id" : getCookie('id'),
             "hash" : getCookie('hash')
         }
+        console.log(json)
         restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
     }
     else{
