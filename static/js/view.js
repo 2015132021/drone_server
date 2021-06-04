@@ -89,7 +89,7 @@ function login(){
 
 function logout(){
     json = {
-        "id" : id
+        "id" : getCookie('id');
     }
     restful(uris['client_logout'], json, "GET", refresh, page_list[1], logout_correct);
 }
