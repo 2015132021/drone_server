@@ -28,34 +28,63 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
+    // 현재 보고있는 페이지 ( 액티비티 ) 에 대한 정보
+    String[] page_name = new String[]{"loading", "login", "join", "main", "rent", "myinfo", "loglist", "logview", "map", "camera"};
+    int page_stat = 0;
+
+    // 기본적인 고정 항목
+    String host = "http://project-geek.cc";
+
+    // 각 객체간 넘겨주는 전역 변수급에 대한 정보
+    String uri = "";                // 접근 uri
+    String req = "";                // 리퀘스트 json형식 string
+    String gp = "GET";              // GET / POST 등의 REST 구분
+    JSONObject json;
+
+    // 액티비티 뷰
     TextView tv;
     EditText ed_login_id;
     EditText ed_login_pw;
-
-    View.OnClickListener cl;
     Button btn_login;
 
+    // 클릭 리스너
+    View.OnClickListener cl;
+
+    // 파일 스트림
     FileInputStream fis;
     FileOutputStream fos;
     byte[] btext;
     String s;
     File[] fileArray;
 
-    String host = "http://project-geek.cc";
-    String uri = "";
-    JSONObject js;
-    String gp = "GET";
-    String logs = "";
-    String req = "";
+
 
     MyHandler mh;
-    String handle = "";
-
     class MyHandler extends Handler {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            if (msg.what == 1){
+            switch (msg.what){
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
             }
         }
     }
@@ -84,24 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 // Set the result
                 result = builder.toString();
                 //result = result.replace("'", "\"");
-                JSONObject json = new JSONObject(result);
-
-                if(handle == "login"){
-                    try{
-                        fos = openFileOutput("logon.txt", Context.MODE_PRIVATE);
-                        fos.write(json.toString().getBytes());
-                        fos.close();
-                        setContentView(R.layout.main);
-                    }catch (Exception e){
-                        logs = e.getMessage();
-                        mh.sendEmptyMessage(1);
-                    }
-                }
+                json = new JSONObject(result);
                 mh.sendEmptyMessage(1);
             }
             catch (Exception e) {
                 // Error calling the rest api
-                logs = e.getMessage();
                 mh.sendEmptyMessage(1);
             }
 
@@ -123,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
             btext = new byte[fis.available()];
             fis.read(btext);
             s = new String(btext);
-            JSONObject json = new JSONObject(s);
-            logs = json.toString();
             mh.sendEmptyMessage(1);
         }catch (Exception e) {
             s = e.getMessage();
@@ -143,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.login:
                             tv = (TextView)findViewById(R.id.textView);
                             uri = "/client/login/";
-                            js = new JSONObject();
+                            JSONObject js = new JSONObject();
                             try {
                                 String id = ed_login_id.getText().toString();
                                 String pw = ed_login_pw.getText().toString();
@@ -151,12 +165,10 @@ public class MainActivity extends AppCompatActivity {
                                 js.put("pw", pw);
                                 req = host + uri + js.toString();
                                 gp = "GET";
-                                handle = "login";
                                 MyThread mt = new MyThread();
                                 mt.start();
                             }
                             catch (JSONException e){
-                                logs = e.getMessage();
                                 mh.sendEmptyMessage(1);
                             }
                             break;
