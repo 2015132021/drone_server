@@ -122,7 +122,7 @@ class ClientLogout(Resource):
             "kind" : "logout",
             "arr" : ["id", "tf"],
             "id" : result['id'],
-            "tf" : False
+            "tf" : 0
         }
         resultDB = maria.insert(dict)
         print(resultDB)
@@ -140,7 +140,7 @@ class ClientLogin(Resource):
                 "kind" : "login_hash",
                 "arr" : ["id", "tf"],
                 "id" : result['id'],
-                "tf" : 0
+                "tf" : 1
             }
             try:
                 resultDB = maria.select(dict)
