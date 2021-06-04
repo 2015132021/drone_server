@@ -11,56 +11,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="25dp"
+        android:layout_marginTop="150dp"
         android:background="#ffffff"
         android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/join_id"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="ID" />
+        <EditText
+            android:id="@+id/join_id"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="ID" />
 
-    <EditText
-        android:id="@+id/join_pw"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:hint="pw"
-        android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/join_pw"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="pw"
+            android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/join_email"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:hint="e-mail"
-        android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/join_email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="e-mail"
+            android:inputType="textEmailAddress" />
 
-    <EditText
-        android:id="@+id/join_phone"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:hint="phone number"
-        android:inputType="phone" />
+        <EditText
+            android:id="@+id/join_phone"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="phone number"
+            android:inputType="phone" />
 
-    <Button
-        android:id="@+id/join_submit"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Join" />
+        <Button
+            android:id="@+id/join_submit"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Join" />
 
-    <Button
-        android:id="@+id/join_back"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Back" />
-</LinearLayout>
+        <Button
+            android:id="@+id/join_back"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Back" />
+    </LinearLayout>
 </LinearLayout>
