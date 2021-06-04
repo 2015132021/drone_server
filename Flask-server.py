@@ -118,18 +118,24 @@ class Client(Resource):
 class ClientLogin(Resource):
     def get(self, data):
         result = json.loads(data)
+        print(data)
+        print(result)
         if("hash" in result):
             dict = {
                 "kind" : "login_hash",
-                "id" : result['id'],
+                "arr" : ["id"],
+                "id" : result['id']
             }
             try:
                 resultDB = maria.select(dict)
-                if resultDB['hash'] == result.hash & resultDB['now_login'] == True:
+                print("DB hash : %s, User hash : %s" % (resultDB['login_hash'], result['hash']))
+                print("DB hash : %s, User hash : %s, now login : %s" % (type(resultDB['login_hash']), type(result['hash']), type(resultDB['now_login'])))
+                if (resultDB['login_hash'] == result['hash']) & (resultDB['now_login'] == 1):
                     return jsonify({"error" : False})
                 else :
                     return jsonify({"error" : True, "message" : "incorrect hash"})
             except:
+                print(dict)
                 return jsonify({"error" : True, "message" : "incorrect information"})
         else :
             sha = hashlib.new('sha256')

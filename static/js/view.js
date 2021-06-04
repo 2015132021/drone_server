@@ -87,6 +87,10 @@ function login(){
     restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
 }
 
+function logout(){
+    
+}
+
 function getCookie(name) {
     var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null;

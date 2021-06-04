@@ -75,6 +75,7 @@ Java기반 안드로이드 어플리케이션입니다.
 메인 페이지
 - Rent 항목
     - rent.xml로 이동합니다.
+    
 - my information 항목
     - myinfo.xml로 이동합니다.
 - 사용 로그 항목

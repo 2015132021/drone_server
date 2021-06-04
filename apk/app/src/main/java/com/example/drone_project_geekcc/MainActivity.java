@@ -26,10 +26,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static java.lang.Thread.sleep;
+
 public class MainActivity extends AppCompatActivity {
 
     // 현재 보고있는 페이지 ( 액티비티 ) 에 대한 정보
     String[] page_name = new String[]{"loading", "login", "join", "main", "rent", "myinfo", "loglist", "logview", "map", "camera"};
+    int[] page_src = new int[]{R.layout.loading, R.layout.login, R.layout.join, R.layout.main, R.layout.rent, R.layout.myinfo, R.layout.loglist, R.layout.logview, R.layout.map, R.layout.camera};
     int page_stat = 0;
 
     // 기본적인 고정 항목
@@ -59,34 +62,13 @@ public class MainActivity extends AppCompatActivity {
     File[] fileArray;
 
 
-
     MyHandler mh;
     class MyHandler extends Handler {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
-                case 0:                     // 첫 실행 시 로딩 페이지일 때 발생합니다. 해시값 읽어와서 사용합니다.
-
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    break;
-                case 8:
-                    break;
-                case 9:
-                    break;
+            setContentView(page_src[msg.what]);
+            if(msg.what == 1) {
             }
         }
     }
@@ -112,18 +94,20 @@ public class MainActivity extends AppCompatActivity {
                     builder.append(line);
                 }
 
-                // Set the result
                 result = builder.toString();
-                //result = result.replace("'", "\"");
                 json = new JSONObject(result);
-                mh.sendEmptyMessage(1);
+                mh.sendEmptyMessage(2);
             }
             catch (Exception e) {
-                // Error calling the rest api
                 mh.sendEmptyMessage(1);
             }
 
         }
+    }
+
+    // 여기서부터는 각 페이지 별 실행 함수입니다.
+    protected void loading(){
+
     }
 
 
@@ -131,7 +115,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading);
+        try {
+        }catch (Exception e){
 
+        }
         String line = null;
 
         // login.xml
@@ -148,13 +135,11 @@ public class MainActivity extends AppCompatActivity {
             btext = new byte[fis.available()];
             fis.read(btext);
             s = new String(btext);
-            mh.sendEmptyMessage(0);
+            loading();
         }catch (Exception e) {
             s = e.getMessage();
+            mh.sendEmptyMessage(1);
         }
-        setContentView(R.layout.login);
-
-
 
         cl = new View.OnClickListener() {
             @Override
@@ -184,9 +169,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
-        login_login.setOnClickListener(cl);
-        login_join.setOnClickListener(cl);
 
     }
 }
