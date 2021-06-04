@@ -114,7 +114,7 @@ class Client(Resource):
         except:
             return jsonify(resultDB)
 
-@api.route('/client/logout<string:data>')
+@api.route('/client/logout/<string:data>')
 class ClientLogout(Resource):
     def get(self, data):
         result = json.loads(data)
