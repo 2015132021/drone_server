@@ -131,6 +131,7 @@ class Mariadb:
         key += str(dict_key[arr[0]])
         value += str(dict[arr[0]])
         sql += key + "='" + value + "' order by _id desc limit 1;"
+        print("sql : %s" % sql)
         rows = self.connecter(sql)
         rsp = rows[0]
         rsp['error'] = False
