@@ -107,28 +107,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 여기서부터는 각 페이지 별 실행 함수입니다.
     protected void loading(){
-
-    }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.loading);
-        try {
-        }catch (Exception e){
-
-        }
-        String line = null;
-
-        // login.xml
-        login_id = (EditText) findViewById(R.id.login_id);
-        login_pw = (EditText) findViewById(R.id.login_pw);
-        login_login = (Button) findViewById(R.id.login);
-        login_join = (Button) findViewById(R.id.login_tojoin);
-
-
-        mh = new MyHandler();
+        // Storage에서 Hash 읽어옴 >> Hash, id를 Server-autologin에 보냄 --> return 에러가 없으면 >> main
+        // return 에러가 있거나 Exception 발생 시 login
 
         try{
             fis = openFileInput("logon.txt");
@@ -140,6 +120,26 @@ public class MainActivity extends AppCompatActivity {
             s = e.getMessage();
             mh.sendEmptyMessage(1);
         }
+
+    }
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.loading);
+
+        // login.xml
+        login_id = (EditText) findViewById(R.id.login_id);
+        login_pw = (EditText) findViewById(R.id.login_pw);
+        login_login = (Button) findViewById(R.id.login);
+        login_join = (Button) findViewById(R.id.login_tojoin);
+
+
+        mh = new MyHandler();
+
+
 
         cl = new View.OnClickListener() {
             @Override
@@ -169,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+
 
     }
 }
