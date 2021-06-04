@@ -120,7 +120,7 @@ class ClientLogout(Resource):
         result = json.loads(data)
         dict = {
             "kind" : "logout",
-            "arr" : ["id"],
+            "arr" : ["id", "tf"],
             "id" : result['id'],
             "tf" : False
         }
