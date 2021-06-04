@@ -102,7 +102,7 @@ function getCookie(name) {
 
 function login_correct(id, pw){
     document.cookie = "id=" + id; // 이름이 'user'인 쿠키의 값만 갱신함
-    document.cookie = "pw=" + pw; // 이름이 'user'인 쿠키의 값만 갱신함
+    document.cookie = "hash=" + hash; // 이름이 'user'인 쿠키의 값만 갱신함
 }
 
 function logout_correct(){
