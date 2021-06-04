@@ -126,15 +126,17 @@ class ClientLogin(Resource):
                 "arr" : ["id"],
                 "id" : result['id']
             }
-            resultDB = maria.select(dict)
-            print("DB hash : %s, User hash : %s" % (resultDB['login_hash'], result['hash']))
-            print("DB hash : %s, User hash : %s, now login : %s" % (type(resultDB['login_hash']), type(result['hash']), type(resultDB['now_login'])))
-            if resultDB['login_hash'] == result['hash']:
-                return jsonify({"error" : False})
-            else :
-                return jsonify({"error" : True, "message" : "incorrect hash"})
-            print(dict)
-            return jsonify({"error" : True, "message" : "incorrect information"})
+            try:
+                resultDB = maria.select(dict)
+                print("DB hash : %s, User hash : %s" % (resultDB['login_hash'], result['hash']))
+                print("DB hash : %s, User hash : %s, now login : %s" % (type(resultDB['login_hash']), type(result['hash']), type(resultDB['now_login'])))
+                if (resultDB['login_hash'] == result['hash']) & (resultDB['now_login'] == 1):
+                    return jsonify({"error" : False})
+                else :
+                    return jsonify({"error" : True, "message" : "incorrect hash"})
+            except:
+                print(dict)
+                return jsonify({"error" : True, "message" : "incorrect information"})
         else :
             sha = hashlib.new('sha256')
             sha.update(result['pw'].encode('utf-8'))
