@@ -129,7 +129,7 @@ class ClientLogout(Resource):
             print(resultDB)
             return print(resultDB)
         except:
-            return jsonify({"error" : True, "message" : "incorrect hash"})
+            return jsonify({"error" : True, "message" : "incorrect call"})
 
 
 @api.route('/client/login/<string:data>')

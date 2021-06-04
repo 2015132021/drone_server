@@ -106,6 +106,7 @@ class Mariadb:
                 value += ", "
                 print("value : %s, typeof : %s" % (value, type(value)))
         sql += key + ") VALUES (" + value + ");"
+        print("sql : %s" % sql)
         try:
             self.connecter(sql)
             rsp = {
