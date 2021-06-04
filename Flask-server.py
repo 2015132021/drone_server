@@ -114,6 +114,21 @@ class Client(Resource):
         except:
             return jsonify(resultDB)
 
+@api.route('/client/logout/<string:data>')
+class ClientLogout(Resource):
+    def get(self, data):
+        result = json.loads(data)
+        dict = {
+            "kind" : "logout",
+            "arr" : ["id", "tf"],
+            "id" : result['id'],
+            "tf" : 0
+        }
+        resultDB = maria.insert(dict)
+        print(resultDB)
+        return print(resultDB)
+
+
 @api.route('/client/login/<string:data>')
 class ClientLogin(Resource):
     def get(self, data):
@@ -123,8 +138,9 @@ class ClientLogin(Resource):
         if("hash" in result):
             dict = {
                 "kind" : "login_hash",
-                "arr" : ["id"],
-                "id" : result['id']
+                "arr" : ["id", "tf"],
+                "id" : result['id'],
+                "tf" : 1
             }
             try:
                 resultDB = maria.select(dict)

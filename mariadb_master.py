@@ -48,6 +48,11 @@ class Mariadb:
                 "id" : "client_id",
                 "hash" : "login_hash",
                 "tf" : "now_login"
+            },
+            "logout" : {
+                "table" : "Client_login_logs",
+                "id" : "client_id",
+                "tf" : "now_login"
             }
         }
 
@@ -101,6 +106,7 @@ class Mariadb:
                 value += ", "
                 print("value : %s, typeof : %s" % (value, type(value)))
         sql += key + ") VALUES (" + value + ");"
+        print("sql : %s" % sql)
         try:
             self.connecter(sql)
             rsp = {
