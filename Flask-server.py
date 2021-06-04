@@ -118,6 +118,7 @@ class Client(Resource):
 class ClientLogin(Resource):
     def get(self, data):
         result = json.loads(data)
+        print(data)
         if("hash" in result):
             dict = {
                 "kind" : "login_hash",
