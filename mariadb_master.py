@@ -137,70 +137,7 @@ class Mariadb:
         rsp['time'] = str(rsp['time'])
         return rsp
 
-    def getClient(self, id):
-        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-        sql = None
-        sql = ("select * from Client_information where Client_id='%s' order by _id desc limit 1" % id)
-
-        if sql != None:
-            print(sql)
-            c_db.execute(sql)
-            try:
-                rows = c_db.fetchall()
-                print(rows)
-                dt = {'id' : rows[0]['client_id'],'password' : rows[0]['password'],'email' : rows[0]['email'], 'phone' : rows[0]['phone'], 'error':'False'}
-                # print(dt)
-                print(c_db.fetchall())
-                return dt
-            except:
-                return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
-
-
-    def loginClient(self, id, pw):
-        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-        sql = None
-        sql = ("select * from Client_information where Client_id='%s' order by _id desc limit 1" % id)
-
-        if sql != None:
-            print(sql)
-            c_db.execute(sql)
-            try:
-                rows = c_db.fetchall()
-                print(rows)
-                sha = hashlib.new('sha256')
-                sha.update(pw.encode('utf-8'))
-                print("pw : %s, hash : %s" % (sha.hexdigest, rows[0]['password']))
-                if sha.hexdigest() == rows[0]['password']:
-                    return {'error' : 'False', 'message' : '정보가 일치합니다.'}
-                else:
-                    return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
-            except:
-                return {'error' : 'True', 'message' : '정보가 일치하지 않습니다.'}
-
-
-    #select SEQUENCE from TABLE_NAME order by SEQUENCE desc limit 1;  // 마지막 행
-    def getGPS(self, id, kind):
-        # c_db = self.DroneDB.cursor(prepared=True)
-        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-        sql = None
-        if kind == 'drone':
-            sql = ("select * from Drone_location where _id='%s' order by _id desc limit 1" % id)
-        elif kind == 'client':
-            sql = ("select * from Client_location where _id='%s' order by _id desc limit 1" % id)
-
-        if sql != None:
-            print(sql)
-            c_db.execute(sql)
-            try:
-                rows = c_db.fetchall()
-                print(rows)
-                dt = {'id' : rows[0]['_id'],'lat' : rows[0]['lat'],'lng' : rows[0]['lng'], 'error' : False}
-                print(c_db.fetchall())
-                # print(dt)
-                return dt
-            except:
-                return {'error' : True, 'message' : '조회에 실패했습니다.'}
-
+        
 ### 2021-05-29 추가
 ## Table : Client_logs (GET) 
     def getClientLogs(self, clientId):
@@ -222,39 +159,5 @@ class Mariadb:
                     res['end'] = i
                 res['error'] = False
                 return res
-            except:
-                return {'error' : True, 'message' : '정보가 일치하지 않습니다.'}
-
-## Table : Client_login_logs (GET)
-    def getClientLoginLogs(self, clientId):
-        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-        sql = None
-        sql = ("select * from Client_login_logs where client_id='%s' order by _id desc limit 1" % clientId)
-
-        if sql != None:
-            print(sql)
-            c_db.execute(sql)
-            try:
-                rows = c_db.fetchall()
-                print(rows)
-                dt = {'id' : rows[0]['_id'],'client_id' : rows[0]['client_id'],'login_hash' : rows[0]['login_hash'], 'now_login' : rows[0]['now_login'], 'error' : False}
-                return dt
-            except:
-                return {'error' : True, 'message' : '정보가 일치하지 않습니다.'}
-
-## Table : logs_picture (GET)
-    def getLogsPicture(self, clientId):
-        c_db = self.DroneDB.cursor(pymysql.cursors.DictCursor)
-        sql = None
-        sql = ("select * from logs_picture where client_id='%s' order by _id desc limit 1" % clientId)
-
-        if sql != None:
-            print(sql)
-            c_db.execute(sql)
-            try:
-                rows = c_db.fetchall()
-                dt = {'id' : rows[0]['_id'],'client_id' : rows[0]['client_id'],'url' : rows[0]['url'], 'time' : rows[0]['time'], 'error' : False}
-                print(dt)
-                return dt
             except:
                 return {'error' : True, 'message' : '정보가 일치하지 않습니다.'}
