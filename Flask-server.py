@@ -124,7 +124,7 @@ class ClientLogout(Resource):
             "id" : result['id'],
             "tf" : False
         }
-        resultDB = maria.select(dict)
+        resultDB = maria.insert(dict)
         print(resultDB)
         return print(resultDB)
 
