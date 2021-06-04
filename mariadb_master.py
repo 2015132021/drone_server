@@ -135,7 +135,8 @@ class Mariadb:
         rows = self.connecter(sql)
         rsp = rows[0]
         rsp['error'] = False
-        rsp['time'] = str(rsp['time'])
+        if 'time' in rsp:
+            rsp['time'] = str(rsp['time'])
         return rsp
 
         
