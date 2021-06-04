@@ -14,7 +14,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/rent"
+            android:id="@+id/main_rent"
             android:layout_width="375dp"
             android:layout_height="172dp"
             android:layout_gravity="center"
@@ -23,7 +23,7 @@
             android:text="Rent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/myinfo"
+            android:id="@+id/main_myinfo"
             android:layout_width="375dp"
             android:layout_height="172dp"
             android:layout_gravity="center"
@@ -32,7 +32,7 @@
             android:text="myinfo" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/rentlog"
+            android:id="@+id/main_rentlog"
             android:layout_width="375dp"
             android:layout_height="172dp"
             android:layout_gravity="center"

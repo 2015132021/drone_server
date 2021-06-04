@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/rent_stat"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/rent_img"
+        android:layout_width="463dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="90dp"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <Button
+        android:id="@+id/rent_loadingimg"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="로딩 이미지 넣기" />
+
+    <Button
+        android:id="@+id/rent_cancel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="rent_stat" />
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="취소" />
+
 </LinearLayout>

@@ -34,7 +34,7 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/login_login"
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

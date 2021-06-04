@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--
-    이부분 아직 진행하지 마시오
-    !-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/logview_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:ems="10"
+            android:gravity="center"
+            android:textSize="35dp"
+            android:text="사용한 시간"
+            android:inputType="time" />
+
+        <ImageView
+            android:id="@+id/logview_imageView"
+            android:layout_width="532dp"
+            android:layout_height="331dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+
+    </LinearLayout>
 </LinearLayout>
