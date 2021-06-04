@@ -41,11 +41,12 @@ public class MainActivity extends AppCompatActivity {
     String gp = "GET";              // GET / POST 등의 REST 구분
     JSONObject json;
 
-    // 액티비티 뷰
-    TextView tv;
-    EditText ed_login_id;
-    EditText ed_login_pw;
-    Button btn_login;
+    // 액티비티 항목
+    // login.xml
+    EditText login_id;
+    EditText login_pw;
+    Button login_login;
+    Button login_join;
 
     // 클릭 리스너
     View.OnClickListener cl;
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             switch (msg.what){
-                case 0:
+                case 0:                     // 첫 실행 시 로딩 페이지일 때 발생합니다. 해시값 읽어와서 사용합니다.
+
                     break;
                 case 1:
                     break;
@@ -124,12 +126,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading);
 
         String line = null;
+
+        // login.xml
+        login_id = (EditText) findViewById(R.id.login_id);
+        login_pw = (EditText) findViewById(R.id.login_pw);
+        login_login = (Button) findViewById(R.id.login);
+        login_join = (Button) findViewById(R.id.login_tojoin);
 
 
         mh = new MyHandler();
@@ -139,15 +148,13 @@ public class MainActivity extends AppCompatActivity {
             btext = new byte[fis.available()];
             fis.read(btext);
             s = new String(btext);
-            mh.sendEmptyMessage(1);
+            mh.sendEmptyMessage(0);
         }catch (Exception e) {
             s = e.getMessage();
         }
         setContentView(R.layout.login);
 
-        btn_login = (Button) findViewById(R.id.login);
-        ed_login_id = (EditText) findViewById(R.id.login_id);
-        ed_login_pw = (EditText) findViewById(R.id.login_pw);
+
 
         cl = new View.OnClickListener() {
             @Override
@@ -155,12 +162,11 @@ public class MainActivity extends AppCompatActivity {
                 try{
                     switch (v.getId()) {
                         case R.id.login:
-                            tv = (TextView)findViewById(R.id.textView);
                             uri = "/client/login/";
                             JSONObject js = new JSONObject();
                             try {
-                                String id = ed_login_id.getText().toString();
-                                String pw = ed_login_pw.getText().toString();
+                                String id = login_id.getText().toString();
+                                String pw = login_pw.getText().toString();
                                 js.put("id", id);
                                 js.put("pw", pw);
                                 req = host + uri + js.toString();
@@ -179,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        btn_login.setOnClickListener(cl);
+        login_login.setOnClickListener(cl);
+        login_join.setOnClickListener(cl);
 
     }
 }
