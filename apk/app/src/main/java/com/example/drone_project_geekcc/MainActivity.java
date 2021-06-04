@@ -29,7 +29,6 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     TextView tv;
-    TextView tv_login;
     EditText ed_login_id;
     EditText ed_login_pw;
 
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             if (msg.what == 1){
-                tv_login.setText(logs);
             }
         }
     }
@@ -134,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login);
 
         btn_login = (Button) findViewById(R.id.login);
-        tv_login = (TextView) findViewById(R.id.login_log);
         ed_login_id = (EditText) findViewById(R.id.login_id);
         ed_login_pw = (EditText) findViewById(R.id.login_pw);
 
