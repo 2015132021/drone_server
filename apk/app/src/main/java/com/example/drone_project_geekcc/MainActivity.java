@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     String req = "";                // 리퀘스트 json형식 string
     String gp = "GET";              // GET / POST 등의 REST 구분
     JSONObject json;
+    int dest = 0;
 
     // 액티비티 항목
     // login.xml
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     EditText login_pw;
     Button login_login;
     Button login_join;
+
 
     // 클릭 리스너
     View.OnClickListener cl;
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             super.handleMessage(msg);
             setContentView(page_src[msg.what]);
             if(msg.what == 1) {
+
             }
         }
     }
@@ -96,31 +99,49 @@ public class MainActivity extends AppCompatActivity {
 
                 result = builder.toString();
                 json = new JSONObject(result);
-                mh.sendEmptyMessage(2);
+                mh.sendEmptyMessage(1);
             }
             catch (Exception e) {
-                mh.sendEmptyMessage(1);
+                mh.sendEmptyMessage(0);
             }
 
         }
     }
 
     // 여기서부터는 각 페이지 별 실행 함수입니다.
-    protected void loading(){
+    protected void page_loading(){
+        page_stat = 0;
         // Storage에서 Hash 읽어옴 >> Hash, id를 Server-autologin에 보냄 --> return 에러가 없으면 >> main
         // return 에러가 있거나 Exception 발생 시 login
 
-        try{
-            fis = openFileInput("logon.txt");
-            btext = new byte[fis.available()];
-            fis.read(btext);
-            s = new String(btext);
-            loading();
-        }catch (Exception e) {
-            s = e.getMessage();
-            mh.sendEmptyMessage(1);
-        }
+//        try{
+//            fis = openFileInput("logon.txt");
+//            btext = new byte[fis.available()];
+//            fis.read(btext);
+//            s = new String(btext);
+//            loading();
+//        }catch (Exception e) {
+//            s = e.getMessage();
+//            mh.sendEmptyMessage(1);
+//        }
 
+        // 해시 파일이 없는 경우
+
+        page_login();
+
+    }
+
+    protected void page_login(){
+        setContentView(page_src[1]);
+
+        // login.xml 로딩
+        login_id = (EditText) findViewById(R.id.login_id);
+        login_pw = (EditText) findViewById(R.id.login_pw);
+        login_login = (Button) findViewById(R.id.login_login);
+        login_join = (Button) findViewById(R.id.login_tojoin);
+
+        login_login.setOnClickListener(cl);
+        login_join.setOnClickListener(cl);
     }
 
 
@@ -129,24 +150,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading);
-
-        // login.xml
-        login_id = (EditText) findViewById(R.id.login_id);
-        login_pw = (EditText) findViewById(R.id.login_pw);
-        login_login = (Button) findViewById(R.id.login);
-        login_join = (Button) findViewById(R.id.login_tojoin);
-
-
         mh = new MyHandler();
 
-
+        page_loading();
 
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try{
                     switch (v.getId()) {
-                        case R.id.login:
+                        case R.id.login_login:
                             uri = "/client/login/";
                             JSONObject js = new JSONObject();
                             try {
@@ -156,11 +169,12 @@ public class MainActivity extends AppCompatActivity {
                                 js.put("pw", pw);
                                 req = host + uri + js.toString();
                                 gp = "GET";
+                                dest = 3;
                                 MyThread mt = new MyThread();
                                 mt.start();
                             }
                             catch (JSONException e){
-                                mh.sendEmptyMessage(1);
+
                             }
                             break;
                     }
@@ -169,8 +183,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
-
-
     }
 }

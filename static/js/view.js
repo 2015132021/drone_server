@@ -107,14 +107,15 @@ function login_correct(id, pw){
 
 function logout_correct(){
     document.cookie = 'id=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
+    document.cookie = 'pw=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
     document.cookie = 'hash=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
 }
 
 function loading(){
-    if(getCookie('id') != null & getCookie('pw') != null){
+    if(getCookie('id') != null & getCookie('hash') != null){
         json = {
             "id" : getCookie('id'),
-            "pw" : getCookie('pw')
+            "hash" : getCookie('hash')
         }
         restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
     }
