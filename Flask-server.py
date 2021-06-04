@@ -124,12 +124,9 @@ class ClientLogout(Resource):
             "id" : result['id'],
             "tf" : False
         }
-        try:
-            resultDB = maria.select(dict)
-            print(resultDB)
-            return print(resultDB)
-        except:
-            return jsonify({"error" : True, "message" : "incorrect call"})
+        resultDB = maria.select(dict)
+        print(resultDB)
+        return print(resultDB)
 
 
 @api.route('/client/login/<string:data>')
