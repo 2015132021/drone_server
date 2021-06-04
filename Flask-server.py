@@ -126,7 +126,7 @@ class ClientLogout(Resource):
         }
         resultDB = maria.insert(dict)
         print(resultDB)
-        return print(resultDB)
+        return jsonify(resultDB)
 
 
 @api.route('/client/login/<string:data>')

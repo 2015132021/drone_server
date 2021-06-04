@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     Button login_login;
     Button login_join;
 
+    // 로그인 정보
+    String id;
+    String hash;
 
     // 클릭 리스너
     View.OnClickListener cl;
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     byte[] btext;
     String s;
     File[] fileArray;
+    String fname = "autologoin.json";
 
 
     MyHandler mh;
@@ -71,8 +76,32 @@ public class MainActivity extends AppCompatActivity {
             super.handleMessage(msg);
             setContentView(page_src[msg.what]);
             if(msg.what == 1) {
-                if(json.getInt("error") == 1){
+                try{
+                    if(json.getBoolean("error") == false){
+                        switch (dest){
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                fos = openFileOutput(fname, Context.MODE_PRIVATE);
+                                JSONObject fjs = new JSONObject();
+                                fjs.put("id", id);
+                                fjs.put("hash", hash);
+                                fos.write(fjs.toString().getBytes());
+                                fos.close();
+                                System.out.println("save hash");
+                                page_main();
+                                break;
+                        }
+                    }
 
+                }catch (JSONException e){
+                    System.out.println("JSON error");
+                }catch (Exception e){
+                    System.out.println(e.getMessage());
                 }
             }
         }
@@ -85,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             String result = null;
             try {
                 // Open the connection
+                System.out.println("/get ready");
 
                 URL url = new URL(req);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -101,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
                 result = builder.toString();
                 json = new JSONObject(result);
+                System.out.println(result);
                 mh.sendEmptyMessage(1);
             }
             catch (Exception e) {
@@ -116,16 +147,24 @@ public class MainActivity extends AppCompatActivity {
         // Storage에서 Hash 읽어옴 >> Hash, id를 Server-autologin에 보냄 --> return 에러가 없으면 >> main
         // return 에러가 있거나 Exception 발생 시 login
 
-//        try{
-//            fis = openFileInput("logon.txt");
-//            btext = new byte[fis.available()];
-//            fis.read(btext);
-//            s = new String(btext);
-//            loading();
-//        }catch (Exception e) {
-//            s = e.getMessage();
-//            mh.sendEmptyMessage(1);
-//        }
+        try{
+            fis = openFileInput(fname);
+            btext = new byte[fis.available()];
+            fis.read(btext);
+            s = new String(btext);
+            JSONObject fjs = new JSONObject(s);
+            id = fjs.getString("id");
+            hash = fjs.getString("hash");
+            req = host + uri + fjs.toString();
+            gp = "GET";
+            dest = 3;
+            MyThread mt = new MyThread();
+            mt.start();
+
+        }catch (Exception e) {
+            s = e.getMessage();
+            mh.sendEmptyMessage(1);
+        }
 
         // 해시 파일이 없는 경우
 
@@ -142,26 +181,15 @@ public class MainActivity extends AppCompatActivity {
         login_login = (Button) findViewById(R.id.login_login);
         login_join = (Button) findViewById(R.id.login_tojoin);
 
-        login_login.setOnClickListener(cl);
-        login_join.setOnClickListener(cl);
-    }
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.loading);
-        mh = new MyHandler();
-
-        page_loading();
-
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("click");
                 try{
                     switch (v.getId()) {
                         case R.id.login_login:
+                            System.out.println("login_login");
+
                             uri = "/client/login/";
                             JSONObject js = new JSONObject();
                             try {
@@ -176,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                                 mt.start();
                             }
                             catch (JSONException e){
-
+                                System.out.println("error");
                             }
                             break;
                     }
@@ -185,5 +213,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+        login_login.setOnClickListener(cl);
+        login_join.setOnClickListener(cl);
+    }
+
+    protected void page_main(){
+        setContentView(page_src[3]);
+
+    }
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.loading);
+        mh = new MyHandler();
+        System.out.println("create");
+
+        page_loading();
     }
 }
