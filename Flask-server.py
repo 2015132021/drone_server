@@ -119,6 +119,7 @@ class ClientLogin(Resource):
     def get(self, data):
         result = json.loads(data)
         print(data)
+        print(result)
         if("hash" in result):
             dict = {
                 "kind" : "login_hash",
@@ -126,7 +127,6 @@ class ClientLogin(Resource):
             }
             try:
                 resultDB = maria.select(dict)
-                print(result)
                 if resultDB['hash'] == result.hash & resultDB['now_login'] == True:
                     return jsonify({"error" : False})
                 else :
