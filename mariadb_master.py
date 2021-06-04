@@ -48,6 +48,11 @@ class Mariadb:
                 "id" : "client_id",
                 "hash" : "login_hash",
                 "tf" : "now_login"
+            },
+            "logout" : {
+                "table" : "Client_login_logs",
+                "id" : "client_id",
+                "tf" : "now_login"
             }
         }
 
@@ -101,6 +106,7 @@ class Mariadb:
                 value += ", "
                 print("value : %s, typeof : %s" % (value, type(value)))
         sql += key + ") VALUES (" + value + ");"
+        print("sql : %s" % sql)
         try:
             self.connecter(sql)
             rsp = {
@@ -131,10 +137,12 @@ class Mariadb:
         key += str(dict_key[arr[0]])
         value += str(dict[arr[0]])
         sql += key + "='" + value + "' order by _id desc limit 1;"
+        print("sql : %s" % sql)
         rows = self.connecter(sql)
         rsp = rows[0]
         rsp['error'] = False
-        rsp['time'] = str(rsp['time'])
+        if 'time' in rsp:
+            rsp['time'] = str(rsp['time'])
         return rsp
 
         

@@ -15,8 +15,8 @@ var uris = {
     client_gps : "/client/gps/",
     client_log : "/client/log/",
     client_login : "/client/login/",
+    client_logout : "/client/logout/",
     client : "/client/",
-
 }
 
 function parsing(str){
@@ -87,6 +87,13 @@ function login(){
     restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
 }
 
+function logout(){
+    json = {
+        "id" : getCookie('id')
+    }
+    restful(uris['client_logout'], json, "GET", refresh, page_list[1], logout_correct);
+}
+
 function getCookie(name) {
     var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null;
@@ -96,6 +103,11 @@ function getCookie(name) {
 function login_correct(id, pw){
     document.cookie = "id=" + id; // 이름이 'user'인 쿠키의 값만 갱신함
     document.cookie = "pw=" + pw; // 이름이 'user'인 쿠키의 값만 갱신함
+}
+
+function logout_correct(){
+    document.cookie = 'id=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
+    document.cookie = 'hash=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
 }
 
 function loading(){

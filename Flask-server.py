@@ -114,22 +114,47 @@ class Client(Resource):
         except:
             return jsonify(resultDB)
 
+@api.route('/client/logout/<string:data>')
+class ClientLogout(Resource):
+    def get(self, data):
+        result = json.loads(data)
+        dict = {
+            "kind" : "logout",
+            "arr" : ["id"],
+            "id" : result['id'],
+            "tf" : False
+        }
+        try:
+            resultDB = maria.select(dict)
+            print(resultDB)
+            return print(resultDB)
+        except:
+            return jsonify({"error" : True, "message" : "incorrect call"})
+
+
 @api.route('/client/login/<string:data>')
 class ClientLogin(Resource):
     def get(self, data):
         result = json.loads(data)
+        print(data)
+        print(result)
         if("hash" in result):
             dict = {
                 "kind" : "login_hash",
+                "arr" : ["id", "tf"],
                 "id" : result['id'],
+                "tf" : False
             }
             try:
                 resultDB = maria.select(dict)
-                if resultDB['hash'] == result.hash & resultDB['now_login'] == True:
+                print("DB hash : %s, User hash : %s" % (resultDB['login_hash'], result['hash']))
+                print("DB hash : %s, User hash : %s, now login : %s" % (type(resultDB['login_hash']), type(result['hash']), type(resultDB['now_login'])))
+                if (resultDB['login_hash'] == result['hash']) & (resultDB['now_login'] == 1):
                     return jsonify({"error" : False})
                 else :
                     return jsonify({"error" : True, "message" : "incorrect hash"})
             except:
+                print(dict)
                 return jsonify({"error" : True, "message" : "incorrect information"})
         else :
             sha = hashlib.new('sha256')

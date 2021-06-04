@@ -8,33 +8,83 @@
     android:orientation="vertical">
 
 
+
     <ImageView
         android:id="@+id/myinfo_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="166dp"
+        android:layout_marginTop="40dp"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/myinfo_id"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="349dp"
         android:layout_height="wrap_content"
-        android:text="ID" />
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/myinfo_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="email" />
 
-    <TextView
-        android:id="@+id/myinfo_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="010-0000-0000" />
+        <EditText
+            android:id="@+id/myinfo_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="ID" />
 
-    <TextView
-        android:id="@+id/myinfo_"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="추가적인 사항" />
+        <EditText
+            android:id="@+id/myinfo_pw"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="PW"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/myinfo_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="email" />
+
+        <EditText
+            android:id="@+id/myinfo_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="010-0000-0000" />
+
+        <EditText
+            android:id="@+id/myinfo_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="추가적인 사항" />
+
+        <Button
+            android:id="@+id/myinfo_edit"
+            android:layout_width="319dp"
+            android:layout_height="74dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="수정" />
+
+        <Button
+            android:id="@+id/myinfo_submit"
+            android:layout_width="319dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:text="확인" />
+
+        <Button
+            android:id="@+id/myinfo_cancel"
+            android:layout_width="319dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:text="취소" />
+    </LinearLayout>
 </LinearLayout>

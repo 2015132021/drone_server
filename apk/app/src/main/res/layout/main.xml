@@ -5,21 +5,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/rent"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rent" />
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/myinfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="myinfo" />
 
-    <Button
-        android:id="@+id/rentlog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="rentlog" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rent"
+            android:layout_width="375dp"
+            android:layout_height="172dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="#CCCCFF"
+            android:text="Rent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/myinfo"
+            android:layout_width="375dp"
+            android:layout_height="172dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="#CCCCFF"
+            android:text="myinfo" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rentlog"
+            android:layout_width="375dp"
+            android:layout_height="172dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="#CCCCFF"
+            android:text="rentlog" />
+
+    </LinearLayout>
 </LinearLayout>
