@@ -127,6 +127,7 @@ class ClientLogin(Resource):
             }
             try:
                 resultDB = maria.select(dict)
+                print("DB hash : %s, User hash : %s" % (resultDB['hash'], result.hash))
                 if resultDB['hash'] == result.hash & resultDB['now_login'] == True:
                     return jsonify({"error" : False})
                 else :
