@@ -131,6 +131,7 @@ class ClientLogin(Resource):
                 else :
                     return jsonify({"error" : True, "message" : "incorrect hash"})
             except:
+                print(dict)
                 return jsonify({"error" : True, "message" : "incorrect information"})
         else :
             sha = hashlib.new('sha256')
