@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
             super.handleMessage(msg);
             setContentView(page_src[msg.what]);
             if(msg.what == 1) {
+                if(json.getInt("error") == 1){
 
+                }
             }
         }
     }
