@@ -140,7 +140,7 @@ class ClientLogin(Resource):
                 "kind" : "login_hash",
                 "arr" : ["id", "tf"],
                 "id" : result['id'],
-                "tf" : False
+                "tf" : 0
             }
             try:
                 resultDB = maria.select(dict)
