@@ -172,7 +172,7 @@ class ClientLogin(Resource):
                         "arr" : ["id", "hash", "tf"],
                         "id" : result['id'],
                         "hash" : "fakehash",
-                        "tf" : True
+                        "tf" : 1
                     }
                     resultDB = maria.insert(dict)
                     print(resultDB.items())
