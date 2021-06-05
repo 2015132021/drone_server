@@ -69,11 +69,6 @@ div
     padding:0px;
     display: inline-block;
 }
-.float-left *
-{
-    display: block;
-    width: auto;
-}
 
 .page
 {
