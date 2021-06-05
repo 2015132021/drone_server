@@ -136,12 +136,9 @@ class Client(Resource):
             "email" : result['email'],
             "phone" : result['phone']
         }
-        try:
-            resultDB = maria.insert(dict)
-            resultDB['id'] = result['id']
-            return jsonify(resultDB)
-        except:
-            return jsonify(resultDB)
+        resultDB = maria.insert(dict)
+        resultDB['id'] = result['id']
+        return jsonify(resultDB)
 
 @api.route('/client/logout/<string:data>')
 class ClientLogout(Resource):
