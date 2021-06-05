@@ -145,8 +145,10 @@ function login(){
         "uri" : uris['client_login'],
         "json" : json,
         "REST" : "GET",
-        "success" : function(){
+        "success" : function(return_json){
             console.log("login")
+            document.cookie = 'id=' + return_json['id']
+            document.cookie = 'hash=' + return_json['hash']
             refresh(page_list[3])
         },
         "failed" : function(){
@@ -160,6 +162,20 @@ function logout(){
     json = {
         "id" : getCookie('id')
     }
+    restjson = {
+        "uri" : uris['client_logout'],
+        "json" : json,
+        "REST" : "GET",
+        "success" : function(){
+            document.cookie = 'id=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
+            document.cookie = 'pw=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
+            document.cookie = 'hash=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
+            refresh(page_list[1])
+        },
+        "failed" : function(){
+            console.log("error!")
+        }
+    }
     restful(uris['client_logout'], json, "GET", refresh, page_list[1], logout_correct);
 }
 
@@ -167,11 +183,6 @@ function getCookie(name) {
     var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null;
 }
-
-function logout_correct(){
-    document.cookie = 'id=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
-    document.cookie = 'pw=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
-    document.cookie = 'hash=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
 }
 
 function loading(){
