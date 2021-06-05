@@ -176,7 +176,7 @@ function logout(){
             console.log("error!")
         }
     }
-    restful(uris['client_logout'], json, "GET", refresh, page_list[1], logout_correct);
+    restful(restjson);
 }
 
 function getCookie(name) {
