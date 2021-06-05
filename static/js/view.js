@@ -250,14 +250,13 @@ function rent(){
 
             if(gps_isrun == false){
                 gps_isrun = true
-                while(true){
-                    await timer(1000)
+                funcInterval = setInterval(() => {
                     if(gps_stop == true)
                     {
                         break;
                     }
                     console.log("123")
-                }
+                }, 1000);
             }
         },
         "failed" : function(return_json){
