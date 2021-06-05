@@ -147,8 +147,8 @@ function login(){
         "REST" : "GET",
         "success" : function(return_json){
             console.log("login")
-            document.cookie = 'id=' + return_json['id']
-            document.cookie = 'hash=' + return_json['hash']
+            document.cookie = 'id=' + return_json['id'];
+            document.cookie = 'hash=' + return_json['hash'];
             refresh(page_list[3])
         },
         "failed" : function(return_json){
