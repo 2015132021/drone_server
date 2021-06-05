@@ -29,8 +29,15 @@ div
 
 .login_button
 {
+    -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    
     color: rgba(30, 22, 54, 0.6);
 	box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    
 }
 
 .login_button:hover
