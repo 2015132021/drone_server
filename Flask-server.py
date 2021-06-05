@@ -3,6 +3,7 @@ from flask_restx import Api, Resource
 import json
 import mariadb_master
 import hashlib
+import random
 import sys
 
 
@@ -167,11 +168,13 @@ class ClientLogin(Resource):
                 resultDB = maria.select(dict)
                 if resultDB['password'] == pw:
                     print("Password correct!!")
+                    sha = hashlib.new('sha256')
+                    sha.update(str(random.random()).encode('utf-8'))
                     dict = {
                         "kind" : "login_hash",
                         "arr" : ["id", "hash", "tf"],
                         "id" : result['id'],
-                        "hash" : "fakehash",
+                        "hash" : sha.hexdigest(),
                         "tf" : 1
                     }
                     resultDB = maria.insert(dict)

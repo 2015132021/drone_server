@@ -130,7 +130,6 @@ class DroneDemon:
     def getDescript(self):
         return self.descript
 
-
 class request:
     ### 참고 https://velog.io/@dmstj907/Python-REST-API-%EC%8B%A4%EC%8A%B5
     ### REST GET
@@ -186,6 +185,8 @@ class request:
         req = self.url + self.uri
         rsp = requests.put(req, data=arr['dict'])
         print(rsp.text)
+
+class movement:
 
 if __name__ == "__main__":
     bt = BatteryDemon(batteryInfo)
