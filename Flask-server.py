@@ -176,7 +176,7 @@ class ClientLogin(Resource):
                     }
                     resultDB = maria.insert(dict)
                     print(resultDB.items())
-                    return jsonify({"error" : False, "id" : dict[id], "hash" : dict['hash']})
+                    return jsonify({"error" : False, "id" : dict['id'], "hash" : dict['hash']})
                 else:
                     print("hash : %s, pwhash : %s" % (resultDB['password'], pw))
                     return jsonify({"error" : True, "message":"올바르지 않는 계정 정보"})
