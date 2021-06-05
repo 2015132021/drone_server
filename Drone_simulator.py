@@ -10,14 +10,12 @@ is_quit = False
 # 존재하는 모듈은 실제 데이터를 받고, 존재하지 않는 모듈은 가상화를 하여 전송하게 됩니다.
 ####
 droneInfo = {       # 드론에 대한 데몬정보
-    "id" : None,
     "OS" : "Demon",
     "firmware" : "0.0.1",
     "Descript" : "This Drone is Demon"
 }
 gpsInfo = {         # GPS에 대한 데몬 정보
     # 신구대학교 위치 37.44904171317658, 127.16785865546673, 0.0002
-    "id" : None,
     "lat" : 37.44904171317658,
     "lng" : 127.16785865546673
 }
@@ -130,6 +128,10 @@ class DroneDemon:
     def getDescript(self):
         return self.descript
 
+class movement:
+    def __init__(self) -> None:
+        pass
+
 class request:
     ### 참고 https://velog.io/@dmstj907/Python-REST-API-%EC%8B%A4%EC%8A%B5
     ### REST GET
@@ -190,7 +192,7 @@ class request:
         print(rsp.text)
         return json.loads(rsp.text)
 
-
+## 초기 실행
 if __name__ == "__main__":
     req = request()
     
@@ -198,7 +200,7 @@ if __name__ == "__main__":
     return_json = req.get({
         "uri" : "/drone/",
         "dict" : {
-            "id" : 1
+            "id" : id
         }
     })
     droneInfo['id'] = id
@@ -211,19 +213,25 @@ if __name__ == "__main__":
         })
         print(return_json)
 
-    # bt = BatteryDemon(batteryInfo)
-    # gps = GpsDemon(gpsInfo)
+        if(return_json['error']):
+            quit()
 
-    # try:
-    #     while True:
-    #         time.sleep(1)
-    #         dict = {
-    #             'uri' : '/drone/gps/'
-    #         }
-    #         dict['dict'] = gps.getLoction()
-    #         dict['dict']['bat'] = bt.getLevel()
-    #         print(dict)
-    #         req.post(dict)
-    # except KeyboardInterrupt as e:
-    #     is_quit = True
-    #     quit()
+    bt = BatteryDemon(batteryInfo)
+    gps = GpsDemon(gpsInfo)
+
+
+    # 하단은 반복문
+    try:
+        while True:
+            time.sleep(1)
+            dict = {
+                'uri' : '/drone/gps/'
+            }
+            dict['dict'] = gps.getLoction()
+            dict['dict']['id'] = droneInfo['id']
+            dict['dict']['bat'] = bt.getLevel()
+            print(dict)
+            req.post(dict)
+    except KeyboardInterrupt as e:
+        is_quit = True
+        quit()

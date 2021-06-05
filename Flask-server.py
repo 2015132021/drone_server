@@ -6,9 +6,6 @@ import hashlib
 import random
 import sys
 
-
-
-
 with open('/json/mariaDB.json', 'r') as f:
     json_data = json.load(f)
 
@@ -215,6 +212,11 @@ class ClientLogin(Resource):
                     return jsonify({"error" : True, "message":"올바르지 않는 계정 정보"})
             except:
                 return jsonify({"error" : True})
+
+@api.route('/client/rent/<string:data>')
+class ClientLog(Resource):
+    def get(self):
+        return 
 
 
 @api.route('/client/log/<string:data>')
