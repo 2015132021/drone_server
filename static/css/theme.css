@@ -20,7 +20,7 @@
 
 html
 {
-    background-image: url("/img/background.jpg");
+    background-image: url("static/img/background.jpg");
 }
 
 div
