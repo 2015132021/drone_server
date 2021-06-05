@@ -14,6 +14,12 @@ div
     color:white;
 }
 
+#page_login *
+{
+    margin-top: 10px;
+
+}
+
 .page
 {
     display:none;
@@ -37,7 +43,9 @@ div
     top: calc(20% - 100px);
     left: calc(50% - 150px);
     border:solid 2px white;
-    
+    padding : 10px;
+
+
 
 
 
