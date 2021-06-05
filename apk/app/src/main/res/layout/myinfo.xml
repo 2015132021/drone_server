@@ -37,11 +37,10 @@
                 android:background="@drawable/edge"
                 android:ems="10"
                 android:paddingLeft="20px"
-                android:hint="ID"
                 android:clickable="false"
                 android:focusable="false"
                 android:layout_marginTop="10dp"
-                android:text="ID" />
+                android:hint="ID"/>
 
             <EditText
                 android:id="@+id/myinfo_pw"
@@ -55,8 +54,7 @@
                 android:clickable="false"
                 android:focusable="false"
                 android:layout_marginTop="10dp"
-                android:visibility="invisible"
-                android:text="PW" />
+                android:visibility="invisible" />
 
             <EditText
                 android:id="@+id/myinfo_email"
@@ -66,11 +64,10 @@
                 android:background="@drawable/edge"
                 android:ems="10"
                 android:paddingLeft="20px"
-                android:hint="email"
                 android:clickable="false"
                 android:focusable="false"
                 android:layout_marginTop="10dp"
-                android:text="email" />
+                android:hint="e-mail"/>
 
             <EditText
                 android:id="@+id/myinfo_phone"
@@ -80,11 +77,10 @@
                 android:background="@drawable/edge"
                 android:ems="10"
                 android:paddingLeft="20px"
-                android:hint="phone"
+                android:hint="010 - **** - ****"
                 android:clickable="false"
                 android:focusable="false"
-                android:layout_marginTop="10dp"
-                android:text="010-0000-0000" />
+                android:layout_marginTop="10dp" />
 
             <EditText
                 android:id="@+id/myinfo_"
@@ -94,11 +90,10 @@
                 android:background="@drawable/edge"
                 android:ems="10"
                 android:paddingLeft="20px"
-                android:hint="info"
+                android:hint="추가 사항"
                 android:clickable="false"
                 android:focusable="false"
-                android:layout_marginTop="10dp"
-                android:text="추가적인 사항" />
+                android:layout_marginTop="10dp" />
 
             <Button
                 android:id="@+id/myinfo_edit"
