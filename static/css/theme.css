@@ -21,21 +21,14 @@
 html
 {
     background-image: url("/static/img/background.jpg");
-<<<<<<< HEAD
-    
-=======
->>>>>>> d5ff8af5bc3530c7844146982d7a3b510c423642
+    z-index: -1;
+    filter: blur(50px);
 }
 
 body
 {
     width: 100%;
     height: 100%;
-}
-
-body::before
-{
-    filter: blur(50px);
 }
 
 div
