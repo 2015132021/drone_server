@@ -14,6 +14,11 @@ div
     color:white;
 }
 
+.page
+{
+    display:none;
+}
+
 #page_join
 {
     width: 300px;
@@ -24,7 +29,7 @@ div
     border:solid 1px white;
 }
 
-.page
+#page_login
 {
-    display:none;
+    background-color: #6666FF;
 }
