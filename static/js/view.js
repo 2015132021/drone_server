@@ -139,12 +139,21 @@ function login(){
     json = {
         "id" : id,
         "pw" : pw
-    };
-    restful(uris['client_login'], json, "GET", login_correct, );
-}
+    }
 
-function login_correct(send_json, return_json){
-    refresh[pa]
+    restjson = {
+        "uri" : uris['client_login'],
+        "json" : json,
+        "REST" : "GET",
+        "success" : function(){
+            console.log("login")
+            refresh(page_list[3])
+        },
+        "failed" : function(){
+            console.log("error!")
+        }
+    }
+    restful(restjson);
 }
 
 function logout(){
