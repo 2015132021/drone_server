@@ -1,43 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background2">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="413dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp"
         android:orientation="vertical">
-
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/main_rent"
-            android:layout_width="375dp"
-            android:layout_height="172dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="#CCCCFF"
+            android:layout_width="156dp"
+            android:layout_height="66dp"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#EEEEEE"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="5"
+            android:shadowColor="#000000"
+            android:textSize="30dp"
+            android:background="@drawable/button"
             android:text="Rent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/main_myinfo"
-            android:layout_width="375dp"
-            android:layout_height="172dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="#CCCCFF"
+            android:layout_width="156dp"
+            android:layout_height="66dp"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#EEEEEE"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="5"
+            android:shadowColor="#000000"
+            android:textSize="30dp"
+            android:background="@drawable/button"
+            android:layout_marginTop="15dp"
             android:text="myinfo" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/main_rentlog"
-            android:layout_width="375dp"
-            android:layout_height="172dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:background="#CCCCFF"
+            android:layout_width="156dp"
+            android:layout_height="66dp"
+            android:layout_gravity="center_horizontal"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#EEEEEE"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="5"
+            android:shadowColor="#000000"
+            android:textSize="30dp"
+            android:background="@drawable/button"
+            android:layout_marginTop="15dp"
             android:text="rentlog" />
 
     </LinearLayout>
