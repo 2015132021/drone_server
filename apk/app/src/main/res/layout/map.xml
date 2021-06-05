@@ -2,43 +2,50 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background2">
     android:orientation="vertical">
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="413dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:orientation="vertical">
 
-        <EditText
+        <TextView
             android:id="@+id/map_time"
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_gravity="center_horizontal"
             android:ems="10"
-            android:gravity="center"
-            android:textSize="35dp"
-            android:text="02 : 07 : 00"
-            android:inputType="time" />
+            android:gravity="center_horizontal"
+            android:inputType="time"
+            android:shadowColor="#000000"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="5"
+            android:text="01 : 30 : 30"
+            android:textColor="#EEEEEE"
+            android:textSize="30dp" />
 
         <ImageView
             android:id="@+id/map_img"
-            android:layout_width="match_parent"
-            android:layout_height="351dp"
+            android:layout_width="364dp"
+            android:layout_height="364dp"
             android:layout_gravity="center"
+            android:layout_marginTop="25dp"
             app:srcCompat="@drawable/ic_launcher_background" />
+        <!-- 그림수정필요 -->
 
         <Button
             android:id="@+id/map_exit"
-            android:layout_width="219dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button"
             android:text="종료" />
 
     </LinearLayout>
