@@ -20,7 +20,7 @@
 
 html::before
 {
-    background-image: url_for('static', filename='/image/background.jpg');
+    background-image: "/url({{url_for('static', filename='ayrton_senna_movie_wallpaper_by_bashgfx-d4cm6x6.jpg')}})";
     filter: blur(10px);
 }
 
