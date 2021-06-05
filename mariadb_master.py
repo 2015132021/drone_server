@@ -100,7 +100,11 @@ class Mariadb:
         value = ""
         for i in range(0, len(arr)):
             key += str(dict_key[arr[i]])
-            value += "'" + str(dict[arr[i]]) + "'"
+            if(type(value) != 'boolean'):
+                value += "'" + int(dict[arr[i]]) + "'"
+            else:
+                value += "'" + str(dict[arr[i]]) + "'"
+
             if i < len(arr) - 1:
                 key += ", "
                 value += ", "
