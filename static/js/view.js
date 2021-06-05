@@ -250,7 +250,7 @@ function rent(){
 
             if(gps_isrun == false){
                 gps_isrun = true
-                setInterval(() => {
+                funcInterval = setInterval(() => {
                     if(gps_stop == true)
                     {
                         break;
