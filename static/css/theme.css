@@ -65,7 +65,18 @@ div
 
 .float-left
 {
+    margin:0px;
+    padding:0px;
     float:left;
+}
+
+.float-left input
+{
+    width: calc(100% - 21pt);
+}
+.float-left span
+{
+    font-size: 17pt;
 }
 
 .page
