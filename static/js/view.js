@@ -190,8 +190,19 @@ function loading(){
             "id" : getCookie('id'),
             "hash" : getCookie('hash')
         }
+        restjson = {
+            "uri" : uris['client_login'],
+            "json" : json,
+            "REST" : "GET",
+            "success" : function(){
+                refresh(page_list[1])
+            },
+            "failed" : function(){
+                console.log("error!")
+            }
+        }
         console.log(json)
-        restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
+        restful(restjson);
     }
     else{
         refresh(page_list[1])
