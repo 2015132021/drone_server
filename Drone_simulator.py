@@ -206,7 +206,7 @@ options     :
 if __name__ == "__main__":
     arg = options.option()
 
-    if(arg.setup(arg.setup(opt)) == "help"):
+    if(arg.setup(opt) == "help"):
         print(help)
         quit()
 
