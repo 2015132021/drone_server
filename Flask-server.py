@@ -11,7 +11,7 @@ with open('/json/mariaDB.json', 'r') as f:
 
 maria = mariadb_master.Mariadb(json_data)
 
-app = Flask("Drone Server")  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
+app = Flask("Drone Server", static_url_path='/static')  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 api = Api(app)  # Flask 객체에 Api 객체 등록
 
 @api.route('/hello')  # 데코레이터 이용, '/hello' 경로에 클래스 등록
