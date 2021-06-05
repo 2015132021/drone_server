@@ -230,14 +230,6 @@ function join(){
 var gps_stop = false
 var gps_isrun = false
 
-const timer = setInterval(() => {
-    if(gps_stop == true)
-    {
-        break;
-    }
-    console.log("123")
-})
-
 function rent(){
     refresh(page_list[5])
     document.getElementById("rent_stat").innerHTML="서칭중..."
@@ -257,6 +249,9 @@ function rent(){
 
             if(gps_isrun == false){
                 gps_isrun = true
+                setInterval(function(){
+                    console.log("123")
+                }, 1000)
             }
         },
         "failed" : function(return_json){
