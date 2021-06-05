@@ -16,7 +16,7 @@ div
 
 #page_login *
 {
-    margin-top: 12px;
+    margin-top: 10px;
     padding: 7px;
     font-size: 17pt;
 
@@ -45,7 +45,7 @@ div
     top: calc(20% - 100px);
     left: calc(50% - 150px);
     border:solid 3px white;
-    padding : 12px;
+    padding : 15px;
 
 
 
