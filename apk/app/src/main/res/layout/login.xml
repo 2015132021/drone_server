@@ -8,6 +8,14 @@
     android:background="#CCCCCC">
 
 
+    <EditText
+        android:id="@+id/errortext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Error Here" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,6 +55,7 @@
             android:layout_gravity="center"
             android:text="Join" />
     </LinearLayout>
+
 
 
 
