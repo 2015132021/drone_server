@@ -24,12 +24,16 @@ div
     width: 300px;
     height: 200px;
     position:absolute;
-    top: calc(50% - 150px);
-    left: calc(50% - 100px);
+    top: calc(50% - 100px);
+    left: calc(50% - 150px);
     border:solid 1px white;
 }
 
 #page_login
 {
     background-color: #6666FF;
+    position:absolute;
+    left: calc(50% - 150px);
+
+
 }
