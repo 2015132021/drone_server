@@ -21,7 +21,7 @@
 html
 {
     background-image: url("/static/img/background.jpg");
-    background-filter: blur(10px);
+    -webkit-background-filter: blur(20px);
 }
 
 div
