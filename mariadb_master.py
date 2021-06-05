@@ -72,6 +72,10 @@ class Mariadb:
             "login_hash" : {
                 "table" : "Client_login_logs",
                 "id" : "client_id"
+            },
+            "selectDrone" : {
+                "table" : "Drone_information",
+                "id" : "num_drone"
             }
         }
 

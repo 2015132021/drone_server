@@ -22,6 +22,24 @@ class HelloWorld(Resource):
     def get(self):  # GET 요청시 리턴 값에 해당 하는 dict를 JSON 형태로 반환
         return {"hello": "world!"}
 
+@api.route('/drone/<string:data>')
+class Drone(Resource):
+    def get(self, data):
+        result = json.loads(data)
+        dict = {
+            "kind" : "selectDrone",
+            "arr" : ["id"],
+            "id" : result['id']
+        }
+        try:
+            resultDB = maria.select(dict)
+            return resultDB
+        except:
+            return {"error" : True}
+    
+    def post(self, data):
+        pass
+
 @api.route('/drone/gps/<string:data>')
 class DroneGPS(Resource):
     def get(self, data):

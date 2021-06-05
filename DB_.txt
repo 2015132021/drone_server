@@ -16,6 +16,14 @@ CREATE TABLE Drone_information
 	firmware VARCHAR(20)
 );
 
+CREATE TABLE Drone_target
+(
+	_id INT PRIMARY KEY AUTO_INCREMENT,
+	num_drone INT NOT NULL,
+	client_id INT NOT NULL,
+	time DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE Client_location
 (
 	_id INT PRIMARY KEY AUTO_INCREMENT,
