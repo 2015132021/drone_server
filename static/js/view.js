@@ -229,7 +229,7 @@ function join(){
 // gps 전송 루프
 var gps_stop = false
 var gps_isrun = false
-const timer=ms=>new Promise(res=>setTimeout(res, ms))
+const timer;
 
 function rent(){
     refresh(page_list[5])
@@ -250,13 +250,13 @@ function rent(){
 
             if(gps_isrun == false){
                 gps_isrun = true
-                // funcInterval = setInterval(() => {
-                //     if(gps_stop == true)
-                //     {
-                //         break;
-                //     }
-                //     console.log("123")
-                // }, 1000);
+                timer = setInterval(() => {
+                    if(gps_stop == true)
+                    {
+                        break;
+                    }
+                    console.log("123")
+                })
             }
         },
         "failed" : function(return_json){
