@@ -212,9 +212,9 @@ if __name__ == "__main__":
 
     id = arg.get(opt[0])
     if(id[0] == False):
-        id = id[1]
-    else:
         id = int(input("Drone id : "))
+    else:
+        id = id[1]
     print(id)
     
     
