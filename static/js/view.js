@@ -263,7 +263,7 @@ function rent(){
 }
 
 function getLocation() {
-    if (navigator.geolocation) { // GPS를 지원하면
+    if (/*navigator.geolocation*/ false) { // GPS를 지원하면
       navigator.geolocation.getCurrentPosition(function(position) {
         alert(position.coords.latitude + ' ' + position.coords.longitude);
       }, function(error) {
@@ -274,7 +274,7 @@ function getLocation() {
         timeout: Infinity
       });
     } else {
-      alert('GPS를 지원하지 않습니다');
+      console.log('GPS를 지원하지 않습니다');
     }
   }
 
