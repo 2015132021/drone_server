@@ -193,11 +193,32 @@ class request:
         print(rsp.text)
         return json.loads(rsp.text)
 
+opt = ['-n', '--help']
+
+help = '''
+드론 가상화 시뮬레이터
+
+options     :
+-n          : set drone's id
+'''
+
 ## 초기 실행
 if __name__ == "__main__":
-    req = request()
+    arg = options.option()
+
+    if(arg.setup(arg.setup(opt)) == "help"):
+        print(help)
+        quit()
+
+    id = arg.get(opt[0])
+    if(id[0] == False):
+        id = id[1]
+    else:
+        id = int(input("Drone id : "))
+    print(id)
     
-    id = int(input("Drone id : "))
+    
+    req = request()
     return_json = req.get({
         "uri" : "/drone/",
         "dict" : {

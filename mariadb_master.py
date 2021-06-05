@@ -1,10 +1,7 @@
 # import mysql.connector
-import json
-import socket 
 import datetime
 from _thread import *
 import pymysql
-import hashlib
 
 def timenow():
     now = datetime.datetime.now()
