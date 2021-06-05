@@ -184,6 +184,10 @@ function getCookie(name) {
     return value? value[2] : null;
 }
 
+function setCookie(name, value) {
+    document.cookie = name + "=" + value
+}
+
 function loading(){
     if(getCookie('id') != null & getCookie('hash') != null){
         json = {
@@ -195,10 +199,11 @@ function loading(){
             "json" : json,
             "REST" : "GET",
             "success" : function(){
-                refresh(page_list[1])
+                refresh(page_list[3])
             },
             "failed" : function(){
                 console.log("error!")
+                refresh(page_list[1])
             }
         }
         console.log(json)
