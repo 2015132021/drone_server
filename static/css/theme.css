@@ -63,11 +63,12 @@ div
     font-feature-settings: 'liga';
 }
 
-.float-left, .float-left *
+.float-left
 {
     margin:0px;
     padding:0px;
-    float:left;
+    
+    position: relative;
 }
 
 .float-left input
