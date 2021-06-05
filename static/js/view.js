@@ -183,7 +183,6 @@ function getCookie(name) {
     var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null;
 }
-}
 
 function loading(){
     if(getCookie('id') != null & getCookie('hash') != null){
