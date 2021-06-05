@@ -239,6 +239,7 @@ function myinfo(){
         "REST" : "GET",
         "success" : function(return_json){
             console.log(JSON.stringify(return_json))
+            refresh(page_list[4])
         },
         "failed" : function(return_json){
             console.log("error!")
@@ -270,4 +271,9 @@ function logout(){
         }
     }
     restful(restjson);
+}
+
+
+function tomain(){
+    refresh(page_list[3])
 }
