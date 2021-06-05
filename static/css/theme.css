@@ -23,7 +23,7 @@ html
     background-image: url("/static/img/background.jpg");
 }
 
-html::before
+body::before
 {
     filter: blur(10px);
 }
