@@ -21,7 +21,7 @@
 html
 {
     background-image: url("/static/img/background.jpg");
-    backdrop-filter: blur(10px); 
+    
 }
 
 body
@@ -33,6 +33,7 @@ body
 div
 {
     color:black;
+    
 }
 
 #page_login *
@@ -114,8 +115,8 @@ div
 
 #page_login
 {
-    width:300px;
-    height: 270px;
+    width:310px;
+    height:310px;
     position:absolute;
     top: calc(30% - 100px);
     left: calc(50% - 150px);
