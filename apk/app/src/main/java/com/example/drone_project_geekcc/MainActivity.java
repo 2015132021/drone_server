@@ -164,10 +164,8 @@ public class MainActivity extends AppCompatActivity {
             fis = openFileInput(fname);
             btext = new byte[fis.available()];
             fis.read(btext);
-            Toast.makeText(this.getApplicationContext(),"page loading", Toast.LENGTH_LONG).show();
 
             if (btext != null) {
-                Toast.makeText(this.getApplicationContext(),"페이지 있음", Toast.LENGTH_LONG).show();
                 s = new String(btext);
                 JSONObject fjs = new JSONObject(s);
                 id = fjs.getString("id");
@@ -194,7 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected void page_main(){
         // main 액티비티 intent로 넘김
-
+        Intent i1 = new Intent(getApplicationContext(), MainActivity02.class);
+        startActivity(i1);
+        finish();
 
     }
 
@@ -225,9 +225,6 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.login_login:
                             System.out.println("login_login");
 
-                            //
-                            errtext.setText("Pushed login btn");
-                            //
                             uri = "/client/login/";
                             JSONObject js = new JSONObject();
                             try {
@@ -247,13 +244,13 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.println("error");
                             }
                             catch(Exception e){
-                                errtext.setText("로그인 버튼 error" + e.getMessage());
+//                                errtext.setText("로그인 버튼 error" + e.getMessage());
                                 Toast.makeText(getApplicationContext(), "로그인 버튼 에러" + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                             break;
                     }
                 }catch (Exception e){
-                    errtext.setText(e.getMessage()+"");
+//                    errtext.setText(e.getMessage()+"");
                     Toast.makeText(getApplicationContext(), "버튼 에러" + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
@@ -262,8 +259,6 @@ public class MainActivity extends AppCompatActivity {
         login_login.setOnClickListener(cl);
         login_join.setOnClickListener(cl);
 
-        String test = "test1";
-        login_id.setText(test);
         page_loading();
     }
 }

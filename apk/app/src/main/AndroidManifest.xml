@@ -12,8 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Drone_projectgeekcc"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoadingActivity"
-            android:theme="@style/Theme.loading"/>
+        <activity android:name=".LoglistActivity"></activity>
+        <activity android:name=".MyinfoActivity" />
+        <activity android:name=".RentActivity" />
+        <activity android:name=".MainActivity02" />
+        <activity
+            android:name=".LoadingActivity"
+            android:theme="@style/Theme.loading" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
