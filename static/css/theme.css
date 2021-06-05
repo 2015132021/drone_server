@@ -31,9 +31,11 @@ div
 
 #page_login
 {
-    background-color: #6666FF;
+    width:300px;
+    height: 200px;
     position:absolute;
     left: calc(50% - 150px);
+    border:solid 1px white;
 
 
 }
