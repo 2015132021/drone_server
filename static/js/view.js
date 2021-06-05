@@ -226,7 +226,8 @@ function join(){
 }
 
 function rent(){
-
+    refresh(page_list[5])
+    document.getElementById("rent_stat").innerHTML="서칭중..."
 }
 
 function myinfo(){
