@@ -53,6 +53,12 @@ class Mariadb:
                 "table" : "Client_login_logs",
                 "id" : "client_id",
                 "tf" : "now_login"
+            },
+            "insertDrone" : {
+                "table" : "Drone_information",
+                "id" : "num_drone",
+                "OS" : "OS",
+                "firmware" : "firmware"
             }
         }
 

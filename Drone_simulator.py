@@ -5,6 +5,31 @@ import json
 
 is_quit = False
 
+####
+# 드론의 데이터를 서버에 전송하기 위한 시뮬레이터입니다.
+# 존재하는 모듈은 실제 데이터를 받고, 존재하지 않는 모듈은 가상화를 하여 전송하게 됩니다.
+####
+droneInfo = {       # 드론에 대한 데몬정보
+    "id" : None,
+    "OS" : "Demon",
+    "firmware" : "0.0.1",
+    "Descript" : "This Drone is Demon"
+}
+gpsInfo = {         # GPS에 대한 데몬 정보
+    # 신구대학교 위치 37.44904171317658, 127.16785865546673, 0.0002
+    "id" : None,
+    "lat" : 37.44904171317658,
+    "lng" : 127.16785865546673
+}
+batteryInfo = {     # 배터리 종류, 버전 등에 대한 데몬정보
+    "name" : "Demon_1.0",
+    "version" : "1.0",
+    "charge" : 100,
+    "offcharging" : 0.05,
+    "oncharging" : 0.5
+}
+
+
 class BatteryDemon:         # 배터리 모듈이 존재하지 않을때 사용하는 시뮬레이터 입니다.
     def __init__(self, dict) -> None:
         if dict == None:
@@ -83,14 +108,14 @@ class GpsDemon:
 class DroneDemon:
     def __init__(self, dict) -> None:
         if dict == None:
+            self.id = "1"
             self.os = "Demon"
             self.firmware = "0.0.1"
-            self.hash = None
             self.descript = ""
         else:
+            self.id = dict['id']
             self.os = dict['OS']
             self.firmware = dict['firmware']
-            self.hash = dict['hash key']
             self.descript = dict['Descript']
     
     def getOS(self):
@@ -144,73 +169,56 @@ class request:
         req = self.url + self.uri + self.json
         rsp = requests.get(req)
         print(rsp.text)
+        return json.loads(rsp.text)
 
     def post(self, arr):
         self.uri = arr['uri']
         dict = arr['dict']
-        dict['id'] = "1"
         json_dict = json.dumps(dict)
-        req = self.uri + json_dict
+        req = self.url + self.uri + json_dict
         print("req : %s" % req)
         rsp = requests.post(req, data=None)
         print(rsp.text)
+        return json.loads(rsp.text)
 
     def put(self, arr):
         self.uri = arr['uri']
-        
-        req = self.url + self.uri
+        dict = arr['dict']
+        json_dict = json.dumps(dict)
+        req = self.url + self.uri + json_dict
         rsp = requests.put(req, data=arr['dict'])
         print(rsp.text)
+        return json.loads(rsp.text)
 
 
 if __name__ == "__main__":
     req = request()
     
     id = int(input("Drone id : "))
-    req.get({
+    return_json = req.get({
         "uri" : "/drone/",
         "dict" : {
             "id" : 1
         }
     })
+    droneInfo['id'] = id
+    info = DroneDemon(droneInfo)
 
-
-
-
-    # ####
-    # # 드론의 데이터를 서버에 전송하기 위한 시뮬레이터입니다.
-    # # 존재하는 모듈은 실제 데이터를 받고, 존재하지 않는 모듈은 가상화를 하여 전송하게 됩니다.
-    # ####
-    # droneInfo = {       # 드론에 대한 데몬정보
-    #     "id" : id,
-    #     "OS" : "Demon",
-    #     "firmware" : "0.0.1",
-    #     "Descript" : "This Drone is Demon"
-    # }
-    # gpsInfo = {         # GPS에 대한 데몬 정보
-    #     # 신구대학교 위치 37.44904171317658, 127.16785865546673, 0.0002
-    #     "id" : id,
-    #     "lat" : 37.44904171317658,
-    #     "lng" : 127.16785865546673
-    # }
-    # batteryInfo = {     # 배터리 종류, 버전 등에 대한 데몬정보
-    #     "name" : "Demon_1.0",
-    #     "version" : "1.0",
-    #     "charge" : 100,
-    #     "offcharging" : 0.05,
-    #     "oncharging" : 0.5
-    # }
-
+    if(return_json['error']):
+        return_json = req.post({
+            "uri" : '/drone/',
+            "dict" : droneInfo
+        })
+        print(return_json)
 
     # bt = BatteryDemon(batteryInfo)
     # gps = GpsDemon(gpsInfo)
-    # info = DroneDemon(droneInfo)
 
     # try:
     #     while True:
     #         time.sleep(1)
     #         dict = {
-    #             'uri' : 'http://project-geek.cc/drone/gps/'
+    #             'uri' : '/drone/gps/'
     #         }
     #         dict['dict'] = gps.getLoction()
     #         dict['dict']['bat'] = bt.getLevel()

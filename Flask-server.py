@@ -38,7 +38,19 @@ class Drone(Resource):
             return {"error" : True}
     
     def post(self, data):
-        pass
+        result = json.loads(data)
+        dict = {
+            "kind" : "insertDrone",
+            "arr" : ["id", "OS", "firmware"],
+            "id" : result['id'],
+            "OS" : result['OS'],
+            "firmware" : result['firmware']
+        }
+        try:
+            resultDB = maria.insert(dict)
+            return resultDB
+        except:
+            return {"error" : True}
 
 @api.route('/drone/gps/<string:data>')
 class DroneGPS(Resource):
