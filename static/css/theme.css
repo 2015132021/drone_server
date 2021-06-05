@@ -68,14 +68,9 @@ div
     margin:0px;
     padding:0px;
 }
-
-.float-left input
+.float-left *
 {
-    width: calc(100% - 21pt);
-}
-.float-left span
-{
-    font-size: 17pt;
+    text-align: left;
 }
 
 .page
