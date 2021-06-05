@@ -229,8 +229,8 @@ function join(){
 // gps 전송 루프
 var gps_stop = false
 var gps_isrun = false
-var lat
-var lng
+var lat = 0
+var lng = 0
 
 function rent(){
     refresh(page_list[5])
