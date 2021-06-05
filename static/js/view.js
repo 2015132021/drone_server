@@ -229,7 +229,7 @@ function join(){
 // gps 전송 루프
 var gps_stop = false
 var gps_isrun = false
-const timer=ms=>new Promise(res=?setTimeout(res, ms))
+const timer=ms=>new Promise(res=>setTimeout(res, ms))
 
 function rent(){
     refresh(page_list[5])
