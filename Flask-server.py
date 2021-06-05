@@ -214,9 +214,12 @@ class ClientLogin(Resource):
                 return jsonify({"error" : True})
 
 @api.route('/client/rent/<string:data>')
-class ClientLog(Resource):
-    def get(self):
-        return 
+class ClientRent(Resource):
+    def get(self, data):
+        result = json.loads(data)
+        print(data)
+        print(result)
+        return jsonify({"id":"1", "error":False})
 
 
 @api.route('/client/log/<string:data>')

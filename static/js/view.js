@@ -26,11 +26,12 @@ REST API에 대해 사전 설정하는 내용입니다.
 // 동작 별 접근 주소에 대한 내용입니다.
 var uris = {
     drone_gps : "/drone/gps/",
+    client : "/client/",
     client_gps : "/client/gps/",
     client_log : "/client/log/",
     client_login : "/client/login/",
     client_logout : "/client/logout/",
-    client : "/client/"
+    client_rent : "/client/rent/"
 }
 
 // 스트링 파싱
@@ -225,9 +226,39 @@ function join(){
     console.log(result);
 }
 
+// gps 전송 루프
+var gps_stop = false
+var gps_isrun = false
+
+
 function rent(){
     refresh(page_list[5])
     document.getElementById("rent_stat").innerHTML="서칭중..."
+    
+    json = {
+        "id" : getCookie('id'),
+        "hash" : getCookie('hash')
+    };
+    
+    restjson = {
+        "uri" : uris['client'],
+        "json" : json,
+        "REST" : "GET",
+        "success" : function(return_json){
+            console.log("success!")
+            refresh(page_list[6])
+
+            if(gps_isrun == false){
+                gps_isrun = true
+                while(true){
+                    sleep(1000)
+                }
+            }
+        },
+        "failed" : function(return_json){
+            console.log("error!")
+        }
+    }
 }
 
 function myinfo(){
