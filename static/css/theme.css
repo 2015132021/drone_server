@@ -21,11 +21,7 @@
 html
 {
     background-image: url("/static/img/background.jpg");
-}
-
-body::before
-{
-    filter: blur(10px);
+    background-filter: blur(10px);
 }
 
 div
