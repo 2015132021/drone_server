@@ -42,10 +42,11 @@ div
     width:300px;
     height: 270px;
     position:absolute;
-    top: calc(20% - 100px);
+    top: calc(30% - 100px);
     left: calc(50% - 150px);
     border:solid 3px white;
     padding : 15px;
+    background-color: #CCCCFF;
 
 
 
