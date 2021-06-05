@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#CCCCCC"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background2">
     android:gravity="center_horizontal"
     android:orientation="vertical">>
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="413dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="150dp"
-        android:background="#ffffff"
-        android:orientation="vertical">
+        android:orientation="vertical">>
 
-        <EditText
+        <TextView
             android:id="@+id/join_name"
             android:layout_width="89dp"
             android:layout_height="wrap_content"
@@ -23,39 +21,57 @@
             android:ems="10"
             android:gravity="center_horizontal"
             android:inputType="textPersonName"
-            android:text="Join" />
+            android:text="Join"
+            android:textColor="#EEEEEE"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="5"
+            android:shadowColor="#000000"
+            android:textSize="30dp" />/>
 
         <EditText
             android:id="@+id/join_id"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:layout_gravity="center"
+            android:background="@drawable/edge"
+            android:ems="10"
+            android:paddingLeft="20px"
+            android:layout_marginTop="5dp"
             android:hint="ID" />
 
         <EditText
-            android:id="@+id/join_pw"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:layout_gravity="center"
+            android:background="@drawable/edge"
             android:ems="10"
+            android:paddingLeft="20px"
+            android:layout_marginTop="5dp"
             android:hint="pw"
             android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/join_email"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:layout_gravity="center"
+            android:background="@drawable/edge"
             android:ems="10"
+            android:paddingLeft="20px"
+            android:layout_marginTop="5dp"
             android:hint="e-mail"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/join_phone"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:layout_gravity="center"
+            android:background="@drawable/edge"
             android:ems="10"
+            android:paddingLeft="20px"
+            android:layout_marginTop="5dp"
             android:hint="phone number"
             android:inputType="phone" />
 
@@ -64,6 +80,8 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/button"
+            android:layout_marginTop="10dp"
             android:text="Join" />
 
         <Button
@@ -71,6 +89,8 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/button"
+            android:layout_marginTop="10dp"
             android:text="Back" />
     </LinearLayout>
 </LinearLayout>
