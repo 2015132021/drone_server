@@ -73,6 +73,7 @@ function restful(json){
             }
             else if(return_json.error == true){
                 alert(return_json.message)
+                json['failed'](return_json)
             }
             else {
                 alert('알려지지 않은 오류!')
