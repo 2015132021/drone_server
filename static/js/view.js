@@ -248,17 +248,16 @@ function rent(){
             console.log("success!")
             refresh(page_list[6])
 
-            // if(gps_isrun == false){
-            //     gps_isrun = true
-            //     while(true){
-            //         await timer(1000)
-            //         if(gps_stop == true)
-            //         {
-            //             break;
-            //         }
-            //         console.log("123")
-            //     }
-            // }
+            if(gps_isrun == false){
+                gps_isrun = true
+                while(true){
+                    if(gps_stop == true)
+                    {
+                        break;
+                    }
+                    console.log("123")
+                }
+            }
         },
         "failed" : function(return_json){
             console.log("error!")
