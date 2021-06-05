@@ -27,7 +27,11 @@ body
 {
     width: 100%;
     height: 100%;
-    -webkit-background-filter: blur(20px);
+}
+
+body::before
+{
+    filter: blur(20px);
 }
 
 div
