@@ -121,11 +121,11 @@ function join(){
         "uri" : uris['client'],
         "json" : json,
         "REST" : "POST",
-        "success" : function(){
+        "success" : function(return_json){
             console.log("success!")
             refresh(page_list[1])
         },
-        "failed" : function(){
+        "failed" : function(return_json){
             console.log("error!")
         }
     }
@@ -152,7 +152,7 @@ function login(){
             document.cookie = 'hash=' + return_json['hash']
             refresh(page_list[3])
         },
-        "failed" : function(){
+        "failed" : function(return_json){
             console.log("error!")
         }
     }
@@ -167,13 +167,13 @@ function logout(){
         "uri" : uris['client_logout'],
         "json" : json,
         "REST" : "GET",
-        "success" : function(){
+        "success" : function(return_json){
             document.cookie = 'id=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
             document.cookie = 'pw=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
             document.cookie = 'hash=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
             refresh(page_list[1])
         },
-        "failed" : function(){
+        "failed" : function(return_json){
             console.log("error!")
         }
     }
@@ -199,10 +199,10 @@ function loading(){
             "uri" : uris['client_login'],
             "json" : json,
             "REST" : "GET",
-            "success" : function(){
+            "success" : function(return_json){
                 refresh(page_list[3])
             },
-            "failed" : function(){
+            "failed" : function(return_json){
                 console.log("error!")
                 refresh(page_list[1])
             }
