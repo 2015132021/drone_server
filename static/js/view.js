@@ -250,7 +250,6 @@ function rent(){
             if(gps_isrun == false){
                 gps_isrun = true
                 setInterval(function(){
-                    console.log("123")
                     getLocation();
                 }, 1000)
             }
