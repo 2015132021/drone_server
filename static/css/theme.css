@@ -40,11 +40,11 @@ div
 #page_login
 {
     width:300px;
-    height: 250px;
+    height: 270px;
     position:absolute;
     top: calc(20% - 100px);
     left: calc(50% - 150px);
-    border:solid 2px white;
+    border:solid 3px white;
     padding : 15px;
 
 
