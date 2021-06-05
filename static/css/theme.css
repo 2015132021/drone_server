@@ -71,7 +71,7 @@ div
 }
 .float-left *
 {
-    text-align: left;
+    display: block;
     width: auto;
 }
 
