@@ -59,6 +59,7 @@ div
     border:solid 3px white;
     padding : 15px;
     background-color: #CCCCFF;
+    transform: translateY(-30%);
 
 
 
