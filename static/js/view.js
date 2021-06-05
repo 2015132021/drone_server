@@ -122,6 +122,28 @@ json = {
     failed = 실패시 실행할 함수 입니다.
 }
 
+최종적으로, 기본적인 함수의 폼은 아래와 같습니다.
+function func(){
+    json = {
+        "key" : value,
+
+    }
+    restjson = {
+        "uri" : uris[uri_name],
+        "json" : json,
+        "REST" : "GET" / "POST",
+        "success" : function(return_json){
+            //success function
+        },
+        "failed" : function(return_json){
+            console.log("error!")
+        }
+    }
+
+    var result = restful(restjson);
+    console.log(result);
+}
+
 */
 function loading(){
     if(getCookie('id') != null & getCookie('hash') != null){
@@ -222,6 +244,9 @@ function myinfo(){
             console.log("error!")
         }
     }
+
+    var result = restful(restjson);
+    console.log(result);
 }
 
 function mylogs(){
