@@ -31,14 +31,14 @@
 
         <ImageView
             android:id="@+id/map_img"
-            android:layout_width="364dp"
-            android:layout_height="364dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             app:srcCompat="@drawable/ic_launcher_background" />
         <!-- 그림수정필요 -->
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/map_exit"
             android:layout_width="230dp"
             android:layout_height="wrap_content"

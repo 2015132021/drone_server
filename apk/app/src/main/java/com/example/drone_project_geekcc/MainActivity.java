@@ -32,7 +32,7 @@ import static java.lang.Thread.sleep;
 public class MainActivity extends AppCompatActivity {
 
     //
-    EditText errtext;
+    //EditText errtext;
 
     // 현재 보고있는 페이지 ( 액티비티 ) 에 대한 정보
     String[] page_name = new String[]{"loading", "login", "join", "main", "rent", "myinfo", "loglist", "logview", "map", "camera"};
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                                     break;
 
                                 case 10:
-                                    errtext.setText("dest10 에서 error" + s);
+                                    //errtext.setText("dest10 에서 error" + s);
                                     break;
                             }
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("JSON error");
                 }catch (Exception e){
                     System.out.println(e.getMessage());
-                    errtext.setText("핸들러 error : " + e.getMessage()+"");
+                    //errtext.setText("핸들러 error : " + e.getMessage()+"");
                 }
             }
         }
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             }
             catch (Exception e) {
                 mh.sendEmptyMessage(0);
-                errtext.setText("쓰레드에서 error 발생" + e.getMessage());
+                //errtext.setText("쓰레드에서 error 발생" + e.getMessage());
             }
 
         }
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         page_stat = 0;
         // Storage에서 Hash 읽어옴 >> Hash, id를 Server-autologin에 보냄 --> return 에러가 없으면 >> main
         // return 에러가 있거나 Exception 발생 시 login
-        errtext.setText("start");
+        //errtext.setText("start");
         try{
             fis = openFileInput(fname);
             btext = new byte[fis.available()];
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // 해시 파일이 없는 경우
-        errtext.setText("No hash");
+        //errtext.setText("No hash");
 
 
     }
@@ -204,11 +204,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login);
         mh = new MyHandler();
         System.out.println("create");
-        errtext = (EditText) findViewById(R.id.errortext);
+        //errtext = (EditText) findViewById(R.id.errortext);
         Intent i = new Intent(this, LoadingActivity.class);
         startActivity(i);
 
-        errtext.setText("start");
+        //errtext.setText("start");
 
         login_id = (EditText) findViewById(R.id.login_id);
         login_pw = (EditText) findViewById(R.id.login_pw);
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.out.println("click");
-                errtext.setText("Click btn");
+                //errtext.setText("Click btn");
                 try{
                     switch (v.getId()) {
                         case R.id.login_login:
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
                                 js.put("pw", pw);
                                 req = host + uri + js.toString();
                                 //
-                                errtext.setText("REQ = " + req);
+                                //errtext.setText("REQ = " + req);
                                 gp = "GET";
                                 dest = 3;
                                 MyThread mt = new MyThread();
@@ -244,13 +244,13 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.println("error");
                             }
                             catch(Exception e){
-//                                errtext.setText("로그인 버튼 error" + e.getMessage());
+//                                //errtext.setText("로그인 버튼 error" + e.getMessage());
                                 Toast.makeText(getApplicationContext(), "로그인 버튼 에러" + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                             break;
                     }
                 }catch (Exception e){
-//                    errtext.setText(e.getMessage()+"");
+//                    //errtext.setText(e.getMessage()+"");
                     Toast.makeText(getApplicationContext(), "버튼 에러" + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }

@@ -52,7 +52,7 @@
                 android:hint="PW"
                 android:inputType="textPassword" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login_login"
                 android:layout_width="206dp"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 android:background="@drawable/button"
                 android:text="Login" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login_tojoin"
                 android:layout_width="206dp"
                 android:layout_height="wrap_content"
