@@ -18,9 +18,13 @@
     border:none;
 }
 
-html::before
+html
 {
     background-image: url("/static/img/background.jpg");
+}
+
+html::before
+{
     filter: blur(10px);
 }
 
