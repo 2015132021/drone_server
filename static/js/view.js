@@ -26,11 +26,12 @@ REST API에 대해 사전 설정하는 내용입니다.
 // 동작 별 접근 주소에 대한 내용입니다.
 var uris = {
     drone_gps : "/drone/gps/",
+    client : "/client/",
     client_gps : "/client/gps/",
     client_log : "/client/log/",
     client_login : "/client/login/",
     client_logout : "/client/logout/",
-    client : "/client/"
+    client_rent : "/client/rent/"
 }
 
 // 스트링 파싱
@@ -225,10 +226,70 @@ function join(){
     console.log(result);
 }
 
+// gps 전송 루프
+var gps_stop = false
+var gps_isrun = false
+var lat
+var lng
+
 function rent(){
     refresh(page_list[5])
     document.getElementById("rent_stat").innerHTML="서칭중..."
+    
+    json = {
+        "id" : getCookie('id'),
+        "hash" : getCookie('hash')
+    };
+    
+    restjson = {
+        "uri" : uris['client'],
+        "json" : json,
+        "REST" : "GET",
+        "success" : function(return_json){
+            console.log("success!")
+            refresh(page_list[6])
+
+            if(gps_isrun == false){
+                gps_isrun = true
+                setInterval(function(){
+                    getLocation();
+                }, 5000)
+            }
+        },
+        "failed" : function(return_json){
+            console.log("error!")
+        }
+    }
+    restful(restjson);
 }
+
+function getLocation() {
+    if (navigator.geolocation) { // GPS를 지원하면
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log(position.coords.latitude + ' ' + position.coords.longitude);
+        lat = position.coords.latitude
+        lng = position.coords.longitude
+
+        setCenter()
+        // 마커가 표시될 위치입니다 
+        var markerPosition  = new kakao.maps.LatLng(lat, lng); 
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+      }, function(error) {
+        console.error(error);
+      }, {
+        enableHighAccuracy: false,
+        maximumAge: 0,
+        timeout: Infinity
+      });
+    } else {
+      console.log('GPS를 지원하지 않습니다');
+    }
+  }
+
 
 function myinfo(){
     json = {
@@ -278,3 +339,43 @@ function logout(){
 function tomain(){
     refresh(page_list[3])
 }
+
+ //지도 생성 및 객체 리턴
+
+var options = { //지도를 생성할 때 필요한 기본 옵션
+    center: new kakao.maps.LatLng(lat, lng), //지도의 중심좌표.
+    level: 3 //지도의 레벨(확대, 축소 정도)
+};
+
+var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+var map = new kakao.maps.Map(container, options);
+
+function setCenter() {            
+    // 이동할 위도 경도 위치를 생성합니다 
+    var moveLatLon = new kakao.maps.LatLng(lat, lng);
+    
+    // 지도 중심을 이동 시킵니다
+    map.setCenter(moveLatLon);
+}
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(lat, lng); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+// marker.setMap(null);    

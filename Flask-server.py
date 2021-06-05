@@ -11,7 +11,7 @@ with open('/json/mariaDB.json', 'r') as f:
 
 maria = mariadb_master.Mariadb(json_data)
 
-app = Flask("Drone Server")  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
+app = Flask("Drone Server", static_url_path='/static')  # Flask 객체 선언, 파라미터로 어플리케이션 패키지의 이름을 넣어줌.
 api = Api(app)  # Flask 객체에 Api 객체 등록
 
 @api.route('/hello')  # 데코레이터 이용, '/hello' 경로에 클래스 등록
@@ -136,12 +136,9 @@ class Client(Resource):
             "email" : result['email'],
             "phone" : result['phone']
         }
-        try:
-            resultDB = maria.insert(dict)
-            resultDB['id'] = result['id']
-            return jsonify(resultDB)
-        except:
-            return jsonify(resultDB)
+        resultDB = maria.insert(dict)
+        resultDB['id'] = result['id']
+        return jsonify(resultDB)
 
 @api.route('/client/logout/<string:data>')
 class ClientLogout(Resource):
@@ -214,9 +211,12 @@ class ClientLogin(Resource):
                 return jsonify({"error" : True})
 
 @api.route('/client/rent/<string:data>')
-class ClientLog(Resource):
-    def get(self):
-        return 
+class ClientRent(Resource):
+    def get(self, data):
+        result = json.loads(data)
+        print(data)
+        print(result)
+        return jsonify({"id":"1", "error":False})
 
 
 @api.route('/client/log/<string:data>')

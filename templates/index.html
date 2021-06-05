@@ -2,6 +2,7 @@
     <head>
         <title>Drone Rent</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <script>
@@ -11,11 +12,17 @@
             <h2>loading</h2>
         </div>
         <div id="page_login" class="page">
-            <h2>login</h2>
-            ID:<input type="text" id="login_id"><br>
-            PW:<input type="password" id="login_pw"><br>
-            <input type="button" value="Login" onclick='login()'>
-            <input type="button" value="Join" onclick='refresh("page_join")'>
+            <center>
+                <h2>User Login</h2>
+            </center>
+            <span class="material-icons">
+                face
+                </span>
+            <input type="text" placeholder="ID" id="login_id">
+            <br>
+            <input type="password" placeholder="Password" id="login_pw"><br>
+            <input type="button" value="Login" id="login_login" class="login_button" onclick='login()'>
+            <input type="button" value="Join" id="login_join" class="login_button" onclick='refresh("page_join")'>
         </div>
         <div id="page_join" class="page">
             <h2>join</h2>
@@ -30,6 +37,9 @@
         </div>
         <div id="page_main" class="page">
             <h2>Main</h2>
+            <span class="material-icons">
+                account_circle
+                </span>
             <input type="button" value="Rent" onclick='rent()'><br>
             <input type="button" value="My Information" onclick='myinfo()'><br>
             <input type="button" value="My Logs"><br>
@@ -64,6 +74,8 @@
         </div>
         <div id="page_map" class="page" onload='map()'>
             <h2>Map</h2>
+            <div id="map" style="width:500px;height:400px;"></div>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=420f68047d710eb56d6154faa16378c8"></script>
         </div>
         <div id="page_camera" class="page">
             <h2>Camera</h2>
