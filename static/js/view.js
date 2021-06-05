@@ -251,7 +251,7 @@ function rent(){
                 gps_isrun = true
                 setInterval(function(){
                     getLocation();
-                }, 1000)
+                }, 5000)
             }
         },
         "failed" : function(return_json){
