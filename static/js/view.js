@@ -30,7 +30,7 @@ var uris = {
     client_log : "/client/log/",
     client_login : "/client/login/",
     client_logout : "/client/logout/",
-    client : "/client/",
+    client : "/client/"
 }
 
 // 스트링 파싱
@@ -87,7 +87,26 @@ function restful(json){
     xhr.send("");
 }
 
+/*
+쿠키 제어하는 함수입니다.
+getCookie(name) -> name의 이름을 가진 쿠키의 값을 가져옵니다.
+setCookie(name, value) name의 이름에 value의 값을 넣은 쿠키를 저장합니다.
+delCookie([name1, name2, name3]) 각 이름의 쿠키를 지웁니다.
+*/
+function getCookie(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+}
 
+function setCookie(name, value) {
+    document.cookie = name + "=" + value
+}
+
+function delCookie(arr){
+    for(i = 0; i < arr.length; i++){
+        document.cookie = arr[i] + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
+    }
+}
 
 
 /*
@@ -104,6 +123,57 @@ json = {
 }
 
 */
+function loading(){
+    if(getCookie('id') != null & getCookie('hash') != null){
+        json = {
+            "id" : getCookie('id'),
+            "hash" : getCookie('hash')
+        }
+        restjson = {
+            "uri" : uris['client_login'],
+            "json" : json,
+            "REST" : "GET",
+            "success" : function(return_json){
+                refresh(page_list[3])
+            },
+            "failed" : function(return_json){
+                console.log("error!")
+                refresh(page_list[1])
+            }
+        }
+        console.log(json)
+        restful(restjson);
+    }
+    else{
+        refresh(page_list[1])
+    }
+}
+
+function login(){
+    id = document.getElementById("login_id").value;
+    pw = document.getElementById("login_pw").value;
+    json = {
+        "id" : id,
+        "pw" : pw
+    }
+
+    restjson = {
+        "uri" : uris['client_login'],
+        "json" : json,
+        "REST" : "GET",
+        "success" : function(return_json){
+            console.log("login")
+            document.cookie = 'id=' + return_json['id'];
+            document.cookie = 'hash=' + return_json['hash'];
+            refresh(page_list[3])
+        },
+        "failed" : function(return_json){
+            console.log("error!")
+        }
+    }
+    restful(restjson);
+}
+
 function join(){
     id = document.getElementById("join_id").value;
     pw = document.getElementById("join_pw").value;
@@ -133,29 +203,30 @@ function join(){
     console.log(result);
 }
 
-function login(){
-    id = document.getElementById("login_id").value;
-    pw = document.getElementById("login_pw").value;
+function rent(){
+
+}
+
+function myinfo(){
     json = {
-        "id" : id,
-        "pw" : pw
+        "id" : id
     }
 
     restjson = {
-        "uri" : uris['client_login'],
+        "uri" : uris['client'],
         "json" : json,
         "REST" : "GET",
         "success" : function(return_json){
-            console.log("login")
-            document.cookie = 'id=' + return_json['id'];
-            document.cookie = 'hash=' + return_json['hash'];
-            refresh(page_list[3])
+            console.log(JSON.stringify(return_json))
         },
         "failed" : function(return_json){
             console.log("error!")
         }
     }
-    restful(restjson);
+}
+
+function mylogs(){
+
 }
 
 function logout(){
@@ -167,9 +238,7 @@ function logout(){
         "json" : json,
         "REST" : "GET",
         "success" : function(return_json){
-            document.cookie = 'id=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
-            document.cookie = 'pw=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
-            document.cookie = 'hash=; expires=Thu, 01 Jan 1999 00:00:10 GMT;'
+            delCookie["id", "pw", "hash"]
             refresh(page_list[1])
         },
         "failed" : function(return_json){
@@ -177,39 +246,4 @@ function logout(){
         }
     }
     restful(restjson);
-}
-
-function getCookie(name) {
-    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value? value[2] : null;
-}
-
-function setCookie(name, value) {
-    document.cookie = name + "=" + value
-}
-
-function loading(){
-    if(getCookie('id') != null & getCookie('hash') != null){
-        json = {
-            "id" : getCookie('id'),
-            "hash" : getCookie('hash')
-        }
-        restjson = {
-            "uri" : uris['client_login'],
-            "json" : json,
-            "REST" : "GET",
-            "success" : function(return_json){
-                refresh(page_list[3])
-            },
-            "failed" : function(return_json){
-                console.log("error!")
-                refresh(page_list[1])
-            }
-        }
-        console.log(json)
-        restful(restjson);
-    }
-    else{
-        refresh(page_list[1])
-    }
 }
