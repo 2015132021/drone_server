@@ -163,8 +163,8 @@ function login(){
         "REST" : "GET",
         "success" : function(return_json){
             console.log("login")
-            document.cookie = 'id=' + return_json['id'];
-            document.cookie = 'hash=' + return_json['hash'];
+            setCookie('id', return_json['id'])
+            setCookie('hash', return_json['hash'])
             refresh(page_list[3])
         },
         "failed" : function(return_json){
@@ -209,9 +209,8 @@ function rent(){
 
 function myinfo(){
     json = {
-        "id" : id
+        "id" : getCookie('id')
     }
-
     restjson = {
         "uri" : uris['client'],
         "json" : json,
