@@ -18,7 +18,7 @@ div
 {
     margin-top: 10px;
     padding: 3px;
-    font-size: 15pt;
+    font-size: 17pt;
 
 }
 
@@ -40,12 +40,12 @@ div
 #page_login
 {
     width:300px;
-    height: 400px;
+    height: 250px;
     position:absolute;
     top: calc(20% - 100px);
     left: calc(50% - 150px);
     border:solid 2px white;
-    padding : 10px;
+    padding : 15px;
 
 
 
