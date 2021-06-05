@@ -122,7 +122,7 @@ function join(){
         "REST" : "POST",
         "success" : function(){
             console.log("success!")
-            refresh[page_list[1]]
+            refresh(page_list[1])
         },
         "failed" : function(){
             console.log("error!")
