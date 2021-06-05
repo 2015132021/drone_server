@@ -110,6 +110,7 @@ class Client(Resource):
         }
         try:
             resultDB = maria.insert(dict)
+            resultDB['id'] = result['id']
             return jsonify(resultDB)
         except:
             return jsonify(resultDB)

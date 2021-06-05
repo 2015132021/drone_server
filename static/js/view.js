@@ -1,15 +1,29 @@
+/*****************
+현재 페이지에 관한 데이터를 담고 있는 내용입니다.
+*****************/
+
+// 현재 페이지 정보
 var page_state = "page_loading";
 
+// 페이지 목록
 page_list = ["page_loading", "page_login", "page_join", "page_main", "page_information", "page_rent", "page_map", "page_camera"]
 
+// 페이지를 새로고침 할 때, 이전 페이지를 안보이게 만들고 다음 페이지를 보이게 만듭니다. 그 후 현재 페이지 정보를 고칩니다.
 function refresh(str){
     document.getElementById(page_state).style.display="none";
     document.getElementById(str).style.display="block";
     page_state = str
 }
 
+// 현재 페이지를 로딩 페이지로 바꿉니다.
 refresh(page_list[0])
 
+
+
+/*****************
+REST API에 대해 사전 설정하는 내용입니다.
+*****************/
+// 동작 별 접근 주소에 대한 내용입니다.
 var uris = {
     drone_gps : "/drone/gps/",
     client_gps : "/client/gps/",
@@ -19,6 +33,7 @@ var uris = {
     client : "/client/",
 }
 
+// 스트링 파싱
 function parsing(str){
     var string = String(str).split('\n')
 
@@ -29,8 +44,20 @@ function parsing(str){
     return string
 }
 
-function restful(uri, json, REST, a, b, c){
-    var url = uri + JSON.stringify(json);
+// REST API 실행하는 내용
+function restful(json){
+    /*
+        json으로 넘겨받습니다.
+        json = {
+            uri = "/uri/ 데이터",
+            json = "전달해 줄 json",
+            REST = GET / POST 등등 입니다
+            success = 성공 시 실행할 함수입니다.
+            failed = 실패시 실행할 함수 입니다.
+        }
+
+    */
+    var url = json['uri'] + JSON.stringify(json['json']);
     console.log("url : " + url)
     // XMLHttpRequest 객체의 인스턴스를 생성합니다.
     var xhr = new XMLHttpRequest();
@@ -42,8 +69,7 @@ function restful(uri, json, REST, a, b, c){
             return_json = JSON.parse(xhr.responseText)
             console.log(return_json)
             if(return_json.error == false){
-                a(b)
-                c(json.id, json.pw)
+                json['success'](return_json)
             }
             else if(return_json.error == true){
                 alert(return_json.message)
@@ -55,12 +81,29 @@ function restful(uri, json, REST, a, b, c){
     }
 
     // open() 메서드는 요청을 준비하는 메서드입니다. (http 메서드, 데이터를 받아올 URL 경로, 비동기 여부)
-    xhr.open(REST, url, true);
+    xhr.open(json['REST'], url, true);
 
     // send() 메서드는 준비된 요청을 서버로 전송하는 메서드입니다. (서버에 전달될 정보)
     xhr.send("");
 }
 
+
+
+
+/*
+각 페이지 별, 동작 별 실행하는 함수에 관한 내용입니다.
+AJAX로 넘겨줄 restful()의 인자 json은 아래와 같습니다.
+
+json으로 넘겨받습니다.
+json = {
+    uri = "/uri/ 데이터",
+    json = "전달해 줄 json",
+    REST = GET / POST 등등 입니다
+    success = 성공 시 실행할 함수입니다.
+    failed = 실패시 실행할 함수 입니다.
+}
+
+*/
 function join(){
     id = document.getElementById("join_id").value;
     pw = document.getElementById("join_pw").value;
@@ -72,8 +115,21 @@ function join(){
         "email" : email,
         "phone" : phone
     };
+    
+    restjson = {
+        "uri" : uris['client'],
+        "json" : json,
+        "REST" : "POST",
+        "success" : function(){
+            console.log("success!")
+            refresh[page_list[1]]
+        },
+        "failed" : function(){
+            console.log("error!")
+        }
+    }
 
-    var result = restful(uris['client'], json, "POST");
+    var result = restful(restjson);
     console.log(result);
 }
 
@@ -84,7 +140,11 @@ function login(){
         "id" : id,
         "pw" : pw
     };
-    restful(uris['client_login'], json, "GET", refresh, page_list[3], login_correct);
+    restful(uris['client_login'], json, "GET", login_correct, );
+}
+
+function login_correct(send_json, return_json){
+    refresh[pa]
 }
 
 function logout(){
@@ -97,12 +157,6 @@ function logout(){
 function getCookie(name) {
     var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
     return value? value[2] : null;
-  }
-  
-
-function login_correct(id, pw){
-    document.cookie = "id=" + id; // 이름이 'user'인 쿠키의 값만 갱신함
-    document.cookie = "hash=" + hash; // 이름이 'user'인 쿠키의 값만 갱신함
 }
 
 function logout_correct(){
