@@ -5,59 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#CCCCCC">
+    android:background="@drawable/background2">
 
-
-    <EditText
-        android:id="@+id/errortext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:visibility="invisible"
-        android:text="Error Here" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="200dp"
-        android:orientation="vertical"
-        android:background="#ffffff">>
-        <EditText
-            android:id="@+id/login_id"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="ID" />
+            android:background="#FF"
+            android:layout_marginTop="285dp"
+            android:orientation="vertical">>
 
-        <EditText
-            android:id="@+id/login_pw"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ems="10"
-            android:hint="PW"
-            android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="156dp"
+                android:layout_height="66dp"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="User Login"
+                android:textColor="#EEEEEE"
+                android:textSize="30dp" />
 
-        <Button
-            android:id="@+id/login_login"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Login" />
+            <EditText
+                android:id="@+id/login_id"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="ID"
+                android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/login_tojoin"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Join" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/login_pw"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:hint="PW"
+                android:inputType="textPassword" />
 
+            <Button
+                android:id="@+id/login_login"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button"
+                android:text="Login" />
 
-
+            <Button
+                android:id="@+id/login_tojoin"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button"
+                android:text="Join" />
+        </LinearLayout>
 
 </LinearLayout>
