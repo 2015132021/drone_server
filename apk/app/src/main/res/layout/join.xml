@@ -36,7 +36,7 @@
             android:background="@drawable/edge"
             android:ems="10"
             android:paddingLeft="20px"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:hint="ID" />
 
         <EditText
