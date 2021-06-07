@@ -40,13 +40,12 @@
                 android:textColor="#EEEEEE"
                 android:textSize="30dp" />
 
-            <ImageView
-                android:id="@+id/map_img"
-                android:layout_width="497dp"
-                android:layout_height="299dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="25dp"
-                app:srcCompat="@drawable/map" />
+
+            <LinearLayout
+                android:layout_width="413dp"
+                android:layout_height="494dp"
+                android:background="@drawable/map1234"
+                android:orientation="vertical"></LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/map_exit"
@@ -56,8 +55,5 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_300"
                 android:text="종료" />
-
         </LinearLayout>
-
-
 </LinearLayout>
