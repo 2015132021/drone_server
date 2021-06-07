@@ -26,7 +26,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/main_rent"
             android:layout_width="333dp"
-            android:layout_height="66dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:background="@drawable/button"
             android:ems="10"
@@ -43,7 +43,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/main_myinfo"
             android:layout_width="333dp"
-            android:layout_height="66dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:background="@drawable/button"
@@ -60,7 +60,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/main_rentlog"
             android:layout_width="333dp"
-            android:layout_height="66dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/button"
